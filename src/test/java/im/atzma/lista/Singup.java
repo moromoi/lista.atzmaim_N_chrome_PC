@@ -39,11 +39,10 @@ public class Singup {
         chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
 
         System.setProperty("webdriver.chrome.driver", "C:\\automation\\browser drivers\\chrome\\chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
 
@@ -60,14 +59,14 @@ public class Singup {
         Assert.assertTrue(driver.findElement(By.xpath("//li[text()='ru']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//li[text()='en']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//li[text()='he']")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//img[@src=\"/public/signup/media/logo.svg\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//img[@src='/public/signup/media/logo.svg']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//div[text()='מלא פרטים כדי לצור חשבון:']")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//input[@placeholder=\"הזן את האימיייל שלך\"]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//input[@placeholder=\"הזן את הססמא שלך\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//input[@placeholder='הזן את האימיייל שלך']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//input[@placeholder='הזן את הססמא שלך']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//button[text()='המשך']")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//img[@src=\"/public/signup/media/mail.svg\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//img[@src='/public/signup/media/mail.svg']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//button[@type='submit']")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//img[@src=\"/public/signup/media/lock.svg\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//img[@src='/public/signup/media/lock.svg']")).isDisplayed());
 
     }
 
@@ -78,10 +77,10 @@ public class Singup {
 
         driver.findElement(By.xpath("//input[@type='password']")).sendKeys(pass);
 
-        Assert.assertTrue(driver.findElement(By.xpath("//img[@src=\"/public/signup/media/eye.svg\"]")).isDisplayed());
-        driver.findElement(By.xpath("//img[@src=\"/public/signup/media/eye.svg\"]")).click();
+        Assert.assertTrue(driver.findElement(By.xpath("//img[@src='/public/signup/media/eye.svg']")).isDisplayed());
+        driver.findElement(By.xpath("//img[@src='/public/signup/media/eye.svg']")).click();
         Assert.assertTrue(driver.findElement(By.xpath("//div[@class='group password ']//input[@type='text']")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//img[@src=\"/public/signup/media/eye-off.svg\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//img[@src='/public/signup/media/eye-off.svg']")).isDisplayed());
 
         driver.findElement(By.xpath("//button[@type='submit']")).click();
 
@@ -93,9 +92,9 @@ public class Singup {
     @Test(priority = 4)
     public void testVerifyBusinessTypePageElements() throws Exception {
         Thread.sleep(300);
-        Assert.assertTrue(driver.findElement(By.xpath("//img[@src=\"/public/signup/media/ic_back.svg\"]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//img[@src=\"/public/signup/media/business_types_icons/one-on-one_meetings.svg\"]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//img[@src=\"/public/signup/media/business_types_icons/hair_styling.svg\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//img[@src='/public/signup/media/ic_back.svg']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//img[@src='/public/signup/media/business_types_icons/one-on-one_meetings.svg']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//img[@src='/public/signup/media/business_types_icons/hair_styling.svg']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//div[text()='נא לבחור סוג העסק']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//div[text()='אנחנו נתאים את האפליקציה לצרכים שלך']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//div[text()='אתם יכולים לבחור יותר מאחד או']")).isDisplayed());
@@ -110,7 +109,7 @@ public class Singup {
         driver.findElement(By.xpath("//div[@class='bussiness-type']")).click();
         Assert.assertTrue(driver.findElement(By.xpath("//div[text()='בחרת ב:']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//span[text()='עצמאי']")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//img[@src=\"/public/signup/media/business_types_icons/violet-one-on-one_meetings.svg\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//img[@src='/public/signup/media/business_types_icons/violet-one-on-one_meetings.svg']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//div[@class='bussiness-type__checkmark']")).isDisplayed());
         driver.findElement(By.xpath("//span[text()='בואו נתחיל!']/..")).click();
 
@@ -127,18 +126,23 @@ public class Singup {
             Thread.sleep(1000);
         }
 
-        Assert.assertTrue(driver.findElement(By.xpath("//img[@src=\"/public/signup/media/ic_back.svg\"]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//img[@src=\"/public/signup/media/sing-up-img.png\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//img[@src='/public/signup/media/ic_back.svg']")).isDisplayed());
+
+        try {
+            Assert.assertTrue(driver.findElement(By.xpath("//img[@src='/public/signup/media/sing-up-img.png']")).isDisplayed());
+        } catch (Error e) {
+            verificationErrors.append(e.toString());
+        }
         Assert.assertTrue(driver.findElement(By.xpath("//div[text()='אנחנו סיימנו כאן!']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//span[text()='תודה על שיתוף הפעולה']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//span[text()='עכשיו אתם יכולים להתחיל ליהנות משימוש באפליקציה']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//span[text()='אנחנו הולכים לשלוח מידע חשוב וטיפים על שימוש באפליקציה, אתם מסכימים לזה?']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//span[text()='אני מסכים לתנאי הסכם שימוש של אפליקציה Atzma.im CRM']")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//label[@for=\"twice\"]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//label[@for=\"first\"]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//label[@for='twice']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//label[@for='first']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//span[text()='בואו נתחיל!']")).isDisplayed());
 
-        driver.findElement(By.xpath("//label[@for=\"twice\"]/span")).click();
+        driver.findElement(By.xpath("//label[@for='twice']/span")).click();
         driver.findElement(By.xpath("//button")).click();
         for (int second = 0; ; second++) {
             if (second >= 60) fail("timeout");
@@ -156,8 +160,8 @@ public class Singup {
     public void testLogOut() throws Exception {
         driver.findElement(By.xpath("//div[@class='more_wrap']")).click();
         Assert.assertTrue(driver.findElement(By.xpath("//p[contains(text(), 'katalon')]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("//a[@href=\"/he/logout\"]")).isDisplayed());
-        driver.findElement(By.xpath("//a[@href=\"/he/logout\"]")).click();
+        Assert.assertTrue(driver.findElement(By.xpath("//a[@href='/he/logout']")).isDisplayed());
+        driver.findElement(By.xpath("//a[@href='/he/logout']")).click();
 
     }
 
@@ -198,7 +202,7 @@ public class Singup {
         Assert.assertEquals(driver.getCurrentUrl(), "https://lista.atzma.im/he/catalog/services");
         Assert.assertTrue(driver.findElement(By.xpath("//p[text()='פגישה 30 דקות']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("(//span[text()='כללית'])[1]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("(//img[@src=\"/public/services/ic-time-copy.svg\"])[1]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("(//img[@src='/public/services/ic-time-copy.svg'])[1]")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("(//span[text()='דקות'])[1]")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//span[text()='30']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("(//span[text()='₪'])[1]")).isDisplayed());
@@ -218,7 +222,7 @@ public class Singup {
         Assert.assertEquals(driver.getCurrentUrl(), "https://lista.atzma.im/he/catalog/services");
         Assert.assertTrue(driver.findElement(By.xpath("//p[text()='פגישה 45 דקות']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("(//span[text()='כללית'])[2]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("(//img[@src=\"/public/services/ic-time-copy.svg\"])[1]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("(//img[@src='/public/services/ic-time-copy.svg'])[1]")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("(//span[text()='דקות'])[2]")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//span[text()='45']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("(//span[text()='₪'])[2]")).isDisplayed());
@@ -238,7 +242,7 @@ public class Singup {
         Assert.assertEquals(driver.getCurrentUrl(), "https://lista.atzma.im/he/catalog/services");
         Assert.assertTrue(driver.findElement(By.xpath("//p[text()='פגישה 60 דקות']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("(//span[text()='כללית'])[3]")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.xpath("(//img[@src=\"/public/services/ic-time-copy.svg\"])[1]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("(//img[@src='/public/services/ic-time-copy.svg'])[1]")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("(//span[text()='דקות'])[3]")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//span[text()='60']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("(//span[text()='₪'])[3]")).isDisplayed());
@@ -251,6 +255,18 @@ public class Singup {
         Assert.assertFalse(isElementPresent(By.xpath("//img[@class='trash']")));
 
     }
+
+    @Test(priority = 13)
+    public void testDeleteAccount() throws Exception {
+        driver.get("https://lista.atzma.im/he/settings");
+        driver.findElement(By.xpath("//p[text()='הגדרות עסק']")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//button[text()='למחוק את החשבון']")).click();
+        driver.findElement(By.xpath("//button[@class='yes-btn']")).click();
+        Thread.sleep(1000);
+        Assert.assertTrue(driver.getCurrentUrl().matches("https://lista.atzma.im/he/login"));
+    }
+
     //    @AfterClass(alwaysRun = true)
     public void tearDown() throws Exception {
         driver.quit();
