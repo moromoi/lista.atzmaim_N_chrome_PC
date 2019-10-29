@@ -8,3 +8,9 @@ dependencies {
     implementation 'org.testng:testng:7.0.0'
     implementation 'org.seleniumhq.selenium:selenium-java:4.0.0-alpha-2'
 }
+
+test {
+    useTestNG() {
+        suites 'src/testng.xml'
+  }
+}

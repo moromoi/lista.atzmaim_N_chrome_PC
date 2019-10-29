@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite"><test verbose="2" preserve-order="true" name="D:/Devel/PC/lista.atzmaim_N_chrome_PC/src/test/java">
+    <classes>
+        <class name= "im.atzma.lista.tests.Singup">
+    <methods>
+        <include name="testVerifySignupPageElements"/>
+        <include name="testPasswordVisibleIcons"/>
+        <include name="testVerifyBusinessTypePageElements"/>
+        <include name="testMarkBussnessType_atzmaimButtonChecked"/>
+        <include name="testVerifyAllSetPageElements"/>
+        <include name="testVerifyAllTestPageCheckboxes"/>
+        <include name="testCreateNewAccount_submit"/>
+        <include name="testLogOut"/>
+        <include name="testVerifyLoginWithNewUser"/>
+        <include name="testVerifyDefaultClientPage()"/>
+        <include name="testVerifyDefaultServices30min"/>
+        <include name="testVerifyDefaultServices45min"/>
+        <include name="testVerifyDefaultServices60min"/>
+        <include name="testDeleteAccount"/>
+    </methods></class></classes></test></suite>

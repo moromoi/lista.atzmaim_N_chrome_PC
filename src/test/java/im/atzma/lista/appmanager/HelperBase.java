@@ -14,11 +14,12 @@ public class HelperBase {
     }
 
     public void highlight(WebElement el) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", el);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='2px solid red'", el);
     }
 
     public void click(WebElement el) {
         try {
+            highlight(el);
             el.click();
         } catch (WebDriverException e) {
             e.printStackTrace();
@@ -26,24 +27,35 @@ public class HelperBase {
     }
 
     public void waitForLocation(String myURL) throws InterruptedException {
+            for (int second = 0; ; second++) {
+                if (second >= 60) fail("timeout");
+                try {
+                    if (myURL.equals(driver.getCurrentUrl())) break;
+                } catch (Exception e) {
+                }
+                Thread.sleep(1000);
+            }
+    }
+
+    public void waitForElement(WebElement myElement) throws InterruptedException {
         for (int second = 0; ; second++) {
             if (second >= 60) fail("timeout");
             try {
-                if (myURL.equals(driver.getCurrentUrl())) break;
+                if (myElement.isDisplayed()) break;
             } catch (Exception e) {
             }
             Thread.sleep(1000);
         }
+
     }
 
-    private boolean isAlertPresent() {
+    public boolean isElementPresent(WebElement el) {
         try {
-            driver.switchTo().alert();
+            el.isDisplayed();
             return true;
-        } catch (NoAlertPresentException e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
-
 
 }

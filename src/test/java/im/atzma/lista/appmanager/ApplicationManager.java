@@ -14,6 +14,11 @@ public class ApplicationManager {
     public WebDriver driver;
     SessionHelper sessionHelper;
     SingupPage singupPage;
+    BusinessPage businessPage;
+    AllSetPage allSetPage;
+    CalendarPage calendarPage;
+    ClientPage clientPage;
+    ServicesPage servicesPage;
 
     public StringBuffer verificationErrors = new StringBuffer();
     public boolean acceptNextAlert = true;
@@ -32,7 +37,11 @@ public class ApplicationManager {
 
         sessionHelper = new SessionHelper(driver);
         singupPage = new SingupPage(driver);
-
+        businessPage = new BusinessPage(driver);
+        allSetPage = new AllSetPage(driver);
+        calendarPage = new CalendarPage(driver);
+        clientPage = new ClientPage(driver);
+        servicesPage = new ServicesPage(driver);
     }
 
 
@@ -54,18 +63,14 @@ public class ApplicationManager {
         }
     }
 
-    private boolean isElementPresent(By by) {
-        try {
-            driver.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-
 
     public SessionHelper getSessionHelper() {
         return sessionHelper;
     }
-    public SingupPage getSingupPage() {return singupPage; }
+    public SingupPage getSingupPage() { return singupPage; }
+    public BusinessPage getBusinessPage() { return businessPage; }
+    public AllSetPage getAllSetPage() { return allSetPage; }
+    public CalendarPage getCalendarPage() { return calendarPage; }
+    public ClientPage getClientPage() { return clientPage; }
+    public ServicesPage getServicesPage() { return servicesPage; }
 }
