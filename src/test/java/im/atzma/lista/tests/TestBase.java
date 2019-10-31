@@ -3,10 +3,11 @@ package im.atzma.lista.tests;
 import im.atzma.lista.appmanager.ApplicationManager;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import sun.plugin2.util.BrowserType;
 
 public class TestBase {
 
-    protected final ApplicationManager app = new ApplicationManager();
+    protected static final ApplicationManager app = new ApplicationManager();
 
     @BeforeClass(alwaysRun = true)
     public void setUp() throws Exception {

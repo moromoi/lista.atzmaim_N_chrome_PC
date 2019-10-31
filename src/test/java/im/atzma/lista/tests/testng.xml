@@ -18,4 +18,8 @@
         <include name="testVerifyDefaultServices45min"/>
         <include name="testVerifyDefaultServices60min"/>
         <include name="testDeleteAccount"/>
-    </methods></class></classes></test></suite>
+    </methods>
+        </class>
+    </classes>
+</test>
+</suite>
