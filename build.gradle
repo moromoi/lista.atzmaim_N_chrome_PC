@@ -13,5 +13,5 @@ dependencies {
 test {
     useTestNG() {
   }
-    systemProperties 'browser', "${browser}"    
+
 }
