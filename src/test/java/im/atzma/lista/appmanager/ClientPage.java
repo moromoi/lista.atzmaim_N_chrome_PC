@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 public class ClientPage extends HelperBase{
     public ClientPage(WebDriver driver) {super(driver); }
 
-    @FindBy(xpath = "//span[text()='מאגר לקוחות']")
+    @FindBy(xpath = "//span[text()='אגר לקוחות']")
     WebElement title_on_clienPage;
 
     @FindBy(xpath = "//span[@class='app-clients-list__header-title count']")
