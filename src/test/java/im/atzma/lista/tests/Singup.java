@@ -226,7 +226,7 @@ public class Singup extends im.atzma.lista.tests.TestBase {
 
         //--------------------------------------------------------------------------verify number of client (0)
         try {
-            Assert.assertEquals(numberOfClient, "(0)");
+            Assert.assertEquals(numberOfClient, "(10)");
         } catch (Exception e) {
             e.printStackTrace();
         }
