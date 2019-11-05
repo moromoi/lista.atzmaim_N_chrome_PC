@@ -222,14 +222,16 @@ public class Singup extends im.atzma.lista.tests.TestBase {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        String numberOfClient =app.getClientPage().verifyNumberOfClient();
 
+        //--------------------------------------------------------------------------verify number of client (0)
         try {
-            //--------------------------------------------------------------------------verify number of client (0)
-            Assert.assertTrue(app.getClientPage().verifyNumberOfClient());
-        } catch (InterruptedException e) {
+            Assert.assertEquals(numberOfClient, "(0)");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     @Test(priority = 11)
     public void testVerifyDefaultServices30min() throws Exception {

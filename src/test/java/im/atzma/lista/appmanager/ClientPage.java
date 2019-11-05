@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 public class ClientPage extends HelperBase{
     public ClientPage(WebDriver driver) {super(driver); }
 
-    @FindBy(xpath = "//span[text()='אגר לקוחות']")
+    @FindBy(xpath = "//span[text()='מאגר לקוחות']")
     WebElement title_on_clienPage;
 
     @FindBy(xpath = "//span[@class='app-clients-list__header-title count']")
@@ -22,12 +22,15 @@ public class ClientPage extends HelperBase{
         else return false;
     }
 
-    public boolean verifyNumberOfClient() throws InterruptedException {
+    public String verifyNumberOfClient() throws InterruptedException {
         highlight(number_of_client);
         System.out.println("number of client: " + number_of_client.getText());
-        if(number_of_client.getText().contentEquals("(0)")) {
-            return true;
-        }
-        else return false;
+//        if(number_of_client.getText().contentEquals("(1)")) {
+//            return true;
+//        }
+//        else return false;
+         String n = number_of_client.getText();
+         return n;
     }
+
 }
