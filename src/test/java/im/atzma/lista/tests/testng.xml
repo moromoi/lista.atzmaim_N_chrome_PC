@@ -17,8 +17,17 @@
         <include name="testVerifyDefaultServices30min"/>
         <include name="testVerifyDefaultServices45min"/>
         <include name="testVerifyDefaultServices60min"/>
-        <include name="testDeleteAccount"/>
     </methods>
+        </class>
+        <class name= "im.atzma.lista.tests.Menu">
+            <methods>
+                <include name="verifyLinkText"/>
+            </methods>
+        </class>
+        <class name= "im.atzma.lista.tests.DeleteAccount">
+            <methods>
+                <include name="testDeleteAccount"/>
+            </methods>
         </class>
     </classes>
 </test>

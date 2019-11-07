@@ -4,6 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CalendarPage extends HelperBase{ public CalendarPage(WebDriver driver) {super(driver); }
 
     @FindBy(xpath = "//div[@class='more_wrap']")
@@ -14,6 +17,18 @@ public class CalendarPage extends HelperBase{ public CalendarPage(WebDriver driv
 
     @FindBy(xpath = "//a[@href='/he/logout']")
     WebElement btn_logout;
+
+    @FindBy(xpath = "//p[@class='business_name']")
+    WebElement text_businessName;
+
+    @FindBy(xpath = "//p[@class='business_address']")
+    WebElement text_businessAddress;
+
+    @FindBy(xpath = "//a[@href=\"/he/calendar\"]")
+    WebElement text_calendar;
+
+    @FindBy(xpath = "//a[@href=\"/he/clients\"]")
+    WebElement text_clientDB;
 
 
 public boolean logout() {
@@ -32,4 +47,19 @@ public boolean verifyUserinMenu() {
     }
     else return false;
 }
+
+    public List<WebElement> verifyMenuLinks() {
+    click(menu_gamburger);
+        List<WebElement> itemList = new ArrayList<>();
+        itemList.add(text_businessName);
+        itemList.add(text_businessAddress);
+        itemList.add(text_calendar);
+        itemList.add(text_clientDB);
+
+        for (int i = 0; i < itemList.size(); i++) {
+            highlight(itemList.get(i));
+            System.out.println("Menu item " + i + "-"  + itemList.get(i).getText());
+        }
+        return itemList;
+    }
 }

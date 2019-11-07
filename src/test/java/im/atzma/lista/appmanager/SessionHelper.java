@@ -25,8 +25,8 @@ public class SessionHelper extends HelperBase {
    
     Random random = new Random();
     long randomLong = random.nextLong();
-    public String mail = "katalon_" + randomLong + "@gmail.com";
-    public String pass = "Pa$$w@rd";
+    public final String mail = "katalon_" + randomLong + "@gmail.com";
+    public final String pass = "Pa$$w@rd";
     String baseURL = "https://lista.atzma.im/he/home";
     String singupURL = "https://lista.atzma.im/he/signup";
     String businessURL = "https://lista.atzma.im/he/signup/business-type";
@@ -34,6 +34,7 @@ public class SessionHelper extends HelperBase {
     String loginURL= "https://lista.atzma.im/he/login";
     String clientURL = "https://lista.atzma.im/he/clients";
     String servicesURL = "https://lista.atzma.im/he/catalog/services";
+    String calendarURL = "https://lista.atzma.im/he/calendar/";
 
     public SessionHelper(WebDriver driver) {
         super(driver);
@@ -44,10 +45,24 @@ public class SessionHelper extends HelperBase {
         waitForLocation(baseURL);
 
     }
-
     public void goToSingupPage() throws InterruptedException {
         driver.findElement(By.xpath("//a[@href='/he/signup']")).click();
         waitForLocation(singupURL);
+    }
+
+    public void goToClientPage() throws InterruptedException {
+        driver.get(clientURL);
+        waitForLocation(clientURL);
+    }
+
+    public void goToServicesPage() throws InterruptedException {
+        driver.get(servicesURL);
+        waitForLocation(servicesURL);
+    }
+
+    public void goToCalendarPage() throws InterruptedException {
+        driver.get(calendarURL);
+//        waitForLocation(calendarURL);
     }
 
     public void typeNewPassAndUser() {
@@ -89,13 +104,5 @@ public class SessionHelper extends HelperBase {
         click(btn_submit);
     }
 
-    public void goToClientPage() throws InterruptedException {
-        driver.get(clientURL);
-        waitForLocation(clientURL);
-    }
 
-    public void goToServicesPage() throws InterruptedException {
-        driver.get(servicesURL);
-        waitForLocation(servicesURL);
-    }
 }

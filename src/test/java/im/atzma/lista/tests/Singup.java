@@ -301,18 +301,12 @@ public class Singup extends im.atzma.lista.tests.TestBase {
             e.printStackTrace();
         }
 
-        try {
-            //--------------------------------------------------------------------------verify trash icon not present
-            Assert.assertFalse(app.getServicesPage().verifyTrashIcon());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            //--------------------------------------------------------------------------verify trash icon not present
+//            Assert.assertFalse(app.getServicesPage().verifyTrashIcon());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
-
-    @Test(priority = 20)
-    public void testDeleteAccount() throws Exception {
-        app.deleteAccount();
-        Assert.assertTrue(app.driver.getCurrentUrl().matches("https://lista.atzma.im/he/login"));
-    }
 }
