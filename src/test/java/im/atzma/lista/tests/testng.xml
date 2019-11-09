@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test verbose="1" preserve-order="true" name="Test1">
+<suite name="Menu">
+    <test verbose="1" preserve-order="true" name="Singup">
         <classes>
             <class name="im.atzma.lista.tests.Singup">
                 <methods>
@@ -20,25 +20,17 @@
                     <include name="testVerifyDefaultServices60min"/>
                 </methods>
             </class>
-
-        </classes>
-    </test>
-    <test verbose="1" preserve-order="true" name="Test2">
-        <classes>
             <class name="im.atzma.lista.tests.Menu">
                 <methods>
                     <include name="verifyLinkText"/>
                 </methods>
             </class>
-        </classes>
-    </test>
-    <test verbose="1" preserve-order="true" name="Test3">
-        <classes>
             <class name="im.atzma.lista.tests.DeleteAccount">
                 <methods>
                     <include name="testDeleteAccount"/>
                 </methods>
             </class>
         </classes>
+
     </test>
 </suite>
