@@ -58,7 +58,7 @@ public boolean verifyUserinMenu() {
 
         for (int i = 0; i < itemList.size(); i++) {
             highlight(itemList.get(i));
-            System.out.println("Menu item " + i + "-"  + itemList.get(i).getText());
+            System.out.println("Menu_02 item " + i + "-"  + itemList.get(i).getText());
         }
         return itemList;
     }

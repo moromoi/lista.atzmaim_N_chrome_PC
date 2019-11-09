@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class Menu extends TestBase {
+public class Menu_02 extends TestBase {
 
     @Test(priority = 1)
     public void verifyLinkText() throws InterruptedException {

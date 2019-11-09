@@ -3,7 +3,7 @@
 <suite name="suite_Menu">
      <test verbose="1" preserve-order="true" name="testsMenu">
         <classes>
-            <class name="im.atzma.lista.tests.Singup">
+            <class name="im.atzma.lista.tests.Singup_01">
                 <methods>
                     <include name="testVerifySignupPageElements"/>
                     <include name="testPasswordVisibleIcons"/>
@@ -20,12 +20,12 @@
                     <include name="testVerifyDefaultServices60min"/>
                 </methods>
             </class>
-            <class name="im.atzma.lista.tests.Menu">
+            <class name="im.atzma.lista.tests.Menu_02">
                 <methods>
                     <include name="verifyLinkText"/>
                 </methods>
             </class>
-            <class name="im.atzma.lista.tests.DeleteAccount">
+            <class name="im.atzma.lista.tests.DeleteAccount_03">
                 <methods>
                     <include name="testDeleteAccount"/>
                 </methods>

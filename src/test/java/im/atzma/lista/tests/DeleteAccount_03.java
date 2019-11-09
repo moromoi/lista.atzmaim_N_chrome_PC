@@ -3,7 +3,7 @@ package im.atzma.lista.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class DeleteAccount extends TestBase {
+public class DeleteAccount_03 extends TestBase {
 
     @Test(priority = 1)
     public void testDeleteAccount() throws Exception {

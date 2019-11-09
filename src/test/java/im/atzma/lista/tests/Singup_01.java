@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Singup extends im.atzma.lista.tests.TestBase {
+public class Singup_01 extends im.atzma.lista.tests.TestBase {
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
 
@@ -167,7 +167,7 @@ public class Singup extends im.atzma.lista.tests.TestBase {
             e.printStackTrace();
         }
         try {
-            //--------------------------------------------------------------------------verify username in Menu
+            //--------------------------------------------------------------------------verify username in Menu_02
             Assert.assertTrue(app.getCalendarPage().verifyUserinMenu());
         } catch (Exception e) {
             e.printStackTrace();
