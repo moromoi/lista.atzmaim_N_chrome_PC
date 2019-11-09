@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Menu">
-    <test verbose="1" preserve-order="true" name="Singup">
+<suite name="suite_Menu">
+     <test verbose="1" preserve-order="true" name="testsMenu">
         <classes>
             <class name="im.atzma.lista.tests.Singup">
                 <methods>
