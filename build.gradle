@@ -13,7 +13,7 @@ dependencies {
 
 task testsMenu(type: Test) {
     useTestNG() {
-        suites 'src/test/tests/testng-Menu.xml'
+        suites 'src/im/atzma/lista/tests/testng-Menu.xml'
     }
 
 }
