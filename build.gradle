@@ -11,8 +11,10 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.0.0-alpha-2'
 }
 
-test {
+
+task testMenu(type: Test) {
     useTestNG() {
-  }
+        suites './src/test/java/im/atzma/lista/tests/testng-Menu.xml'
+    }
 
 }
