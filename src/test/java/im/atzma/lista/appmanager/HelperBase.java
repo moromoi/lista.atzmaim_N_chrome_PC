@@ -2,11 +2,13 @@ package im.atzma.lista.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import static org.testng.Assert.fail;
 
 public class HelperBase {
     protected WebDriver driver;
+
 
     public HelperBase(WebDriver driver) {
         this.driver = driver;
@@ -23,6 +25,27 @@ public class HelperBase {
             el.click();
         } catch (WebDriverException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void select (WebElement el, String myvalue) {
+        new Select(el).selectByValue(myvalue);
+        try {
+            highlight(el);
+        } catch (WebDriverException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void fillText(WebElement el, String text) {
+        highlight(el);
+        if (text != null) {
+            String existingText = el.getAttribute("value");
+            if (!text.equals(existingText)) {
+                el.click();
+                el.clear();
+                el.sendKeys(text);
+            }
         }
     }
 

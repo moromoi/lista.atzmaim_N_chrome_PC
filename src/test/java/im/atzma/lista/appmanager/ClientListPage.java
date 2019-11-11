@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ClientPage extends HelperBase{
-    public ClientPage(WebDriver driver) {super(driver); }
+public class ClientListPage extends HelperBase{
+    public ClientListPage(WebDriver driver) {super(driver); }
 
     @FindBy(xpath = "//span[text()='מאגר לקוחות']")
     WebElement title_on_clienPage;

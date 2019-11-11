@@ -12,13 +12,15 @@ import static org.testng.Assert.fail;
 
 public class ApplicationManager {
     public WebDriver driver;
+
     SessionHelper sessionHelper;
     SingupPage singupPage;
     BusinessPage businessPage;
     AllSetPage allSetPage;
     CalendarPage calendarPage;
-    ClientPage clientPage;
+    ClientListPage clientPage;
     ServicesPage servicesPage;
+    ClientHelper clientHelper;
 
     public StringBuffer verificationErrors = new StringBuffer();
     public boolean acceptNextAlert = true;
@@ -31,7 +33,7 @@ public class ApplicationManager {
         chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
 
         System.setProperty("webdriver.chrome.driver", "C:\\automation\\browser drivers\\chrome\\chromedriver.exe");
-        driver = new ChromeDriver(chromeOptions);
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
@@ -40,12 +42,14 @@ public class ApplicationManager {
         businessPage = new BusinessPage(driver);
         allSetPage = new AllSetPage(driver);
         calendarPage = new CalendarPage(driver);
-        clientPage = new ClientPage(driver);
+        clientPage = new ClientListPage(driver);
         servicesPage = new ServicesPage(driver);
+        clientHelper = new ClientHelper(driver);
     }
 
 
     public void deleteAccount() throws InterruptedException {
+        Thread.sleep(1000);
         driver.get("https://lista.atzma.im/he/settings");
         Thread.sleep(1000);
         driver.findElement(By.xpath("//p[text()='הגדרות עסק']")).click();
@@ -71,6 +75,7 @@ public class ApplicationManager {
     public BusinessPage getBusinessPage() { return businessPage; }
     public AllSetPage getAllSetPage() { return allSetPage; }
     public CalendarPage getCalendarPage() { return calendarPage; }
-    public ClientPage getClientPage() { return clientPage; }
+    public ClientListPage getClientPage() { return clientPage; }
     public ServicesPage getServicesPage() { return servicesPage; }
+    public ClientHelper getClientHelper() {return  clientHelper; }
 }

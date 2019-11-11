@@ -21,6 +21,9 @@ public class SessionHelper extends HelperBase {
     @FindBy(xpath = "//a[@href='/he/login']")
     WebElement btn_login;
 
+    @FindBy(xpath = "//div[@class='floating-button standartLeft']")
+    WebElement btn_addClient;
+
 
    
     Random random = new Random();
@@ -35,6 +38,7 @@ public class SessionHelper extends HelperBase {
     String clientURL = "https://lista.atzma.im/he/clients";
     String servicesURL = "https://lista.atzma.im/he/catalog/services";
     String calendarURL = "https://lista.atzma.im/he/calendar/";
+    String newClientFormURL = "https://lista.atzma.im/he/adding-client";
 
     public SessionHelper(WebDriver driver) {
         super(driver);
@@ -105,4 +109,8 @@ public class SessionHelper extends HelperBase {
     }
 
 
+    public void initAddNewClient() throws InterruptedException {
+        click(btn_addClient);
+        waitForLocation(newClientFormURL);
+    }
 }
