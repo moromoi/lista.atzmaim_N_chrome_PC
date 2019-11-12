@@ -1,6 +1,5 @@
 package im.atzma.lista.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,8 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServicesPage extends HelperBase {
-    public ServicesPage(WebDriver driver) {
+public class ServicesHelper extends HelperBase {
+    public ServicesHelper(WebDriver driver) {
         super(driver);
     }
 
@@ -87,6 +86,30 @@ public class ServicesPage extends HelperBase {
 
     @FindBy(xpath = "//img[@class='trash']")
     WebElement icon_trash;
+
+    @FindBy(xpath = "//*[@class='add-button add-rtl']")
+    WebElement btn_addService;
+
+    @FindBy(xpath = "//input[@placeholder=\"הזינו שם של טיפול...\"]")
+    WebElement input_serviceName;
+
+    @FindBy(xpath = "//span[text()='שייך לקטגוריה']")
+    WebElement btn_addCategory;
+
+    @FindBy(xpath = "//input[@placeholder=\"נא הזינו שם של קטגוריה חדשה\"]")
+    WebElement input_categoryName;
+
+    @FindBy(xpath = "//span[text()='הוסף קטגוריה חדשה']")
+    WebElement btn_saveCategory;
+
+    @FindBy(xpath = "//button[@class='bottom enabled']")
+    WebElement btn_saveService;
+
+    @FindBy(xpath = "//input[@placeholder=\"הזינו שם של טיפול\"]")
+    WebElement input_findService;
+
+    @FindBy(xpath = "//p[text()='Test טיפול services_katalon']")
+    WebElement tempService_inSearch;
 
     public List<WebElement> verifyDefaultService_30min() {
         List<WebElement> itemList = new ArrayList<>();
@@ -174,4 +197,26 @@ public class ServicesPage extends HelperBase {
         }
         else return false;
     }
+
+    public void initAddNewService() {
+        click(btn_addService);
+    }
+
+    public void fillServiceFrom() throws InterruptedException {
+        fillText(input_serviceName, "Test טיפול services_katalon");
+        click(btn_addCategory);
+        fillText(input_categoryName, "Test category selenium");
+        click(btn_saveCategory);
+        waitForElement(btn_saveService);
+        click(btn_saveService);
+        waitForLocation("https://lista.atzma.im/he/catalog/services");
+
+    }
+
+    public String verifyTempService() {
+        fillText(input_findService, "Test טיפול services_katalon");
+        highlight(tempService_inSearch);
+        return tempService_inSearch.getText();
+    }
+
 }

@@ -25,6 +25,7 @@ public class SessionHelper extends HelperBase {
     WebElement btn_addClient;
 
 
+
    
     Random random = new Random();
     long randomLong = random.nextLong();
@@ -113,4 +114,6 @@ public class SessionHelper extends HelperBase {
         click(btn_addClient);
         waitForLocation(newClientFormURL);
     }
+
+
 }

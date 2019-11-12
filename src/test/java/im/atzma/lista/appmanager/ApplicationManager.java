@@ -19,8 +19,9 @@ public class ApplicationManager {
     AllSetPage allSetPage;
     CalendarPage calendarPage;
     ClientListPage clientPage;
-    ServicesPage servicesPage;
+    ServicesHelper servicesHelper;
     ClientHelper clientHelper;
+
 
     public StringBuffer verificationErrors = new StringBuffer();
     public boolean acceptNextAlert = true;
@@ -33,7 +34,7 @@ public class ApplicationManager {
         chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
 
         System.setProperty("webdriver.chrome.driver", "C:\\automation\\browser drivers\\chrome\\chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
@@ -43,7 +44,7 @@ public class ApplicationManager {
         allSetPage = new AllSetPage(driver);
         calendarPage = new CalendarPage(driver);
         clientPage = new ClientListPage(driver);
-        servicesPage = new ServicesPage(driver);
+        servicesHelper = new ServicesHelper(driver);
         clientHelper = new ClientHelper(driver);
     }
 
@@ -76,6 +77,6 @@ public class ApplicationManager {
     public AllSetPage getAllSetPage() { return allSetPage; }
     public CalendarPage getCalendarPage() { return calendarPage; }
     public ClientListPage getClientPage() { return clientPage; }
-    public ServicesPage getServicesPage() { return servicesPage; }
+    public ServicesHelper getServicesHelper() { return servicesHelper; }
     public ClientHelper getClientHelper() {return  clientHelper; }
 }

@@ -25,6 +25,16 @@
                     <include name="testCreateNewClient"/>
                 </methods>
             </class>
+            <class name="im.atzma.lista.tests.ServiceCreationTest">
+                <methods>
+                    <include name="testCreateTempService"/>
+                </methods>
+            </class>
+            <class name="im.atzma.lista.tests.CreateAppointmentTest">
+                <methods>
+                    <include name="testAppointmentCreation"/>
+                </methods>
+            </class>
             <class name="im.atzma.lista.tests.DeleteAccountTest">
                 <methods>
                     <include name="testDeleteAccount"/>

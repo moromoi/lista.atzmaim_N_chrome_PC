@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class ClientCreationTest extends TestBase {
 
-    @Test
+    @Test(priority = 1)
     public void testCreateNewClient() throws InterruptedException {
         app.getSessionHelper().goToClientPage();
         app.getSessionHelper().initAddNewClient();

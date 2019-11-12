@@ -244,7 +244,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
         }
 
         try {
-            List<WebElement> elementList = app.getServicesPage().verifyDefaultService_30min();
+            List<WebElement> elementList = app.getServicesHelper().verifyDefaultService_30min();
             for (int i = 0; i < elementList.size(); i++) {
                 //--------------------------------------------------------------------------verify default service elements (30 min)
                 Assert.assertTrue(elementList.get(i).isDisplayed());
@@ -255,7 +255,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
         try {
             //--------------------------------------------------------------------------verify trash icon present
-            Assert.assertTrue(app.getServicesPage().verifyTrashIconPresent_1());
+            Assert.assertTrue(app.getServicesHelper().verifyTrashIconPresent_1());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -264,7 +264,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
     @Test(priority = 12)
     public void testVerifyDefaultServices45min() throws Exception {
         try {
-            List<WebElement> elementList = app.getServicesPage().verifyDefaultService_45min();
+            List<WebElement> elementList = app.getServicesHelper().verifyDefaultService_45min();
             for (int i = 0; i < elementList.size(); i++) {
                 //--------------------------------------------------------------------------verify default service elements (45 min)
                 Assert.assertTrue(elementList.get(i).isDisplayed());
@@ -275,7 +275,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
         try {
             //--------------------------------------------------------------------------verify trash icon present
-            Assert.assertTrue(app.getServicesPage().verifyTrashIconPresent_2());
+            Assert.assertTrue(app.getServicesHelper().verifyTrashIconPresent_2());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -285,7 +285,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
     @Test(priority = 13)
     public void testVerifyDefaultServices60min() throws Exception {
         try {
-            List<WebElement> elementList = app.getServicesPage().verifyDefaultService_60min();
+            List<WebElement> elementList = app.getServicesHelper().verifyDefaultService_60min();
             for (int i = 0; i < elementList.size(); i++) {
                 //--------------------------------------------------------------------------verify default service elements (60 min)
                 Assert.assertTrue(elementList.get(i).isDisplayed());
@@ -296,7 +296,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
         try {
             //--------------------------------------------------------------------------verify trash icon present
-            Assert.assertTrue(app.getServicesPage().verifyTrashIconPresent_3());
+            Assert.assertTrue(app.getServicesHelper().verifyTrashIconPresent_3());
         } catch (Exception e) {
             e.printStackTrace();
         }
