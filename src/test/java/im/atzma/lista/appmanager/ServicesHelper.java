@@ -108,7 +108,7 @@ public class ServicesHelper extends HelperBase {
     @FindBy(xpath = "//input[@placeholder=\"הזינו שם של טיפול\"]")
     WebElement input_findService;
 
-    @FindBy(xpath = "//p[text()='Test טיפול services_katalon']")
+    @FindBy(xpath = "//p[text()='Temp services_katalon']")
     WebElement tempService_inSearch;
 
     public List<WebElement> verifyDefaultService_30min() {
@@ -203,9 +203,9 @@ public class ServicesHelper extends HelperBase {
     }
 
     public void fillServiceFrom() throws InterruptedException {
-        fillText(input_serviceName, "Test טיפול services_katalon");
+        fillText(input_serviceName, "Temp services_katalon");
         click(btn_addCategory);
-        fillText(input_categoryName, "Test category selenium");
+        fillText(input_categoryName, "Temp category_katalon");
         click(btn_saveCategory);
         waitForElement(btn_saveService);
         click(btn_saveService);
@@ -214,7 +214,7 @@ public class ServicesHelper extends HelperBase {
     }
 
     public String verifyTempService() {
-        fillText(input_findService, "Test טיפול services_katalon");
+        fillText(input_findService, "Temp services_katalon");
         highlight(tempService_inSearch);
         return tempService_inSearch.getText();
     }

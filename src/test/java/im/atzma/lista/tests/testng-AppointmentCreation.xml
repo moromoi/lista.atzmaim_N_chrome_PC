@@ -31,10 +31,11 @@
                 </methods>
             </class>
             <class name="im.atzma.lista.tests.CreateAppointmentTest">
-                <methods>
-                    <include name="testAppointmentCreation"/>
-                </methods>
-            </class>
+            <methods>
+                <include name="testAppointmentCreation"/>
+                <include name="testAppointmentDeletion"/>
+            </methods>
+        </class>
             <class name="im.atzma.lista.tests.DeleteAccountTest">
                 <methods>
                     <include name="testDeleteAccount"/>

@@ -15,7 +15,7 @@ public class ServiceCreationTest extends TestBase{
 
         app.getServicesHelper().fillServiceFrom();
         String actual = app.getServicesHelper().verifyTempService();
-        String expected = "Test טיפול services_katalon";
+        String expected = "Temp services_katalon";
         try {
             Assert.assertEquals(actual, expected);
         } catch (Exception e) {

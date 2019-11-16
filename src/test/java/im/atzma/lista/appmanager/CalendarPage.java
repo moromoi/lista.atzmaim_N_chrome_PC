@@ -33,38 +33,6 @@ public class CalendarPage extends HelperBase {
     @FindBy(xpath = "//a[@href=\"/he/clients\"]")
     WebElement text_clientDB;
 
-    @FindBy(xpath = "//tr[@data-time=\"13:00:00\"]")
-    WebElement time_13;
-
-    @FindBy(xpath = "//input[@placeholder=\"חפש שם, טלפון או הזן לקוח חדש\"]")
-    WebElement input_findClient;
-
-    @FindBy(xpath = "//a[text()='0547019283']/../../..")
-    WebElement tempClient;
-
-    @FindBy(xpath = "//div[@class='procedures-item-quantity']/..")
-    WebElement tempService;
-
-    @FindBy(xpath = "//input[@placeholder=\"חפש טיפול או הכנס חדש\"]")
-    WebElement input_findService;
-
-    @FindBy(xpath = "//span[text()='הבא']/..")
-    WebElement btn_next;
-
-    @FindBy(xpath = "//span[text()='שמור']/..")
-    WebElement btn_save;
-
-    @FindBy(xpath = "//p[text()= '13:00 - 13:30']")
-    WebElement appointmentTime;
-
-    @FindBy(xpath = "//div[text()= '30 דקות']")
-    WebElement appointmentDuration;
-
-    @FindBy(xpath = "//p[text()= 'Temp Client katalon']")
-    WebElement appointmentClientName;
-
-    @FindBy(xpath = "//span[text()= 'Test טיפול services_katalon']")
-    WebElement appointmentServiceName;
 
 
 
@@ -98,31 +66,4 @@ public class CalendarPage extends HelperBase {
         return itemList;
     }
 
-    public void chooseAppointmentHour() {
-        click(time_13);
-    }
-
-    public void fillNewAppointment() throws InterruptedException {
-        waitForElement(input_findClient);
-        fillText(input_findClient, "Temp Client katalon");
-        click(tempClient);
-        fillText(input_findService, "Test טיפול services_katalon");
-        click(tempService);
-        click(btn_next);
-        click(btn_save);
-    }
-
-    public List<String> verifyAppointmentCreation() {
-        List<String>  itemList = new ArrayList<>();
-        itemList.add(appointmentTime.getText());
-        itemList.add(appointmentClientName.getText());
-        itemList.add(appointmentServiceName.getText());
-        itemList.add(appointmentDuration.getText());
-
-        for (int i = 0; i < itemList.size(); i++) {
-            System.out.println(itemList.get(i));
-        }
-
-        return itemList;
-    }
 }

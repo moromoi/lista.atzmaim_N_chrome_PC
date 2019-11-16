@@ -21,22 +21,29 @@ public class ApplicationManager {
     ClientListPage clientPage;
     ServicesHelper servicesHelper;
     ClientHelper clientHelper;
+    AppointmentHelper appointmentHelper;
 
 
     public StringBuffer verificationErrors = new StringBuffer();
     public boolean acceptNextAlert = true;
 
     public void init() {
+
         Map<String, String> mobileEmulation = new HashMap<>();
         mobileEmulation.put("deviceName", "iPhone X");
 
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
+//        chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
+        chromeOptions.addArguments(("--auto-open-devtools-for-tabs"));
+        chromeOptions.addArguments("--ignore-certificate-errors");
 
         System.setProperty("webdriver.chrome.driver", "C:\\automation\\browser drivers\\chrome\\chromedriver.exe");
         driver = new ChromeDriver(chromeOptions);
+
+
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+
 
         sessionHelper = new SessionHelper(driver);
         singupPage = new SingupPage(driver);
@@ -46,6 +53,7 @@ public class ApplicationManager {
         clientPage = new ClientListPage(driver);
         servicesHelper = new ServicesHelper(driver);
         clientHelper = new ClientHelper(driver);
+        appointmentHelper = new AppointmentHelper(driver);
     }
 
 
@@ -79,4 +87,5 @@ public class ApplicationManager {
     public ClientListPage getClientPage() { return clientPage; }
     public ServicesHelper getServicesHelper() { return servicesHelper; }
     public ClientHelper getClientHelper() {return  clientHelper; }
+    public AppointmentHelper getAppointmentHelper() {return  appointmentHelper;}
 }
