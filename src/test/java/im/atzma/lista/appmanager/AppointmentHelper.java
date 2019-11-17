@@ -79,8 +79,8 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//p[@class=\"floating-button standartLeft\"]")
     WebElement btn_addNewAppointment;
 
-    @FindBy(xpath = "//div[@class='fc-nonbusiness fc-bgevent']")
-    WebElement nonbusiness;
+    @FindBy(css = ".fc-nonbusiness.fc-bgevent")
+   WebElement nonbusiness;
 
     @FindBy(xpath = "//div[@class='prev_button_wrap common']")
     WebElement back_arrow;
@@ -90,11 +90,14 @@ public class AppointmentHelper extends HelperBase {
 
 
     public void createAppointment() throws InterruptedException {
-        if (nonbusiness.isDisplayed()) {
-            click(back_arrow);
+        if (isElementPresent(nonbusiness)) {
+            click(time_09);
+            fillNewAppointment();
         }
-        click(time_09);
-        fillNewAppointment();
+        else {
+            click(back_arrow);
+
+        }
     }
 
     public void fillNewAppointment() throws InterruptedException {
@@ -138,7 +141,7 @@ public class AppointmentHelper extends HelperBase {
 
 
     public boolean verifyAppointmentDeletion() throws InterruptedException {
-        if (nonbusiness.isDisplayed()) {
+        if (!isElementPresent(nonbusiness)) {
             click(back_arrow);
         }
         if (btn_existing_appointment.size() > 0) {

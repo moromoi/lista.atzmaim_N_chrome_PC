@@ -15,7 +15,7 @@ public class CreateAppointmentTest extends TestBase {
         String expected = "[09:00 - 09:30, Temp Client katalon, Temp services_katalon, 30 דקות]";
         List<String> actual = app.getAppointmentHelper().verifyAppointmentCreation();
         try {
-            Assert.assertEquals(actual.toString(), expected);
+            Assert.assertEquals(actual.toString(), expected, "verify appointment creation");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -29,7 +29,7 @@ public class CreateAppointmentTest extends TestBase {
         app.getSessionHelper().loginWithUser();
 
         try {
-            Assert.assertTrue(app.getAppointmentHelper().verifyAppointmentDeletion());
+            Assert.assertTrue(app.getAppointmentHelper().verifyAppointmentDeletion(), "verify appointment deletion");
         } catch (Exception e) {
             e.printStackTrace();
         }

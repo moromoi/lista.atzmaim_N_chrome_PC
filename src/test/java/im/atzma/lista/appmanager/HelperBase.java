@@ -4,6 +4,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.testng.Assert.fail;
 
 public class HelperBase {
@@ -28,7 +31,7 @@ public class HelperBase {
         }
     }
 
-    public void select (WebElement el, String myvalue) {
+    public void select(WebElement el, String myvalue) {
         new Select(el).selectByValue(myvalue);
         try {
             highlight(el);
@@ -50,14 +53,14 @@ public class HelperBase {
     }
 
     public void waitForLocation(String myURL) throws InterruptedException {
-            for (int second = 0; ; second++) {
-                if (second >= 60) fail("timeout");
-                try {
-                    if (myURL.equals(driver.getCurrentUrl())) break;
-                } catch (Exception e) {
-                }
-                Thread.sleep(1000);
+        for (int second = 0; ; second++) {
+            if (second >= 60) fail("timeout");
+            try {
+                if (myURL.equals(driver.getCurrentUrl())) break;
+            } catch (Exception e) {
             }
+            Thread.sleep(1000);
+        }
     }
 
     public void waitForElement(WebElement myElement) throws InterruptedException {
@@ -74,8 +77,12 @@ public class HelperBase {
 
     public boolean isElementPresent(WebElement el) {
         try {
-            el.isDisplayed();
-            return true;
+            List<WebElement> itemlist = new ArrayList<>();
+            itemlist.add(el);
+            if(itemlist.size() > 0) {
+                return true;
+            }
+            return false;
         } catch (NoSuchElementException e) {
             return false;
         }

@@ -36,11 +36,11 @@
                 <include name="testAppointmentDeletion"/>
             </methods>
         </class>
-            <class name="im.atzma.lista.tests.DeleteAccountTest">
-                <methods>
-                    <include name="testDeleteAccount"/>
-                </methods>
-            </class>
+            <!--<class name="im.atzma.lista.tests.DeleteAccountTest">-->
+                <!--<methods>-->
+                    <!--<include name="testDeleteAccount"/>-->
+                <!--</methods>-->
+            <!--</class>-->
         </classes>
 
     </test>
