@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="D:/Devel/PC/lista.atzmaim_N_chrome_PC/src/test/java/im/atzma/lista/tests/CreateAppointment.java"><classes><class name="im.atzma.lista.tests.CreateAppointmentTest"><methods><include name="testAppointmentCreation"/></methods></class></classes></test></suite>
