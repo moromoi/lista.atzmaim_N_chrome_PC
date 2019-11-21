@@ -15,19 +15,22 @@
                     <include name="testLogOut"/>
                     <include name="testVerifyLoginWithNewUser"/>
                     <include name="testVerifyDefaultClientPage()"/>
+                </methods>
+            </class>
+            <class name="im.atzma.lista.tests.ServiceCreationTest">
+                <methods>
+                    <include name="testVerifyDefaultElements"/>
                     <include name="testVerifyDefaultServices30min"/>
                     <include name="testVerifyDefaultServices45min"/>
                     <include name="testVerifyDefaultServices60min"/>
+                    <include name="testVerifyDefaultServiceFormElements"/>
+                    <include name="testFillServiceForm"/>
+                    <include name="testSaveServiceForm"/>
                 </methods>
             </class>
             <class name="im.atzma.lista.tests.ClientCreationTest">
                 <methods>
                     <include name="testCreateNewClient"/>
-                </methods>
-            </class>
-            <class name="im.atzma.lista.tests.ServiceCreationTest">
-                <methods>
-                    <include name="testCreateTempService"/>
                 </methods>
             </class>
             <class name="im.atzma.lista.tests.CreateAppointmentTest">

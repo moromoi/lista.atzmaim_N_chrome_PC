@@ -12,6 +12,9 @@ public class ServicesHelper extends HelperBase {
         super(driver);
     }
 
+    @FindBy(xpath = "//div[@class='input-search-block']")
+    WebElement service_searchBox;
+
     @FindBy(xpath = "//p[text()='פגישה 30 דקות']")
     WebElement default_service_name_30min;
 
@@ -103,13 +106,78 @@ public class ServicesHelper extends HelperBase {
     WebElement btn_saveCategory;
 
     @FindBy(xpath = "//button[@class='bottom enabled']")
-    WebElement btn_saveService;
+    WebElement btn_saveService_enabled;
 
-    @FindBy(xpath = "//input[@placeholder=\"הזינו שם של טיפול\"]")
-    WebElement input_findService;
+    @FindBy(xpath = "//button[@class='bottom disabled']")
+    WebElement btn_saveService_disabled;
+
+    @FindBy(xpath = "//input[@placeholder='הזינו שם של טיפול']")
+    WebElement inputBox_placeholder;
 
     @FindBy(xpath = "//p[text()='Temp services_katalon']")
     WebElement tempService_inSearch;
+
+    @FindBy(xpath = "//img[@src=\"/public/services/ic-search.svg\"]")
+    WebElement icon_magnifier;
+
+    @FindBy(xpath = "//button[@class='more_wrap']")
+    WebElement btn_menu;
+
+    @FindBy(xpath = "//span[text()='רשימת טיפולים']")
+    WebElement pageTitle;
+
+    @FindBy(xpath = "//img[@src='/public/services/ic_arrow_back.svg']")
+    WebElement back_arrow;
+
+    @FindBy(xpath = "//span[text()='שם של טיפול']")
+    WebElement form_title_1;
+
+    @FindBy(xpath = "//span[text()='שייך לקטגוריה']")
+    WebElement form_title_2;
+
+    @FindBy(xpath = "//span[text()='משך']")
+    WebElement form_title_3;
+
+    @FindBy(xpath = "//span[text()='משך']")
+    WebElement form_title_4;
+
+    @FindBy(xpath = "//span[text()='מחיר']")
+    WebElement form_title_5;
+
+    @FindBy(xpath = "//div[@class='circle-container']")
+    WebElement color_container;
+
+    @FindBy(xpath = "//button[text()='הוסף טיפול חדש']")
+    WebElement btn_saveService_text;
+
+    @FindBy(xpath = "//button[text()='לבטל']")
+    WebElement btn_cancelService_text;
+
+    @FindBy(xpath = "(//img[@src='/public/services/minus.svg'])[1]/..")
+    WebElement btn_minus_1;
+
+    @FindBy(xpath = "(//img[@src='/public/services/minus.svg'])[2]/..")
+    WebElement btn_minus_2;
+
+    @FindBy(xpath = "(//img[@src='/public/services/plus.svg'])[1]/..")
+    WebElement btn_plus_1;
+
+    @FindBy(xpath = "(//img[@src='/public/services/plus.svg'])[2]/..")
+    WebElement btn_plus_2;
+
+    @FindBy(xpath = "//*[text()='30 דקות']")
+    WebElement serviceProp_30min;
+
+    @FindBy(xpath = "//*[text()='₪ 50']")
+    WebElement serviceProp_50shek;
+
+    @FindBy(xpath = "//img[@class='arrow-back']")
+    WebElement arrow_back;
+
+    @FindBy(xpath = "//img[@src='/public/services/chevron-right.svg']")
+    WebElement arrow_back_2;
+
+
 
     public List<WebElement> verifyDefaultService_30min() {
         List<WebElement> itemList = new ArrayList<>();
@@ -207,16 +275,77 @@ public class ServicesHelper extends HelperBase {
         click(btn_addCategory);
         fillText(input_categoryName, "Temp category_katalon");
         click(btn_saveCategory);
-        waitForElement(btn_saveService);
-        click(btn_saveService);
+        waitForElement(btn_saveService_enabled);
+    }
+
+    public void saveServiceFrom() throws InterruptedException {
+        click(btn_saveService_enabled);
         waitForLocation("https://lista.atzma.im/he/catalog/services");
 
     }
 
     public String verifyTempService() {
-        fillText(input_findService, "Temp services_katalon");
+        fillText(inputBox_placeholder, "Temp services_katalon");
         highlight(tempService_inSearch);
         return tempService_inSearch.getText();
     }
+
+    public List<WebElement> verifyServicePageElements() {
+        List<WebElement> itemList = new ArrayList<>();
+        itemList.add(service_searchBox);
+        itemList.add(inputBox_placeholder);
+        itemList.add(icon_magnifier);
+        itemList.add(btn_addService);
+        itemList.add(btn_menu);
+        itemList.add(pageTitle);
+        itemList.add(back_arrow);
+
+        for (int i = 0; i < itemList.size(); i++) {
+            highlight(itemList.get(i));
+        }
+        return itemList;
+
+    }
+
+    public List<WebElement> verifyDefaultServiceFormElements() {
+        List<WebElement> itemList = new ArrayList<>();
+        itemList.add(form_title_1);
+        itemList.add(form_title_2);
+        itemList.add(form_title_3);
+        itemList.add(form_title_4);
+        itemList.add(form_title_5);
+        itemList.add(color_container);
+        itemList.add(btn_saveService_text);
+        itemList.add(btn_cancelService_text);
+        itemList.add(btn_minus_1);
+        itemList.add(btn_minus_2);
+        itemList.add(btn_plus_1);
+        itemList.add(btn_plus_2);
+        itemList.add(serviceProp_30min);
+        itemList.add(serviceProp_50shek);
+        itemList.add(arrow_back);
+        itemList.add(arrow_back_2);
+
+        for (int i = 0; i < itemList.size(); i++) {
+            highlight(itemList.get(i));
+        }
+        return itemList;
+    }
+
+    public String verifyDisabledButtonColor() {
+        String actualButton = btn_saveService_disabled.getCssValue("background-color");
+        return actualButton;
+    }
+
+    public String verifyEnableddButtonColor() {
+        for (int i = 0; i < 10; i++) { click(btn_plus_1); }
+        for (int i = 0; i < 10; i++) { click(btn_plus_2); }
+        for (int i = 0; i < 10; i++) { click(btn_minus_1);}
+        for (int i = 0; i < 10; i++) { click(btn_minus_2);}
+
+        String actualButton = btn_saveService_enabled.getCssValue("background-color");
+        return actualButton;
+    }
+
 
 }

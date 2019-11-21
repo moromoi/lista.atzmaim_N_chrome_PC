@@ -11,16 +11,6 @@ import java.util.List;
 
 public class CreateAppointmentTest extends TestBase {
 
-        public static void main (String [] args) {
-            TestNG testng = new TestNG();
-            List<String> suiteFiles=new ArrayList<String>();
-            suiteFiles.add("im/atzma/lista/tests/testng-AppointmentCreation.xml");
-            testng.setTestSuites(suiteFiles);
-            testng.run();
-
-            System.out.println("ddd");
-        }
-
     @Test(priority = 1)
     public void testAppointmentCreation() throws InterruptedException {
         app.getSessionHelper().goToCalendarPage();
@@ -42,10 +32,10 @@ public class CreateAppointmentTest extends TestBase {
         app.getCalendarPage().logout();
         app.getSessionHelper().loginWithUser();
 
-//        try {
-//            Assert.assertTrue(app.getAppointmentHelper().verifyAppointmentDeletion(), "verify appointment deletion");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Assert.assertTrue(app.getAppointmentHelper().verifyAppointmentDeletion(), "verify appointment deletion");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
