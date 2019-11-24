@@ -7,7 +7,7 @@ public class DeleteAccountTest extends TestBase {
 
     @Test(priority = 1)
     public void testDeleteAccount() throws Exception {
-        app.getSessionHelper().loginWithUser();
+        app.getSessionHelper().login();
         app.deleteAccount();
 
         Assert.assertTrue(app.driver.getCurrentUrl().matches("https://lista.atzma.im/he/login"));

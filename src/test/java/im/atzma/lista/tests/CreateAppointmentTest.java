@@ -1,12 +1,7 @@
 package im.atzma.lista.tests;
 
 import org.testng.Assert;
-import org.testng.TestListenerAdapter;
-import org.testng.TestNG;
 import org.testng.annotations.Test;
-import org.testng.collections.Lists;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class CreateAppointmentTest extends TestBase {
@@ -16,8 +11,7 @@ public class CreateAppointmentTest extends TestBase {
         app.getSessionHelper().goToCalendarPage();
         app.getAppointmentHelper().createAppointment();
         app.getCalendarPage().logout();
-        app.getSessionHelper().loginWithUser();
-        app.getSessionHelper().goToCalendarPage();
+        app.getSessionHelper().login();
 
         String expected = "[09:00 - 09:30, Temp Client katalon, Temp services_katalon, 30 דקות]";
         List<String> actual = app.getAppointmentHelper().verifyAppointmentCreation();
@@ -33,7 +27,7 @@ public class CreateAppointmentTest extends TestBase {
     public void testAppointmentDeletion() throws InterruptedException {
         app.getAppointmentHelper().deleteAppointment();
         app.getCalendarPage().logout();
-        app.getSessionHelper().loginWithUser();
+        app.getSessionHelper().login();
         app.getSessionHelper().goToCalendarPage();
 
         try {

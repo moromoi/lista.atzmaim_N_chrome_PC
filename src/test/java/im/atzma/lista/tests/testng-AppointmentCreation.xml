@@ -30,20 +30,27 @@
             </class>
             <class name="im.atzma.lista.tests.ClientCreationTest">
                 <methods>
-                    <include name="testCreateNewClient"/>
+                    <include name="initNewClientCreation"/>
+                    <include name="verifyClientForm"/>
+                    <include name="fillClientForm"/>
                 </methods>
             </class>
             <class name="im.atzma.lista.tests.CreateAppointmentTest">
             <methods>
                 <include name="testAppointmentCreation"/>
-                <include name="testAppointmentDeletion"/>
+                <!--<include name="testAppointmentDeletion"/>-->
             </methods>
         </class>
-            <class name="im.atzma.lista.tests.DeleteAccountTest">
+            <class name="im.atzma.lista.tests.ModifyAppointmentTest">
                 <methods>
-                    <include name="testDeleteAccount"/>
+                    <include name="verifyCreatedAppointment"/>
                 </methods>
             </class>
+            <!--<class name="im.atzma.lista.tests.DeleteAccountTest">-->
+                <!--<methods>-->
+                    <!--<include name="testDeleteAccount"/>-->
+                <!--</methods>-->
+            <!--</class>-->
         </classes>
 
     </test>

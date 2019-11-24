@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class ClientCreationTest extends TestBase {
 
     @Test(priority = 1)
-    public void testCreateNewClient() throws InterruptedException {
+    public void initNewClientCreation() throws InterruptedException {
         app.getSessionHelper().goToClientPage();
         app.getSessionHelper().initAddNewClient();
         try {
@@ -15,7 +15,22 @@ public class ClientCreationTest extends TestBase {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    @Test(priority = 2)
+    public void verifyClientForm() {
+        int expected = 20;
+        int actual = app.getClientHelper().verifyNewClientForm();
+
+        try {
+            Assert.assertEquals(actual, expected, "number of elements on client form");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test(priority = 3)
+    public void fillClientForm() throws InterruptedException {
         app.getClientHelper().fillClientForm(new ClientData("Temp Client katalon", "0547019283",
                 "temp@gmail.com", "רוקח 18, רמת גן, ישראל"));
 

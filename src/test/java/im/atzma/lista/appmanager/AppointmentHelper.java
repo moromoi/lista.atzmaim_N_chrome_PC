@@ -14,28 +14,6 @@ public class AppointmentHelper extends HelperBase {
 
     @FindBy(xpath = "//tr[@data-time=\"09:00:00\"]")
     WebElement time_09;
-    @FindBy(xpath = "//tr[@data-time=\"10:00:00\"]")
-    WebElement time_10;
-    @FindBy(xpath = "//tr[@data-time=\"11:00:00\"]")
-    WebElement time_11;
-    @FindBy(xpath = "//tr[@data-time=\"12:00:00\"]")
-    WebElement time_12;
-    @FindBy(xpath = "//tr[@data-time=\"13:00:00\"]")
-    WebElement time_13;
-    @FindBy(xpath = "//tr[@data-time=\"14:00:00\"]")
-    WebElement time_14;
-    @FindBy(xpath = "//tr[@data-time=\"15:00:00\"]")
-    WebElement time_15;
-    @FindBy(xpath = "//tr[@data-time=\"16:00:00\"]")
-    WebElement time_16;
-    @FindBy(xpath = "//tr[@data-time=\"17:00:00\"]")
-    WebElement time_17;
-    @FindBy(xpath = "//tr[@data-time=\"18:00:00\"]")
-    WebElement time_18;
-    @FindBy(xpath = "//tr[@data-time=\"19:00:00\"]")
-    WebElement time_19;
-    @FindBy(xpath = "//tr[@data-time=\"20:00:00\"]")
-    WebElement time_20;
 
     @FindBy(xpath = "//div[@class=\"click-mask\"]")
     List<WebElement> btn_existing_appointment;
@@ -88,6 +66,20 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//div[@class='next_button_wrap common']")
     WebElement next_arrow;
 
+    @FindBy(xpath = "//*[@class='strip-name']/p")
+    WebElement strip_name;
+    @FindBy(xpath = "//*[@class='wrap-tel']//span")
+    WebElement wrap_tel;
+    @FindBy(xpath = "//*[@class='time-dur']/p")
+    WebElement time_dur;
+    @FindBy(xpath = "//*[@class='duration']/div")
+    WebElement duration;
+    @FindBy(xpath = "//*[@class='service-name']//p")
+    WebElement service_name;
+    @FindBy(xpath = "//*[@class='price']/span")
+    WebElement price;
+
+
     public void test() {
         click(next_arrow);
     }
@@ -130,7 +122,7 @@ public class AppointmentHelper extends HelperBase {
 
     public void deleteAppointment() throws InterruptedException {
         verifyNonbusinessDay();
-        click(btn_existing_appointment.get(0));
+        clickOnExistsAppointment();
         waitForElement(btn_deleteAppointment);
         click(btn_deleteAppointment);
         waitForElement(btn_confirm_AppointmentDeletion);
@@ -151,9 +143,38 @@ public class AppointmentHelper extends HelperBase {
         click(time_09);
     }
 
+    public void clickOnExistsAppointment() {
+        for (int i = 0; i < btn_existing_appointment.size(); i++) {
+            click(btn_existing_appointment.get(i));
+        }
+    }
+
     public void verifyNonbusinessDay() {
         if (!isElementPresent(nonbusiness)) {
             click(back_arrow);
         }
+    }
+
+    public List<String> verifyAppointmentElements() {
+        List<String> itemList = new ArrayList<>();
+        itemList.add(strip_name.getText());
+        itemList.add(wrap_tel.getText());
+        itemList.add(time_dur.getText());
+        itemList.add(duration.getText());
+        itemList.add(service_name.getText());
+        itemList.add(price.getText());
+
+        List<WebElement> itemList2 = new ArrayList<>();
+        itemList2.add(strip_name);
+        itemList2.add(wrap_tel);
+        itemList2.add(time_dur);
+        itemList2.add(duration);
+        itemList2.add(service_name);
+        itemList2.add(price);
+        for (int i = 0; i < itemList2.size(); i++) {
+            highlight(itemList2.get(i));
+        }
+
+        return itemList;
     }
 }

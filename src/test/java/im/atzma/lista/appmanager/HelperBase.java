@@ -22,6 +22,7 @@ public class HelperBase {
         ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='2px solid red'", el);
     }
 
+
     public void click(WebElement el) {
         try {
             highlight(el);

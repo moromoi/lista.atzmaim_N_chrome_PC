@@ -1,6 +1,5 @@
 package im.atzma.lista.tests;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -197,7 +196,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
     @Test(priority = 9)
     public void testVerifyLoginWithNewUser() throws Exception {
-        app.getSessionHelper().loginWithUser();
+        app.getSessionHelper().login();
         try {
             //--------------------------------------------------------------------------verify Login with new user (name in menu)
             Assert.assertTrue(app.getCalendarPage().verifyUserinMenu());

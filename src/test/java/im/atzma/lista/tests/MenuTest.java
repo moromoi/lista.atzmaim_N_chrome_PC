@@ -10,7 +10,7 @@ public class MenuTest extends TestBase {
 
     @Test(priority = 1)
     public void verifyLinkText() throws InterruptedException {
-        app.getSessionHelper().loginWithUser();
+        app.getSessionHelper().login();
         app.getSessionHelper().goToCalendarPage();
 
 

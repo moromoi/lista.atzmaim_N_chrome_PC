@@ -101,7 +101,7 @@ public class SessionHelper extends HelperBase {
         else return false;
     }
 
-    public void loginWithUser() throws InterruptedException {
+    public void login() throws InterruptedException {
         goToHomePage();
         click(btn_login);
         waitForLocation(loginURL);
