@@ -46,7 +46,7 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//a[text()='0547019283']/../../..")
     WebElement tempClient;
 
-    @FindBy(xpath = "//div[@class='procedures-item-quantity']/..")
+    @FindBy(xpath = "//*[text()='Temp services_katalon']")
     WebElement tempService;
 
     @FindBy(xpath = "//input[@placeholder=\"חפש טיפול או הכנס חדש\"]")
@@ -80,7 +80,7 @@ public class AppointmentHelper extends HelperBase {
     WebElement btn_addNewAppointment;
 
     @FindBy(css = ".fc-nonbusiness.fc-bgevent")
-   WebElement nonbusiness;
+    WebElement nonbusiness;
 
     @FindBy(xpath = "//div[@class='prev_button_wrap common']")
     WebElement back_arrow;
@@ -88,16 +88,15 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//div[@class='next_button_wrap common']")
     WebElement next_arrow;
 
+    public void test() {
+        click(next_arrow);
+    }
+
 
     public void createAppointment() throws InterruptedException {
-        if (isElementPresent(nonbusiness)) {
-            click(time_09);
-            fillNewAppointment();
-        }
-        else {
-            click(back_arrow);
-
-        }
+        verifyNonbusinessDay();
+        chooseAppointmentHour();
+        fillNewAppointment();
     }
 
     public void fillNewAppointment() throws InterruptedException {
@@ -130,7 +129,7 @@ public class AppointmentHelper extends HelperBase {
     }
 
     public void deleteAppointment() throws InterruptedException {
-
+        verifyNonbusinessDay();
         click(btn_existing_appointment.get(0));
         waitForElement(btn_deleteAppointment);
         click(btn_deleteAppointment);
@@ -141,12 +140,20 @@ public class AppointmentHelper extends HelperBase {
 
 
     public boolean verifyAppointmentDeletion() throws InterruptedException {
-        if (!isElementPresent(nonbusiness)) {
-            click(back_arrow);
-        }
+        verifyNonbusinessDay();
         if (btn_existing_appointment.size() > 0) {
             return false;
         }
         return true;
+    }
+
+    public void chooseAppointmentHour() {
+        click(time_09);
+    }
+
+    public void verifyNonbusinessDay() {
+        if (!isElementPresent(nonbusiness)) {
+            click(back_arrow);
+        }
     }
 }

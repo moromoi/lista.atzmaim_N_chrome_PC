@@ -15,6 +15,9 @@ public class CreateAppointmentTest extends TestBase {
     public void testAppointmentCreation() throws InterruptedException {
         app.getSessionHelper().goToCalendarPage();
         app.getAppointmentHelper().createAppointment();
+        app.getCalendarPage().logout();
+        app.getSessionHelper().loginWithUser();
+        app.getSessionHelper().goToCalendarPage();
 
         String expected = "[09:00 - 09:30, Temp Client katalon, Temp services_katalon, 30 דקות]";
         List<String> actual = app.getAppointmentHelper().verifyAppointmentCreation();
@@ -31,6 +34,7 @@ public class CreateAppointmentTest extends TestBase {
         app.getAppointmentHelper().deleteAppointment();
         app.getCalendarPage().logout();
         app.getSessionHelper().loginWithUser();
+        app.getSessionHelper().goToCalendarPage();
 
         try {
             Assert.assertTrue(app.getAppointmentHelper().verifyAppointmentDeletion(), "verify appointment deletion");
