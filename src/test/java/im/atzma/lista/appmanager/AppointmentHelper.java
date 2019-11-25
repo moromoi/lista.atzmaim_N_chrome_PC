@@ -1,5 +1,7 @@
 package im.atzma.lista.appmanager;
 
+import org.checkerframework.checker.units.qual.K;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -50,6 +52,8 @@ public class AppointmentHelper extends HelperBase {
 
     @FindBy(xpath = "//button[@class=\"btn-styl delete\"]")
     WebElement btn_deleteAppointment;
+    @FindBy(xpath = "//button[@class='btn-styl edite']")
+    WebElement btn_modifyAppointment;
 
     @FindBy(xpath = "//button[@class=\"yes-btn\"]")
     WebElement btn_confirm_AppointmentDeletion;
@@ -79,6 +83,30 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//*[@class='price']/span")
     WebElement price;
 
+    @FindBy(xpath = "//*[@class='duration__pretty-value']")
+    WebElement duration_form;
+    @FindBy(xpath = "//*[@class='price__pretty-value']")
+    WebElement price_form;
+    @FindBy(xpath = "//*[@class='price-step__item-name']")
+    WebElement service_name_form;
+    @FindBy(xpath = "//*[@class='date-step__time']")
+    WebElement time_dur_form;
+    @FindBy(xpath = "//*[@class='header__user-name']")
+    WebElement appointmentClientName_form;
+    @FindBy(xpath = "(//*[@class='text'])[1]")
+    WebElement btn_back_form;
+    @FindBy(xpath = "(//*[@class='text'])[2]")
+    WebElement btn_save_form;
+
+    @FindBy(xpath = "//span[@class='popup-cross']")
+    WebElement btn_x;
+
+    @FindBy(css = "#dateInputt")
+    WebElement dateArea;
+    @FindBy(css = "#timeInput")
+    WebElement timeArea;
+    @FindBy(xpath = "//span[@class='bottomnav__bottom bottomnav__bottom--next']")
+    WebElement btn_next_time;
 
     public void test() {
         click(next_arrow);
@@ -144,6 +172,7 @@ public class AppointmentHelper extends HelperBase {
     }
 
     public void clickOnExistsAppointment() {
+        verifyNonbusinessDay();
         for (int i = 0; i < btn_existing_appointment.size(); i++) {
             click(btn_existing_appointment.get(i));
         }
@@ -163,6 +192,9 @@ public class AppointmentHelper extends HelperBase {
         itemList.add(duration.getText());
         itemList.add(service_name.getText());
         itemList.add(price.getText());
+        itemList.add(btn_deleteAppointment.getText());
+        itemList.add(btn_modifyAppointment.getText());
+        itemList.add(btn_x.getText());
 
         List<WebElement> itemList2 = new ArrayList<>();
         itemList2.add(strip_name);
@@ -171,10 +203,55 @@ public class AppointmentHelper extends HelperBase {
         itemList2.add(duration);
         itemList2.add(service_name);
         itemList2.add(price);
+        itemList2.add(btn_deleteAppointment);
+        itemList2.add(btn_modifyAppointment);
+        itemList2.add(btn_x);
+
         for (int i = 0; i < itemList2.size(); i++) {
             highlight(itemList2.get(i));
         }
 
         return itemList;
+    }
+
+    public List<String> verifyForm() {
+        initAppModification();
+
+        List<String> itemList = new ArrayList<>();
+        itemList.add(duration_form.getText());
+        itemList.add(price_form.getText());
+        itemList.add(service_name_form.getText());
+        itemList.add(time_dur_form.getText());
+        itemList.add(appointmentClientName_form.getText());
+        itemList.add(btn_back_form.getText());
+        itemList.add(btn_save_form.getText());
+
+        List<WebElement> itemList2 = new ArrayList<>();
+        itemList2.add(duration_form);
+        itemList2.add(price_form);
+        itemList2.add(service_name_form);
+        itemList2.add(time_dur_form);
+        itemList2.add(appointmentClientName_form);
+        itemList2.add(btn_back_form);
+        itemList2.add(btn_save_form);
+
+        for (int i = 0; i < itemList2.size(); i++) {
+            highlight(itemList2.get(i));
+        }
+
+        return itemList;
+    }
+
+    public void initAppModification() {
+        click(btn_modifyAppointment);
+    }
+
+    public void modifyAppTime() {
+        click(time_dur_form);
+
+        dateArea.sendKeys(Keys.ARROW_RIGHT, Keys.ARROW_UP);
+        timeArea.sendKeys(Keys.ARROW_UP);
+        click(btn_next_time);
+        click(btn_save_form);
     }
 }

@@ -24,4 +24,9 @@ task testNewAppointment (type: Test) {
         suites './src/test/java/im/atzma/lista/tests/testng-AppointmentCreation.xml'
     }
 
+    task testNewAppointmentModification (type: Test) {
+        useTestNG() {
+            suites './src/test/java/im/atzma/lista/tests/testng-AppointmentModification.xml'
+        }
+    }
 }

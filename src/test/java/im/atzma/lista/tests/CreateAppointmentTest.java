@@ -23,17 +23,4 @@ public class CreateAppointmentTest extends TestBase {
 
     }
 
-    @Test(priority = 2)
-    public void testAppointmentDeletion() throws InterruptedException {
-        app.getAppointmentHelper().deleteAppointment();
-        app.getCalendarPage().logout();
-        app.getSessionHelper().login();
-        app.getSessionHelper().goToCalendarPage();
-
-        try {
-            Assert.assertTrue(app.getAppointmentHelper().verifyAppointmentDeletion(), "verify appointment deletion");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

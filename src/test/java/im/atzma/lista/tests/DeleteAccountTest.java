@@ -10,6 +10,10 @@ public class DeleteAccountTest extends TestBase {
         app.getSessionHelper().login();
         app.deleteAccount();
 
-        Assert.assertTrue(app.driver.getCurrentUrl().matches("https://lista.atzma.im/he/login"));
+        try {
+            Assert.assertTrue(app.driver.getCurrentUrl().matches("https://lista.atzma.im/he/login"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
