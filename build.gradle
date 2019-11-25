@@ -19,12 +19,12 @@ task testMenu(type: Test) {
 
 }
 
-task testNewAppointment (type: Test) {
+task testNewAppointment(type: Test) {
     useTestNG() {
         suites './src/test/java/im/atzma/lista/tests/testng-AppointmentCreation.xml'
     }
 
-    task testNewAppointmentModification (type: Test) {
+    task testNewAppointmentModification(type: Test) {
         useTestNG() {
             suites './src/test/java/im/atzma/lista/tests/testng-AppointmentModification.xml'
         }

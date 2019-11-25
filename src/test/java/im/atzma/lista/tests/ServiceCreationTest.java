@@ -4,7 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceCreationTest extends TestBase{
@@ -122,7 +121,7 @@ public class ServiceCreationTest extends TestBase{
     public void testFillServiceForm() throws InterruptedException {
 
 
-        app.getServicesHelper().fillServiceFrom();
+        app.getServicesHelper().fillServiceFrom("Temp services_katalon", "Temp category_katalon");
 
         String enabledButton_expected = "rgba(255, 53, 140, 1)";
         String enabledButton_actual = app.getServicesHelper().verifyEnableddButtonColor();
@@ -140,7 +139,7 @@ public class ServiceCreationTest extends TestBase{
     public void testSaveServiceForm() throws InterruptedException {
 
         app.getServicesHelper().saveServiceFrom();
-        String actual = app.getServicesHelper().verifyTempService();
+        String actual = app.getServicesHelper().verifyTempService("Temp services_katalon");
         String expected = "Temp services_katalon";
         try {
             Assert.assertEquals(actual, expected);

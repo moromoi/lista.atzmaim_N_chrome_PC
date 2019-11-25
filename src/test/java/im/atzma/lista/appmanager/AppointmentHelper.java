@@ -1,6 +1,5 @@
 package im.atzma.lista.appmanager;
 
-import org.checkerframework.checker.units.qual.K;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,11 +22,14 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//input[@placeholder=\"חפש שם, טלפון או הזן לקוח חדש\"]")
     WebElement input_findClient;
 
-    @FindBy(xpath = "//a[text()='0547019283']/../../..")
+    @FindBy(xpath = "//span[@class='all-clients__item-name']")
     WebElement tempClient;
 
-    @FindBy(xpath = "//*[text()='Temp services_katalon']")
+    @FindBy(xpath = "//p[@class='name-services']")
     WebElement tempService;
+
+    @FindBy(xpath = "//span[@class='procedures-item__add']")
+    WebElement btn_procedures_item__add;
 
     @FindBy(xpath = "//input[@placeholder=\"חפש טיפול או הכנס חדש\"]")
     WebElement input_findService;
@@ -101,12 +103,14 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//span[@class='popup-cross']")
     WebElement btn_x;
 
-    @FindBy(css = "#dateInputt")
+    @FindBy(css = "#dateInput")
     WebElement dateArea;
     @FindBy(css = "#timeInput")
     WebElement timeArea;
     @FindBy(xpath = "//span[@class='bottomnav__bottom bottomnav__bottom--next']")
     WebElement btn_next_time;
+    @FindBy(xpath = "//*[@class='favorites-procedures__x']")
+    WebElement btn_remove_service;
 
     public void test() {
         click(next_arrow);
@@ -123,18 +127,16 @@ public class AppointmentHelper extends HelperBase {
         waitForElement(input_findClient);
         click(input_findClient);
         fillText(input_findClient, "Temp Client katalon");
-        waitForElement(tempClient);
         click(tempClient);
-        waitForElement(input_findService);
         click(input_findService);
         fillText(input_findService, "Temp services_katalon");
-        waitForElement(tempService);
-        click(tempService);
+        click(btn_procedures_item__add);
         click(btn_next);
         click(btn_save);
     }
 
     public List<String> verifyAppointmentCreation() {
+
         List<String> itemList = new ArrayList<>();
         itemList.add(appointmentTime.getText());
         itemList.add(appointmentClientName.getText());
@@ -248,10 +250,30 @@ public class AppointmentHelper extends HelperBase {
 
     public void modifyAppTime() {
         click(time_dur_form);
-
         dateArea.sendKeys(Keys.ARROW_RIGHT, Keys.ARROW_UP);
         timeArea.sendKeys(Keys.ARROW_UP);
         click(btn_next_time);
+    }
+
+    public void modifyAppService(String tempServiceName) throws InterruptedException {
+        click(service_name_form);
+        click(btn_remove_service);
+        fillText(input_findService, tempServiceName);
+        click(btn_procedures_item__add);
         click(btn_save_form);
+    }
+
+    public void modifyServiceDuration() {
+        for (int i = 0; i < 10; i++) {
+            duration_form.sendKeys(Keys.ARROW_UP);
+        }
+    }
+
+    public void modifyServicePrice() {
+        for (int i = 0; i < 5; i++) {
+            price_form.sendKeys(Keys.ARROW_UP);
+            click(btn_save_form);
+
+        }
     }
 }

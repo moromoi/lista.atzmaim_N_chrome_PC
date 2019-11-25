@@ -44,6 +44,7 @@
                 <methods>
                     <include name="verifyCreatedAppointment"/>
                     <include name="verifyAppointmentForm"/>
+                    <include name="createTempService"/>
                     <include name="modifyAppointment"/>
                 </methods>
             </class>

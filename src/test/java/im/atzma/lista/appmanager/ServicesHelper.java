@@ -114,8 +114,8 @@ public class ServicesHelper extends HelperBase {
     @FindBy(xpath = "//input[@placeholder='הזינו שם של טיפול']")
     WebElement inputBox_placeholder;
 
-    @FindBy(xpath = "//p[text()='Temp services_katalon']")
-    WebElement tempService_inSearch;
+    @FindBy(xpath = "//span[@class='procedures-item__add']")
+    WebElement btn_procedures_item__add;
 
     @FindBy(xpath = "//img[@src=\"/public/services/ic-search.svg\"]")
     WebElement icon_magnifier;
@@ -270,10 +270,10 @@ public class ServicesHelper extends HelperBase {
         click(btn_addService);
     }
 
-    public void fillServiceFrom() throws InterruptedException {
-        fillText(input_serviceName, "Temp services_katalon");
+    public void fillServiceFrom(String serviceName, String categoryName) throws InterruptedException {
+        fillText(input_serviceName, serviceName);
         click(btn_addCategory);
-        fillText(input_categoryName, "Temp category_katalon");
+        fillText(input_categoryName, categoryName);
         click(btn_saveCategory);
         waitForElement(btn_saveService_enabled);
     }
@@ -284,10 +284,10 @@ public class ServicesHelper extends HelperBase {
 
     }
 
-    public String verifyTempService() {
-        fillText(inputBox_placeholder, "Temp services_katalon");
-        highlight(tempService_inSearch);
-        return tempService_inSearch.getText();
+    public String verifyTempService(String tempServiceName) {
+        fillText(inputBox_placeholder, tempServiceName);
+        highlight(btn_procedures_item__add);
+        return btn_procedures_item__add.getText();
     }
 
     public List<WebElement> verifyServicePageElements() {
