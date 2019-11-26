@@ -114,7 +114,7 @@ public class ServicesHelper extends HelperBase {
     @FindBy(xpath = "//input[@placeholder='הזינו שם של טיפול']")
     WebElement inputBox_placeholder;
 
-    @FindBy(xpath = "//span[@class='procedures-item__add']")
+    @FindBy(xpath = "//p[@class='name-services']")
     WebElement btn_procedures_item__add;
 
     @FindBy(xpath = "//img[@src=\"/public/services/ic-search.svg\"]")

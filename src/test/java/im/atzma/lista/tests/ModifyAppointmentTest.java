@@ -60,10 +60,10 @@ public class ModifyAppointmentTest extends TestBase {
         app.getAppointmentHelper().clickOnExistsAppointment();
         app.getAppointmentHelper().initAppModification();
 
+        app.getAppointmentHelper().modifyAppService("Temp services_katalon_2");
         app.getAppointmentHelper().modifyAppTime();
         app.getAppointmentHelper().modifyServiceDuration();
         app.getAppointmentHelper().modifyServicePrice();
-        app.getAppointmentHelper().modifyAppService("Temp services_katalon_2");
 
         String expected = "[09:00 - 09:30, Temp Client katalon, Temp services_katalon, 30 דקות]";
         List<String> actual = app.getAppointmentHelper().verifyAppointmentCreation();

@@ -117,26 +117,27 @@ public class AppointmentHelper extends HelperBase {
     }
 
 
-    public void createAppointment() throws InterruptedException {
+    public void createAppointment(String clientName, String serviceName) throws InterruptedException {
         verifyNonbusinessDay();
         chooseAppointmentHour();
-        fillNewAppointment();
+        fillNewAppointment(serviceName, clientName);
     }
 
-    public void fillNewAppointment() throws InterruptedException {
+    public void fillNewAppointment(String service, String name) throws InterruptedException {
         waitForElement(input_findClient);
         click(input_findClient);
-        fillText(input_findClient, "Temp Client katalon");
+        fillText(input_findClient, name);
         click(tempClient);
         click(input_findService);
-        fillText(input_findService, "Temp services_katalon");
+        fillText(input_findService, service);
+        Thread.sleep(10000);
         click(btn_procedures_item__add);
         click(btn_next);
         click(btn_save);
     }
 
     public List<String> verifyAppointmentCreation() {
-
+        verifyNonbusinessDay();
         List<String> itemList = new ArrayList<>();
         itemList.add(appointmentTime.getText());
         itemList.add(appointmentClientName.getText());
@@ -256,9 +257,10 @@ public class AppointmentHelper extends HelperBase {
     }
 
     public void modifyAppService(String tempServiceName) throws InterruptedException {
-        click(service_name_form);
         click(btn_remove_service);
+        click(service_name_form);
         fillText(input_findService, tempServiceName);
+        Thread.sleep(10000);
         click(btn_procedures_item__add);
         click(btn_save_form);
     }
