@@ -44,7 +44,7 @@ public class CalendarPage extends HelperBase {
         } else return false;
     }
 
-    public boolean verifyUserinMenu() {
+    public boolean verifyUserinMenu()  {
         click(menu_gamburger);
         if (username_in_menu.isDisplayed()) {
             return true;

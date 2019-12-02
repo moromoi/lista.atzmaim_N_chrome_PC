@@ -1,5 +1,6 @@
 package im.atzma.lista.appmanager;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,7 +17,7 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//tr[@data-time=\"09:00:00\"]")
     WebElement time_09;
 
-    @FindBy(xpath = "//div[@class=\"click-mask\"]")
+    @FindBy(xpath = "//div[@class='click-mask']")
     List<WebElement> btn_existing_appointment;
 
     @FindBy(xpath = "//input[@placeholder=\"חפש שם, טלפון או הזן לקוח חדש\"]")
@@ -31,6 +32,9 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//span[@class='procedures-item__add']")
     WebElement btn_procedures_item__add;
 
+    @FindBy(xpath = "//div[text()='Temp services_katalon']")
+    WebElement temp_service;
+
     @FindBy(xpath = "//input[@placeholder=\"חפש טיפול או הכנס חדש\"]")
     WebElement input_findService;
 
@@ -40,7 +44,7 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//span[text()='שמור']/..")
     WebElement btn_save;
 
-    @FindBy(xpath = "//p[text()= '09:00 - 09:30']")
+    @FindBy(xpath = "//p[@class='event-start']")
     WebElement appointmentTime;
 
     @FindBy(xpath = "//div[text()= '30 דקות']")
@@ -63,7 +67,7 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//p[@class=\"floating-button standartLeft\"]")
     WebElement btn_addNewAppointment;
 
-    @FindBy(css = ".fc-nonbusiness.fc-bgevent")
+    @FindBy(css = ".fc-business-container")
     WebElement nonbusiness;
 
     @FindBy(xpath = "//div[@class='prev_button_wrap common']")
@@ -89,7 +93,7 @@ public class AppointmentHelper extends HelperBase {
     WebElement duration_form;
     @FindBy(xpath = "//*[@class='price__pretty-value']")
     WebElement price_form;
-    @FindBy(xpath = "//*[@class='price-step__item-name']")
+    @FindBy(xpath = "//*[@class='price-step__procedure']")
     WebElement service_name_form;
     @FindBy(xpath = "//*[@class='date-step__time']")
     WebElement time_dur_form;
@@ -99,6 +103,16 @@ public class AppointmentHelper extends HelperBase {
     WebElement btn_back_form;
     @FindBy(xpath = "(//*[@class='text'])[2]")
     WebElement btn_save_form;
+    @FindBy(xpath = "//span[@class='bottomnav__bottom bottomnav__bottom--next']")
+    WebElement btn_save_form_2;
+    @FindBy(xpath = "//input[@placeholder='הזן שם של קטגוריה חדשה']")
+    WebElement inputBox_placeholder;
+    @FindBy(xpath = "//button")
+    WebElement btn_add_category;
+    @FindBy(xpath = "//span[text() = 'הוסף קטגוריה חדשה']/..")
+    WebElement btn_add_newCategory;
+    @FindBy(xpath = "//span[text()='הוסף טיפול']/..")
+    WebElement btn_add_Service;
 
     @FindBy(xpath = "//span[@class='popup-cross']")
     WebElement btn_x;
@@ -107,37 +121,47 @@ public class AppointmentHelper extends HelperBase {
     WebElement dateArea;
     @FindBy(css = "#timeInput")
     WebElement timeArea;
-    @FindBy(xpath = "//span[@class='bottomnav__bottom bottomnav__bottom--next']")
-    WebElement btn_next_time;
-    @FindBy(xpath = "//*[@class='favorites-procedures__x']")
+    @FindBy(xpath = "(//div[@class='regulation-menu-plus'])[1]")
     WebElement btn_remove_service;
+
+    @FindBy(xpath = "//span[@class='login-err__text']")
+    WebElement msg_error;
 
     public void test() {
         click(next_arrow);
     }
 
 
-    public void createAppointment(String clientName, String serviceName) throws InterruptedException {
-        verifyNonbusinessDay();
+    public void createAppointment(String clientName) throws InterruptedException {
+//        verifyNonbusinessDay();
         chooseAppointmentHour();
-        fillNewAppointment(serviceName, clientName);
+        fillNewAppointment(clientName);
     }
 
-    public void fillNewAppointment(String service, String name) throws InterruptedException {
+    public void fillNewAppointment(String name) throws InterruptedException {
         waitForElement(input_findClient);
         click(input_findClient);
         fillText(input_findClient, name);
         click(tempClient);
-        click(input_findService);
+
+
+    }
+
+    public void addServiceCategory(String service, String notExistCategory) throws InterruptedException {
         fillText(input_findService, service);
-        Thread.sleep(10000);
-        click(btn_procedures_item__add);
+        click(btn_add_Service);
+        fillText(inputBox_placeholder, notExistCategory);
+        click(btn_add_newCategory);
+        click(btn_add_Service);
         click(btn_next);
+        waitForElement(btn_save);
+        driver.navigate().refresh();
         click(btn_save);
     }
 
+
     public List<String> verifyAppointmentCreation() {
-        verifyNonbusinessDay();
+//        verifyNonbusinessDay();
         List<String> itemList = new ArrayList<>();
         itemList.add(appointmentTime.getText());
         itemList.add(appointmentClientName.getText());
@@ -152,7 +176,7 @@ public class AppointmentHelper extends HelperBase {
     }
 
     public void deleteAppointment() throws InterruptedException {
-        verifyNonbusinessDay();
+//        verifyNonbusinessDay();
         clickOnExistsAppointment();
         waitForElement(btn_deleteAppointment);
         click(btn_deleteAppointment);
@@ -162,27 +186,29 @@ public class AppointmentHelper extends HelperBase {
     }
 
 
-    public boolean verifyAppointmentDeletion() throws InterruptedException {
-        verifyNonbusinessDay();
+    public List<String> verifyAppointmentDeletion() throws InterruptedException {
+//        verifyNonbusinessDay();
+        List<String> itemList = new ArrayList<>();
         if (btn_existing_appointment.size() > 0) {
-            return false;
+            itemList.add(appointmentTime.getText());
         }
-        return true;
+        return itemList;
     }
 
     public void chooseAppointmentHour() {
+        driver.navigate().refresh();
         click(time_09);
     }
 
     public void clickOnExistsAppointment() {
-        verifyNonbusinessDay();
+        driver.navigate().refresh();
         for (int i = 0; i < btn_existing_appointment.size(); i++) {
             click(btn_existing_appointment.get(i));
         }
     }
 
     public void verifyNonbusinessDay() {
-        if (!isElementPresent(nonbusiness)) {
+        if (isElementPresent(nonbusiness)) {
             click(back_arrow);
         }
     }
@@ -246,23 +272,27 @@ public class AppointmentHelper extends HelperBase {
     }
 
     public void initAppModification() {
+//        verifyNonbusinessDay();
+        clickOnExistsAppointment();
         click(btn_modifyAppointment);
+        click(service_name_form);
     }
 
     public void modifyAppTime() {
         click(time_dur_form);
         dateArea.sendKeys(Keys.ARROW_RIGHT, Keys.ARROW_UP);
         timeArea.sendKeys(Keys.ARROW_UP);
-        click(btn_next_time);
+        click(btn_save_form_2);
     }
 
     public void modifyAppService(String tempServiceName) throws InterruptedException {
-        click(btn_remove_service);
-        click(service_name_form);
+
+
         fillText(input_findService, tempServiceName);
-        Thread.sleep(10000);
-        click(btn_procedures_item__add);
-        click(btn_save_form);
+        Thread.sleep(1000);
+        click(temp_service);
+        click(btn_save_form_2);
+        click(btn_save_form_2);
     }
 
     public void modifyServiceDuration() {
@@ -274,8 +304,22 @@ public class AppointmentHelper extends HelperBase {
     public void modifyServicePrice() {
         for (int i = 0; i < 5; i++) {
             price_form.sendKeys(Keys.ARROW_UP);
-            click(btn_save_form);
+            click(btn_save_form_2);
 
         }
+    }
+
+    public void deleteAccount() throws InterruptedException {
+        driver.get("https://lista.atzma.im/he/settings");
+        driver.findElement(By.xpath("//p[text()='הגדרות עסק']")).click();
+        driver.findElement(By.xpath("//button[text()='למחוק את החשבון']")).click();
+        driver.findElement(By.xpath("//button[@class='yes-btn']")).click();
+
+    }
+
+    public String verifyAccountDeletion() throws InterruptedException {
+        String error = msg_error.getText();
+        System.out.println(msg_error.getText());
+        return error;
     }
 }

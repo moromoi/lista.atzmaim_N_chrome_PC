@@ -9,7 +9,8 @@ public class CreateAppointmentTest extends TestBase {
     @Test(priority = 1)
     public void testAppointmentCreation() throws InterruptedException {
         app.getSessionHelper().goToCalendarPage();
-        app.getAppointmentHelper().createAppointment("Temp Client katalon", "Temp services_katalon");
+        app.getAppointmentHelper().createAppointment("Temp Client katalon");
+        app.getAppointmentHelper().addServiceCategory("Temp services_katalon", "Temp category_katalon");
         app.getCalendarPage().logout();
         app.getSessionHelper().login();
 

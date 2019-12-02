@@ -25,7 +25,12 @@ public class HelperBase {
 
     public void click(WebElement el) {
         try {
-            highlight(el);
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        highlight(el);
+        try {
             el.click();
         } catch (WebDriverException e) {
             e.printStackTrace();
@@ -41,7 +46,8 @@ public class HelperBase {
         }
     }
 
-    public void fillText(WebElement el, String text) {
+    public void fillText(WebElement el, String text) throws InterruptedException {
+       Thread.sleep(500);
         highlight(el);
         if (text != null) {
             String existingText = el.getAttribute("value");

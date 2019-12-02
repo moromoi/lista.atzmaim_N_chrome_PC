@@ -57,16 +57,7 @@ public class ApplicationManager {
     }
 
 
-    public void deleteAccount() throws InterruptedException {
-        Thread.sleep(1000);
-        driver.get("https://lista.atzma.im/he/settings");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//p[text()='הגדרות עסק']")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//button[text()='למחוק את החשבון']")).click();
-        driver.findElement(By.xpath("//button[@class='yes-btn']")).click();
-        Thread.sleep(1000);
-    }
+
 
     public void stop() {
         driver.quit();

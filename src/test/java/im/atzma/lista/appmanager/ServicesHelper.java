@@ -117,6 +117,9 @@ public class ServicesHelper extends HelperBase {
     @FindBy(xpath = "//p[@class='name-services']")
     WebElement btn_procedures_item__add;
 
+    @FindBy(xpath = "//p[@class='name-services']")
+    List<WebElement> btn_procedures_item__add_list;
+
     @FindBy(xpath = "//img[@src=\"/public/services/ic-search.svg\"]")
     WebElement icon_magnifier;
 
@@ -176,6 +179,15 @@ public class ServicesHelper extends HelperBase {
 
     @FindBy(xpath = "//img[@src='/public/services/chevron-right.svg']")
     WebElement arrow_back_2;
+
+    @FindBy(xpath = "//p[contains(text(), 'Temp')]")
+    WebElement temp_service_inList;
+
+    @FindBy(xpath = "//button[@class='bottom delete']")
+    WebElement btn_delete_service;
+
+    @FindBy(xpath = "//button[@class='yes-btn']")
+    WebElement btn_comfirm_service_deletion;
 
 
 
@@ -275,16 +287,17 @@ public class ServicesHelper extends HelperBase {
         click(btn_addCategory);
         fillText(input_categoryName, categoryName);
         click(btn_saveCategory);
-        waitForElement(btn_saveService_enabled);
+
     }
 
     public void saveServiceFrom() throws InterruptedException {
+        driver.navigate().refresh();
         click(btn_saveService_enabled);
         waitForLocation("https://lista.atzma.im/he/catalog/services");
 
     }
 
-    public String verifyTempService(String tempServiceName) {
+    public String verifyTempService(String tempServiceName) throws InterruptedException {
         fillText(inputBox_placeholder, tempServiceName);
         highlight(btn_procedures_item__add);
         return btn_procedures_item__add.getText();
@@ -348,4 +361,22 @@ public class ServicesHelper extends HelperBase {
     }
 
 
+    public void deleteTempService() {
+        click(temp_service_inList);
+        click(btn_delete_service);
+        click(btn_comfirm_service_deletion);
+//        driver.navigate().refresh();
+
+    }
+
+    public   List<String> verifyServiceDeletion() {
+        driver.navigate().refresh();
+        List<String> itemList = new ArrayList<>();
+        for (int i = 0; i < btn_procedures_item__add_list.size(); i++) {
+            itemList.add(btn_procedures_item__add_list.get(i).getText());
+            System.out.println(btn_procedures_item__add_list.get(i).getText());
+            highlight(btn_procedures_item__add_list.get(i));
+        }
+        return itemList;
+    }
 }
