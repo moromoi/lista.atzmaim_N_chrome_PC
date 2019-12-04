@@ -59,7 +59,8 @@ public class ApplicationManager {
 
 
 
-    public void stop() {
+    public void stop() throws InterruptedException {
+        Thread.sleep(3000);
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString)) {

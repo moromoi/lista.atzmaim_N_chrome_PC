@@ -158,7 +158,7 @@ public class AppointmentHelper extends HelperBase {
 
         Thread.sleep(3000);
         waitForElement(btn_add_newCategory);
-        click2(btn_add_newCategory);
+        click(btn_add_newCategory);
         System.out.println("Button text 2 : " + btn_add_newCategory.getText());
 
         waitForElement(btn_add_Service);
@@ -341,7 +341,7 @@ public class AppointmentHelper extends HelperBase {
         String error = msg_error.getText();
         System.out.println(msg_error.getText());
         highlight(msg_error);
-        waitForLocation("https://lista.atzma.im/he/login?error=incorrect");
+
         return error;
     }
 }
