@@ -17,7 +17,7 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//tr[@data-time=\"09:00:00\"]")
     WebElement time_09;
 
-    @FindBy(xpath = "//div[@class='click-mask']")
+    @FindBy(xpath = "//a[@data-appointment_id]")
     List<WebElement> btn_existing_appointment;
 
     @FindBy(xpath = "//input[@placeholder=\"חפש שם, טלפון או הזן לקוח חדש\"]")
@@ -50,10 +50,10 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//div[text()= '30 דקות']")
     WebElement appointmentDuration;
 
-    @FindBy(xpath = "//p[text()= 'Temp Client katalon']")
+    @FindBy(xpath = "//*[@class='client-name']")
     WebElement appointmentClientName;
 
-    @FindBy(xpath = "//span[text()= 'Temp services_katalon']")
+    @FindBy(xpath = "//*[@class='service-item']")
     WebElement appointmentServiceName;
 
     @FindBy(xpath = "//button[@class=\"btn-styl delete\"]")
@@ -109,7 +109,7 @@ public class AppointmentHelper extends HelperBase {
     WebElement inputBox_placeholder;
     @FindBy(xpath = "//button")
     WebElement btn_add_category;
-    @FindBy(xpath = "//span[text() = 'הוסף קטגוריה חדשה']/..")
+    @FindBy(xpath = "//*[@class='category__list-add-procedure category__list-add-procedure--active']")
     WebElement btn_add_newCategory;
     @FindBy(xpath = "//span[text()='הוסף טיפול']/..")
     WebElement btn_add_Service;
@@ -149,14 +149,34 @@ public class AppointmentHelper extends HelperBase {
 
     public void addServiceCategory(String service, String notExistCategory) throws InterruptedException {
         fillText(input_findService, service);
+
+        waitForElement(btn_add_Service);
+        System.out.println("Button text 1 : " + btn_add_Service.getText());
         click(btn_add_Service);
+
         fillText(inputBox_placeholder, notExistCategory);
-        click(btn_add_newCategory);
+
+        Thread.sleep(3000);
+        waitForElement(btn_add_newCategory);
+        click2(btn_add_newCategory);
+        System.out.println("Button text 2 : " + btn_add_newCategory.getText());
+
+        waitForElement(btn_add_Service);
+        System.out.println("Button text 3 : " + btn_add_Service.getText());
         click(btn_add_Service);
+
+
+        waitForElement(btn_next);
+        System.out.println("Button text 4 : " + btn_next.getText());
         click(btn_next);
-        waitForElement(btn_save);
+
         driver.navigate().refresh();
+        waitForElement(btn_save);
+        System.out.println("Button text 5 : " + btn_save.getText());
         click(btn_save);
+
+        Thread.sleep(500);
+
     }
 
 
@@ -320,6 +340,8 @@ public class AppointmentHelper extends HelperBase {
     public String verifyAccountDeletion() throws InterruptedException {
         String error = msg_error.getText();
         System.out.println(msg_error.getText());
+        highlight(msg_error);
+        waitForLocation("https://lista.atzma.im/he/login?error=incorrect");
         return error;
     }
 }

@@ -25,7 +25,7 @@ public class HelperBase {
 
     public void click(WebElement el) {
         try {
-            Thread.sleep(300);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -35,6 +35,10 @@ public class HelperBase {
         } catch (WebDriverException e) {
             e.printStackTrace();
         }
+    }
+
+    public void click2(WebElement el) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
     }
 
     public void select(WebElement el, String myvalue) {
