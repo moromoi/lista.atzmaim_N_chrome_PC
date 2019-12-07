@@ -61,7 +61,7 @@ public class ClientHelper extends HelperBase{
     @FindBy(css=".bot-button")
     WebElement btn_saveClientForm;
 
-    @FindBy(xpath = "//h1[text()='Temp Client katalon']")
+    @FindBy(xpath = "//*[@class='client-name']/h1")
     WebElement title_newClientName;
 
     @FindBy(xpath = "//span[text()='חזור']")

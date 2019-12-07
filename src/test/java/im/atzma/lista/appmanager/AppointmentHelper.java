@@ -47,8 +47,10 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//p[@class='event-start']")
     WebElement appointmentTime;
 
-    @FindBy(xpath = "//div[text()= '30 דקות']")
+    @FindBy(xpath = "//*[@class= 'event-duration']")
     WebElement appointmentDuration;
+    @FindBy(xpath = "//*[@class= 'full-dur']")
+    WebElement appointmentDuration_min;
 
     @FindBy(xpath = "//*[@class='client-name']")
     WebElement appointmentClientName;
@@ -113,9 +115,18 @@ public class AppointmentHelper extends HelperBase {
     WebElement btn_add_newCategory;
     @FindBy(xpath = "//span[text()='הוסף טיפול']/..")
     WebElement btn_add_Service;
+    @FindBy(xpath = "//img[@src='/public/creating-appointment/plus-square-white.svg']")
+    WebElement icon_plus_addSerice;
+
+    @FindBy(xpath = "(//*[@class='regulation-menu-plus'])[2]")
+    WebElement btn_duration_plus;
+    @FindBy(xpath = "(//*[@class='regulation-menu-plus'])[4]")
+    WebElement btn_price_plus;
 
     @FindBy(xpath = "//span[@class='popup-cross']")
     WebElement btn_x;
+    @FindBy(xpath = "//*[@class='favorites-procedures__x']")
+    WebElement btn_delete_old_service;
 
     @FindBy(css = "#dateInput")
     WebElement dateArea;
@@ -133,7 +144,7 @@ public class AppointmentHelper extends HelperBase {
 
 
     public void createAppointment(String clientName) throws InterruptedException {
-//        verifyNonbusinessDay();
+        verifyNonbusinessDay();
         chooseAppointmentHour();
         fillNewAppointment(clientName);
     }
@@ -150,13 +161,14 @@ public class AppointmentHelper extends HelperBase {
     public void addServiceCategory(String service, String notExistCategory) throws InterruptedException {
         fillText(input_findService, service);
 
-        waitForElement(btn_add_Service);
+        waitForElement(icon_plus_addSerice);
         System.out.println("Button text 1 : " + btn_add_Service.getText());
+        Thread.sleep(3000);
         click(btn_add_Service);
 
         fillText(inputBox_placeholder, notExistCategory);
 
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         waitForElement(btn_add_newCategory);
         click(btn_add_newCategory);
         System.out.println("Button text 2 : " + btn_add_newCategory.getText());
@@ -170,23 +182,31 @@ public class AppointmentHelper extends HelperBase {
         System.out.println("Button text 4 : " + btn_next.getText());
         click(btn_next);
 
-        driver.navigate().refresh();
-        waitForElement(btn_save);
-        System.out.println("Button text 5 : " + btn_save.getText());
-        click(btn_save);
-
         Thread.sleep(500);
 
     }
 
 
-    public List<String> verifyAppointmentCreation() {
-//        verifyNonbusinessDay();
+    public List<String> verifyAppointmentCreation() throws InterruptedException {
+        verifyNonbusinessDay();
         List<String> itemList = new ArrayList<>();
         itemList.add(appointmentTime.getText());
         itemList.add(appointmentClientName.getText());
         itemList.add(appointmentServiceName.getText());
         itemList.add(appointmentDuration.getText());
+
+        System.out.println(itemList);
+
+        return itemList;
+    }
+
+    public List<String> verifyAppointmentCreation2() throws InterruptedException {
+
+        List<String> itemList = new ArrayList<>();
+        itemList.add(appointmentTime.getText());
+        itemList.add(appointmentClientName.getText());
+        itemList.add(appointmentServiceName.getText());
+        itemList.add(appointmentDuration_min.getText());
 
         for (int i = 0; i < itemList.size(); i++) {
             System.out.println(itemList.get(i));
@@ -196,7 +216,8 @@ public class AppointmentHelper extends HelperBase {
     }
 
     public void deleteAppointment() throws InterruptedException {
-//        verifyNonbusinessDay();
+        verifyNonbusinessDay();
+
         clickOnExistsAppointment();
         waitForElement(btn_deleteAppointment);
         click(btn_deleteAppointment);
@@ -207,7 +228,7 @@ public class AppointmentHelper extends HelperBase {
 
 
     public List<String> verifyAppointmentDeletion() throws InterruptedException {
-//        verifyNonbusinessDay();
+        verifyNonbusinessDay();
         List<String> itemList = new ArrayList<>();
         if (btn_existing_appointment.size() > 0) {
             itemList.add(appointmentTime.getText());
@@ -220,10 +241,31 @@ public class AppointmentHelper extends HelperBase {
         click(time_09);
     }
 
-    public void clickOnExistsAppointment() {
+    public void clickOnExistsAppointment() throws InterruptedException {
+        verifyNonbusinessDay();
+        System.out.println(btn_existing_appointment.size());
+
+        if (btn_existing_appointment.size() < 1) {
+            click(back_arrow);
+            waitForElement(appointmentTime);
+        }
         driver.navigate().refresh();
         for (int i = 0; i < btn_existing_appointment.size(); i++) {
             click(btn_existing_appointment.get(i));
+        }
+    }
+
+    public void clickOnExistsAppointment2() throws InterruptedException {
+        driver.navigate().refresh();
+        for (int i = 0; i < btn_existing_appointment.size(); i++) {
+            click(btn_existing_appointment.get(i));
+        }
+    }
+
+
+    private void verifyAppointmentExistens() {
+        if (!isElementPresent(appointmentTime)) {
+            click(back_arrow);
         }
     }
 
@@ -263,9 +305,7 @@ public class AppointmentHelper extends HelperBase {
         return itemList;
     }
 
-    public List<String> verifyForm() {
-        initAppModification();
-
+    public List<String> verifyForm() throws InterruptedException {
         List<String> itemList = new ArrayList<>();
         itemList.add(duration_form.getText());
         itemList.add(price_form.getText());
@@ -274,6 +314,10 @@ public class AppointmentHelper extends HelperBase {
         itemList.add(appointmentClientName_form.getText());
         itemList.add(btn_back_form.getText());
         itemList.add(btn_save_form.getText());
+
+        for (int i = 0; i < itemList.size(); i++) {
+            System.out.println("Created appointment elements: " + itemList.get(i));
+        }
 
         List<WebElement> itemList2 = new ArrayList<>();
         itemList2.add(duration_form);
@@ -291,11 +335,13 @@ public class AppointmentHelper extends HelperBase {
         return itemList;
     }
 
-    public void initAppModification() {
-//        verifyNonbusinessDay();
-        clickOnExistsAppointment();
+    public void initAppModification() throws InterruptedException {
         click(btn_modifyAppointment);
+    }
+
+    public void modifyService() {
         click(service_name_form);
+        click(btn_delete_old_service);
     }
 
     public void modifyAppTime() {
@@ -303,6 +349,26 @@ public class AppointmentHelper extends HelperBase {
         dateArea.sendKeys(Keys.ARROW_RIGHT, Keys.ARROW_UP);
         timeArea.sendKeys(Keys.ARROW_UP);
         click(btn_save_form_2);
+    }
+
+    public void modifyServiceDuration() {
+//        click(duration_form);
+//        for (int i = 0; i < 10; i++) {
+//            duration_form.sendKeys(Keys.ARROW_UP);
+//        }
+        for (int i = 0; i < 5; i++) {
+            click(btn_duration_plus);
+        }
+    }
+
+    public void modifyServicePrice() {
+//        for (int i = 0; i < 5; i++) {
+//            price_form.sendKeys(Keys.ARROW_UP);
+//            click(btn_save_form_2);
+//        }
+        for (int i = 0; i < 5; i++) {
+            click(btn_price_plus);
+        }
     }
 
     public void modifyAppService(String tempServiceName) throws InterruptedException {
@@ -315,18 +381,15 @@ public class AppointmentHelper extends HelperBase {
         click(btn_save_form_2);
     }
 
-    public void modifyServiceDuration() {
-        for (int i = 0; i < 10; i++) {
-            duration_form.sendKeys(Keys.ARROW_UP);
-        }
+    public void modifyClient() {
+        click(appointmentClientName_form);
     }
 
-    public void modifyServicePrice() {
-        for (int i = 0; i < 5; i++) {
-            price_form.sendKeys(Keys.ARROW_UP);
-            click(btn_save_form_2);
-
-        }
+    public void saveForm() throws InterruptedException {
+        driver.navigate().refresh();
+        waitForElement(btn_save);
+        System.out.println("Button text 5 : " + btn_save.getText());
+        click(btn_save);
     }
 
     public void deleteAccount() throws InterruptedException {
@@ -344,4 +407,6 @@ public class AppointmentHelper extends HelperBase {
 
         return error;
     }
+
+
 }

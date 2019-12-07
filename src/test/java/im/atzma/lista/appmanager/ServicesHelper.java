@@ -181,14 +181,15 @@ public class ServicesHelper extends HelperBase {
     WebElement arrow_back_2;
 
     @FindBy(xpath = "//p[contains(text(), 'Temp')]")
-    WebElement temp_service_inList;
+    List<WebElement> temp_service_inList;
+    @FindBy(xpath = "//p[contains(text(), 'Temp')]")
+    WebElement temp_service_inList_one;
 
     @FindBy(xpath = "//button[@class='bottom delete']")
     WebElement btn_delete_service;
 
     @FindBy(xpath = "//button[@class='yes-btn']")
     WebElement btn_comfirm_service_deletion;
-
 
 
     public List<WebElement> verifyDefaultService_30min() {
@@ -253,29 +254,26 @@ public class ServicesHelper extends HelperBase {
 
     public boolean verifyTrashIconPresent_1() {
         click(checkbox_trash1);
-        if(isElementPresent(icon_trash)) {
+        if (isElementPresent(icon_trash)) {
             click(checkbox_trash1);
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     public boolean verifyTrashIconPresent_2() {
         click(checkbox_trash2);
-        if(isElementPresent(icon_trash)) {
+        if (isElementPresent(icon_trash)) {
             click(checkbox_trash2);
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     public boolean verifyTrashIconPresent_3() {
         click(checkbox_trash3);
-        if(isElementPresent(icon_trash)) {
+        if (isElementPresent(icon_trash)) {
             click(checkbox_trash3);
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     public void initAddNewService() {
@@ -351,25 +349,41 @@ public class ServicesHelper extends HelperBase {
     }
 
     public String verifyEnableddButtonColor() {
-        for (int i = 0; i < 10; i++) { click(btn_plus_1); }
-        for (int i = 0; i < 10; i++) { click(btn_plus_2); }
-        for (int i = 0; i < 10; i++) { click(btn_minus_1);}
-        for (int i = 0; i < 10; i++) { click(btn_minus_2);}
+        for (int i = 0; i < 10; i++) {
+            click(btn_plus_1);
+        }
+        for (int i = 0; i < 10; i++) {
+            click(btn_plus_2);
+        }
+        for (int i = 0; i < 10; i++) {
+            click(btn_minus_1);
+        }
+        for (int i = 0; i < 10; i++) {
+            click(btn_minus_2);
+        }
 
         String actualButton = btn_saveService_enabled.getCssValue("background-color");
         return actualButton;
     }
 
 
-    public void deleteTempService() {
-        click(temp_service_inList);
-        click(btn_delete_service);
-        click(btn_comfirm_service_deletion);
+    public void deleteTempService() throws InterruptedException {
+        while (isElementPresent(temp_service_inList_one))
+            for (int i = 0; i < temp_service_inList.size(); i++) {
+                Thread.sleep(2000);
+                click(temp_service_inList.get(i));
+                Thread.sleep(2000);
+                click(btn_delete_service);
+                Thread.sleep(2000);
+                click(btn_comfirm_service_deletion);
+                Thread.sleep(2000);
+            }
+
 //        driver.navigate().refresh();
 
     }
 
-    public   List<String> verifyServiceDeletion() {
+    public List<String> verifyServiceDeletion() {
         driver.navigate().refresh();
         List<String> itemList = new ArrayList<>();
         for (int i = 0; i < btn_procedures_item__add_list.size(); i++) {

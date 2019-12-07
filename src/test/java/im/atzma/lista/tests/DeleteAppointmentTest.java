@@ -10,6 +10,7 @@ public class DeleteAppointmentTest extends TestBase {
 
     @Test(priority = 1)
     public void testAppointmentDeletion() throws InterruptedException {
+        app.getSessionHelper().goToCalendarPage();
         app.getCalendarPage().logout();
         app.getSessionHelper().login();
         app.getAppointmentHelper().deleteAppointment();

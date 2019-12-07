@@ -11,6 +11,7 @@ public class CreateAppointmentTest extends TestBase {
         app.getSessionHelper().goToCalendarPage();
         app.getAppointmentHelper().createAppointment("Temp Client katalon");
         app.getAppointmentHelper().addServiceCategory("Temp services_katalon", "Temp category_katalon");
+        app.getAppointmentHelper().saveForm();
         app.getCalendarPage().logout();
         app.getSessionHelper().login();
 
