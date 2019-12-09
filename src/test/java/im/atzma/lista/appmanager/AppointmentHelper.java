@@ -166,10 +166,11 @@ public class AppointmentHelper extends HelperBase {
         click(input_findService);
         waitForElement(service_area);
         fillText(input_findService, service);
-        Thread.sleep(100);
+        Thread.sleep(500);
         click(btn_add_Service);
 
         fillText(inputBox_placeholder, notExistCategory);
+        Thread.sleep(500);
         click(btn_add_newCategory);
 
         waitForElement(btn_add_Service);
