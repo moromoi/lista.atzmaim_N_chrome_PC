@@ -139,6 +139,8 @@ public class AppointmentHelper extends HelperBase {
 
     @FindBy(xpath = "//span[@class='login-err__text']")
     WebElement msg_error;
+    @FindBy(xpath = "//*[@style='max-height: 0px; overflow: hidden;']")
+    WebElement service_area;
 
     public void test() {
         click(next_arrow);
@@ -146,7 +148,7 @@ public class AppointmentHelper extends HelperBase {
 
 
     public void createAppointment(String clientName) throws InterruptedException {
-       // verifyNonbusinessDay();
+        // verifyNonbusinessDay();
         chooseAppointmentHour();
         fillNewAppointment(clientName);
     }
@@ -161,16 +163,10 @@ public class AppointmentHelper extends HelperBase {
     }
 
     public void addServiceCategory(String service, String notExistCategory) throws InterruptedException {
-        int i=0;
-        while (i < 4) {
-        for (i = 0; i < 5; i++) {
-            fillText(input_findService, service);
-            Thread.sleep(100);
-            click(btn_delete_search_result);
-            }
-        i++;
-        }
+        click(input_findService);
+        waitForElement(service_area);
         fillText(input_findService, service);
+        Thread.sleep(100);
         click(btn_add_Service);
 
         fillText(inputBox_placeholder, notExistCategory);
@@ -191,7 +187,7 @@ public class AppointmentHelper extends HelperBase {
 
 
     public List<String> verifyAppointmentCreation() throws InterruptedException {
-       // verifyNonbusinessDay();
+        // verifyNonbusinessDay();
         List<String> itemList = new ArrayList<>();
         itemList.add(appointmentTime.getText());
         itemList.add(appointmentClientName.getText());
@@ -245,7 +241,7 @@ public class AppointmentHelper extends HelperBase {
     }
 
     public void clickOnExistsAppointment() throws InterruptedException {
-      //  verifyNonbusinessDay();
+        //  verifyNonbusinessDay();
         System.out.println(btn_existing_appointment.size());
 
         if (btn_existing_appointment.size() < 1) {
