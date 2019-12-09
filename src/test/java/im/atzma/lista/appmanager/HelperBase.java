@@ -1,6 +1,8 @@
 package im.atzma.lista.appmanager;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
@@ -11,7 +13,7 @@ import static org.testng.Assert.fail;
 
 public class HelperBase {
     protected WebDriver driver;
-
+//    Actions builder = new Actions(driver);
 
     public HelperBase(WebDriver driver) {
         this.driver = driver;
@@ -37,15 +39,9 @@ public class HelperBase {
         }
     }
 
-//    public void click(WebElement el) {
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        highlight(el);
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
-//    }
+    public void clickJS(WebElement el) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+    }
 
     public void select(WebElement el, String myvalue) {
         new Select(el).selectByValue(myvalue);
@@ -57,7 +53,6 @@ public class HelperBase {
     }
 
     public void fillText(WebElement el, String text) throws InterruptedException {
-       Thread.sleep(500);
         highlight(el);
         if (text != null) {
             String existingText = el.getAttribute("value");
@@ -68,6 +63,10 @@ public class HelperBase {
             }
         }
     }
+
+//    public void fillText(WebElement el, String text) throws InterruptedException {
+//        el.sendKeys(text);
+//    }
 
     public void waitForLocation(String myURL) throws InterruptedException {
         for (int second = 0; ; second++) {

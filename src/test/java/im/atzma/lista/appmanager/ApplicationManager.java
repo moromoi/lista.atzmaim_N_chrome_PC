@@ -3,6 +3,7 @@ package im.atzma.lista.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +34,7 @@ public class ApplicationManager {
         mobileEmulation.put("deviceName", "iPhone X");
 
         ChromeOptions chromeOptions = new ChromeOptions();
+
 //        chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
         chromeOptions.addArguments(("--auto-open-devtools-for-tabs"));
         chromeOptions.addArguments("--ignore-certificate-errors");

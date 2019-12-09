@@ -368,15 +368,15 @@ public class ServicesHelper extends HelperBase {
 
 
     public void deleteTempService() throws InterruptedException {
-        while (isElementPresent(temp_service_inList_one))
+
             for (int i = 0; i < temp_service_inList.size(); i++) {
-                Thread.sleep(2000);
+
                 click(temp_service_inList.get(i));
-                Thread.sleep(2000);
+
                 click(btn_delete_service);
-                Thread.sleep(2000);
+
                 click(btn_comfirm_service_deletion);
-                Thread.sleep(2000);
+
             }
 
 //        driver.navigate().refresh();

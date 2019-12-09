@@ -117,6 +117,8 @@ public class AppointmentHelper extends HelperBase {
     WebElement btn_add_Service;
     @FindBy(xpath = "//img[@src='/public/creating-appointment/plus-square-white.svg']")
     WebElement icon_plus_addSerice;
+    @FindBy(xpath = "//img[@class='search-inner__img--close']")
+    WebElement btn_delete_search_result;
 
     @FindBy(xpath = "(//*[@class='regulation-menu-plus'])[2]")
     WebElement btn_duration_plus;
@@ -144,7 +146,7 @@ public class AppointmentHelper extends HelperBase {
 
 
     public void createAppointment(String clientName) throws InterruptedException {
-        verifyNonbusinessDay();
+       // verifyNonbusinessDay();
         chooseAppointmentHour();
         fillNewAppointment(clientName);
     }
@@ -159,19 +161,20 @@ public class AppointmentHelper extends HelperBase {
     }
 
     public void addServiceCategory(String service, String notExistCategory) throws InterruptedException {
+        int i=0;
+        while (i < 4) {
+        for (i = 0; i < 5; i++) {
+            fillText(input_findService, service);
+            Thread.sleep(100);
+            click(btn_delete_search_result);
+            }
+        i++;
+        }
         fillText(input_findService, service);
-
-        waitForElement(icon_plus_addSerice);
-        System.out.println("Button text 1 : " + btn_add_Service.getText());
-        Thread.sleep(3000);
         click(btn_add_Service);
 
         fillText(inputBox_placeholder, notExistCategory);
-
-//        Thread.sleep(3000);
-        waitForElement(btn_add_newCategory);
         click(btn_add_newCategory);
-        System.out.println("Button text 2 : " + btn_add_newCategory.getText());
 
         waitForElement(btn_add_Service);
         System.out.println("Button text 3 : " + btn_add_Service.getText());
@@ -188,7 +191,7 @@ public class AppointmentHelper extends HelperBase {
 
 
     public List<String> verifyAppointmentCreation() throws InterruptedException {
-        verifyNonbusinessDay();
+       // verifyNonbusinessDay();
         List<String> itemList = new ArrayList<>();
         itemList.add(appointmentTime.getText());
         itemList.add(appointmentClientName.getText());
@@ -216,7 +219,7 @@ public class AppointmentHelper extends HelperBase {
     }
 
     public void deleteAppointment() throws InterruptedException {
-        verifyNonbusinessDay();
+//        verifyNonbusinessDay();
 
         clickOnExistsAppointment();
         waitForElement(btn_deleteAppointment);
@@ -228,7 +231,7 @@ public class AppointmentHelper extends HelperBase {
 
 
     public List<String> verifyAppointmentDeletion() throws InterruptedException {
-        verifyNonbusinessDay();
+        //verifyNonbusinessDay();
         List<String> itemList = new ArrayList<>();
         if (btn_existing_appointment.size() > 0) {
             itemList.add(appointmentTime.getText());
@@ -242,7 +245,7 @@ public class AppointmentHelper extends HelperBase {
     }
 
     public void clickOnExistsAppointment() throws InterruptedException {
-        verifyNonbusinessDay();
+      //  verifyNonbusinessDay();
         System.out.println(btn_existing_appointment.size());
 
         if (btn_existing_appointment.size() < 1) {
