@@ -37,14 +37,17 @@ public class CalendarPage extends HelperBase {
 
 
     public boolean logout() {
+        highlight(menu_gamburger);
         click(menu_gamburger);
         if (btn_logout.isDisplayed()) {
+            highlight(btn_logout);
             click(btn_logout);
             return true;
         } else return false;
     }
 
     public boolean verifyUserinMenu()  {
+        highlight(menu_gamburger);
         click(menu_gamburger);
         if (username_in_menu.isDisplayed()) {
             return true;

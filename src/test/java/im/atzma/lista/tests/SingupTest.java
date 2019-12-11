@@ -177,19 +177,25 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
     @Test(priority = 8)
     public void testLogOut() throws Exception {
+        app.getSessionHelper().goToCalendarPage();
+
         try {
             //--------------------------------------------------------------------------verify logout button in menu
             Assert.assertTrue(app.getCalendarPage().logout());
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         try {
-            //--------------------------------------------------------------------------verify URL after logout
-            Assert.assertTrue(app.driver.getCurrentUrl().matches("https://lista.atzma.im/he/login"));
+            Assert.assertTrue(app.getSessionHelper().verifyEmailInput());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        try {
+            Assert.assertTrue(app.getSessionHelper().verifyPasswordInput());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

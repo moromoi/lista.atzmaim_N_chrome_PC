@@ -15,9 +15,9 @@
                     <include name="testLogOut"/>
                     <include name="testVerifyLoginWithNewUser"/>
                     <include name="testVerifyDefaultClientPage()"/>
-                    <include name="testVerifyDefaultServices30min"/>
-                    <include name="testVerifyDefaultServices45min"/>
-                    <include name="testVerifyDefaultServices60min"/>
+                    <!--<include name="testVerifyDefaultServices30min"/>-->
+                    <!--<include name="testVerifyDefaultServices45min"/>-->
+                    <!--<include name="testVerifyDefaultServices60min"/>-->
                 </methods>
             </class>
             <class name="im.atzma.lista.tests.MenuTest">
@@ -28,6 +28,7 @@
             <class name="im.atzma.lista.tests.DeleteAccountTest">
                 <methods>
                     <include name="testDeleteAccount"/>
+                    <include name="testDeleteAccountVerification"/>
                 </methods>
             </class>
         </classes>

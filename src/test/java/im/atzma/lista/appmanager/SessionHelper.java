@@ -54,6 +54,11 @@ public class SessionHelper extends HelperBase {
         waitForLocation(baseURL);
     }
 
+    public void goToLoginPage() throws InterruptedException {
+        driver.get(loginURL);
+        waitForLocation(loginURL);
+    }
+
     public void goToSingupPage() throws InterruptedException {
         driver.findElement(By.xpath("//a[@href='/he/signup']")).click();
         waitForLocation(singupURL);
