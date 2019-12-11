@@ -27,7 +27,6 @@ public class DeleteAccountTest extends TestBase {
     @Test(priority = 2)
     public void testDeleteAccountVerification() throws Exception {
 
-        app.getAppointmentHelper().deleteAccount();
         app.getSessionHelper().login();
 
         String expected = "אנחנו לא מכירים את האימייל הזה והססמה";
