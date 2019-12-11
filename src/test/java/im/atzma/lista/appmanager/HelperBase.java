@@ -27,16 +27,11 @@ public class HelperBase {
 
     public void click(WebElement el) {
         try {
-            Thread.sleep(200);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        highlight(el);
-        try {
-            el.click();
-        } catch (WebDriverException e) {
-            e.printStackTrace();
-        }
+        el.click();
     }
 
     public void clickJS(WebElement el) {
@@ -57,6 +52,7 @@ public class HelperBase {
         if (text != null) {
             String existingText = el.getAttribute("value");
             if (!text.equals(existingText)) {
+                Thread.sleep(1000);
                 el.click();
                 el.clear();
                 el.sendKeys(text);

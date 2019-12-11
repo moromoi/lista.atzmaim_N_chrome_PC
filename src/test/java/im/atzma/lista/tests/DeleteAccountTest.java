@@ -9,6 +9,25 @@ public class DeleteAccountTest extends TestBase {
     public void testDeleteAccount() throws Exception {
 
         app.getAppointmentHelper().deleteAccount();
+        try {
+            Assert.assertTrue(app.getSessionHelper().verifyEmailInput());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Assert.assertTrue(app.getSessionHelper().verifyPasswordInput());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    @Test(priority = 2)
+    public void testDeleteAccountVerification() throws Exception {
+
+        app.getAppointmentHelper().deleteAccount();
         app.getSessionHelper().login();
 
         String expected = "אנחנו לא מכירים את האימייל הזה והססמה";

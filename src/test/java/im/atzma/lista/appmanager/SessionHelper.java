@@ -8,6 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import java.util.Random;
 
 public class SessionHelper extends HelperBase {
+    @FindBy(xpath = "//input[@type='email']")
+    WebElement input_email;
+
+    @FindBy(xpath = "//input[@type='password']")
+    WebElement input_password;
 
     @FindBy(xpath = "//button[text()='להיכנס']")
     WebElement btn_submit;
@@ -25,18 +30,16 @@ public class SessionHelper extends HelperBase {
     WebElement btn_addClient;
 
 
-
-
     Random random = new Random();
     long randomLong = random.nextLong();
-    public final String mail_2="katalon@gmail.com";
+    public final String mail_2 = "katalon@gmail.com";
     public final String mail = "katalon_" + randomLong + "@gmail.com";
     public final String pass = "Pa$$w@rd";
     String baseURL = "https://lista.atzma.im/he/home";
     String singupURL = "https://lista.atzma.im/he/signup";
     String businessURL = "https://lista.atzma.im/he/signup/business-type";
-    String allsetURL= "https://lista.atzma.im/he/signup/all-set";
-    String loginURL= "https://lista.atzma.im/he/login";
+    String allsetURL = "https://lista.atzma.im/he/signup/all-set";
+    String loginURL = "https://lista.atzma.im/he/login";
     String clientURL = "https://lista.atzma.im/he/clients";
     String servicesURL = "https://lista.atzma.im/he/catalog/services";
     String calendarURL = "https://lista.atzma.im/he/calendar/";
@@ -46,7 +49,7 @@ public class SessionHelper extends HelperBase {
         super(driver);
     }
 
-    public void goToHomePage () throws InterruptedException {
+    public void goToHomePage() throws InterruptedException {
         driver.get(baseURL);
         waitForLocation(baseURL);
     }
@@ -71,20 +74,20 @@ public class SessionHelper extends HelperBase {
 //        waitForLocation(calendarURL);
     }
 
-    public void typeNewPassAndUser() {
-        driver.findElement(By.xpath("//input[@type='email']")).sendKeys(mail);
-        driver.findElement(By.xpath("//input[@type='password']")).sendKeys(pass);
+    public void typeNewPassAndUser() throws InterruptedException {
+        fillText(input_email, mail);
+        fillText(input_password, pass);
 
         System.out.println("email: " + mail);
         System.out.println("passwordd: " + pass);
     }
+
     public boolean submit() throws InterruptedException {
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         waitForLocation(businessURL);
         if (businessURL.equals(driver.getCurrentUrl())) {
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     public void submit2() throws InterruptedException {
@@ -96,10 +99,9 @@ public class SessionHelper extends HelperBase {
         driver.findElement(By.xpath("//button")).click(); //-------------click on last submit button and creat account
         waitForElement(menu_gamburger); //------------- wait for menu of calendar and confirm account creation
         highlight(menu_gamburger);
-        if(menu_gamburger.isDisplayed()) {
+        if (menu_gamburger.isDisplayed()) {
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     public void login() throws InterruptedException {
@@ -117,4 +119,22 @@ public class SessionHelper extends HelperBase {
     }
 
 
+    public boolean verifyEmailInput() {
+        if (input_email.isDisplayed()) {
+            highlight(input_email);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public boolean verifyPasswordInput() {
+        if (input_password.isDisplayed()) {
+            highlight(input_password);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
