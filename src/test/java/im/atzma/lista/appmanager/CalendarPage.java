@@ -33,6 +33,8 @@ public class CalendarPage extends HelperBase {
     @FindBy(xpath = "//a[@href=\"/he/clients\"]")
     WebElement text_clientDB;
 
+    @FindBy(xpath = "//div[@class='menu']//a")
+    List<WebElement> links_in_menu;
 
 
 
@@ -54,18 +56,16 @@ public class CalendarPage extends HelperBase {
         } else return false;
     }
 
-    public List<WebElement> verifyMenuLinks() {
+    public List<String> verifyMenuLinks() {
         click(menu_gamburger);
-        List<WebElement> itemList = new ArrayList<>();
-        itemList.add(text_businessName);
-        itemList.add(text_businessAddress);
-        itemList.add(text_calendar);
-        itemList.add(text_clientDB);
+        List<String> itemList = new ArrayList<>();
 
-        for (int i = 0; i < itemList.size(); i++) {
-            highlight(itemList.get(i));
-            System.out.println("MenuTest item " + i + "-" + itemList.get(i).getText());
+        for (int i = 0; i < links_in_menu.size(); i++) {
+            itemList.add(links_in_menu.get(i).getText()) ;
+            System.out.println("MenuTest item " + i + "-" + links_in_menu.get(i).getText());
+            highlight(links_in_menu.get(i));
         }
+
         return itemList;
     }
 

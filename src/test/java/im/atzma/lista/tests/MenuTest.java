@@ -14,10 +14,9 @@ public class MenuTest extends TestBase {
         app.getSessionHelper().goToCalendarPage();
 
 
-        List<WebElement> elementList =   app.getCalendarPage().verifyMenuLinks();
-        for (int i = 0; i < elementList.size(); i++) {
-            //--------------------------------------------------------------------------verify menu elements
-            Assert.assertTrue(elementList.get(i).isDisplayed());
-        }
+        String expected = "[יומן, מאגר לקוחות, תזכורות, קבוצות, טיפולים, הגדרות, תמיכה, Rate us, לצאת]";
+        List<String> actual = app.getCalendarPage().verifyMenuLinks();
+        //--------------------------------------------------------------------------verify menu elements
+        Assert.assertEquals(actual.toString(), expected);
     }
 }

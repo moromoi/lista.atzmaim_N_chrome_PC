@@ -289,7 +289,7 @@ public class ServicesHelper extends HelperBase {
     }
 
     public void saveServiceFrom() throws InterruptedException {
-        driver.navigate().refresh();
+//        driver.navigate().refresh();
         click(btn_saveService_enabled);
         waitForLocation("https://lista.atzma.im/he/catalog/services");
 
