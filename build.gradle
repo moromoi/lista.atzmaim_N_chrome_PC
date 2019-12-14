@@ -18,9 +18,7 @@ dependencies {
 
 
 task testMenu(type: Test) {
-    useTestNG() {// https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
-        compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
-
+    useTestNG() {
         suites './src/test/java/im/atzma/lista/tests/testng-Menu_Service.xml'
     }
 
