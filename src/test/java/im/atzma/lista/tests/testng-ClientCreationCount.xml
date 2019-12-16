@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="suite_Menu">
-    <test verbose="1" preserve-order="true" name="testsMenu">
+    <test verbose="1" preserve-order="true" name="test count after client creation">
         <classes>
             <class name="im.atzma.lista.tests.SingupTest">
                 <methods>
@@ -12,12 +12,14 @@
                     <include name="testVerifyAllSetPageElements"/>
                     <include name="testVerifyAllTestPageCheckboxes"/>
                     <include name="testCreateNewAccount_submit"/>
+                    <include name="testLogOut"/>
+                    <include name="testVerifyLoginWithNewUser"/>
+                    <include name="testVerifyDefaultClientPage()"/>
                 </methods>
             </class>
             <class name="im.atzma.lista.tests.ClientCreationTest">
                 <methods>
-                    <include name="createClientCount"/>
-                    <include name="deleteClientCount"/>
+                    <include name="testCreateClientCount"/>
                 </methods>
             </class>
             <class name="im.atzma.lista.tests.DeleteAccountTest">

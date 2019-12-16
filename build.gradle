@@ -34,4 +34,16 @@ task testNewAppointment(type: Test) {
             suites './src/test/java/im/atzma/lista/tests/testng-AppointmentModification.xml'
         }
     }
+
+    task testClientCreationCount(type: Test) {
+        useTestNG() {
+            suites './src/test/java/im/atzma/lista/tests/testng-ClientCreationCount.xml'
+        }
+    }
+
+    task testClientDeletionCount(type: Test) {
+        useTestNG() {
+            suites './src/test/java/im/atzma/lista/tests/testng-ClientDeletionCount.xml'
+        }
+    }
 }

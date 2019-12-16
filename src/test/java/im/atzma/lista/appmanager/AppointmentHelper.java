@@ -394,7 +394,7 @@ public class AppointmentHelper extends HelperBase {
 
     public void deleteAccount() throws InterruptedException {
         driver.get("https://lista.atzma.im/he/settings");
-        driver.findElement(By.xpath("//p[text()='הגדרות עסק']")).click();
+        driver.findElement(By.xpath("//p[text()='הגדרות עסק']/..")).click();
         driver.findElement(By.xpath("//button[text()='למחוק את החשבון']")).click();
         driver.findElement(By.xpath("//button[@class='yes-btn']")).click();
 
