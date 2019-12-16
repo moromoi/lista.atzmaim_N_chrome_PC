@@ -35,6 +35,8 @@
             <!--</class>-->
             <class name="im.atzma.lista.tests.ClientCreationTest">
                 <methods>
+                    <include name="initNewClientCreation"/>
+                    <include name="verifyClientForm"/>
                     <include name="fillClientForm"/>
                 </methods>
             </class>
