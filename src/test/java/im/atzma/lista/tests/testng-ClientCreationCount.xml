@@ -12,24 +12,24 @@
                     <include name="testVerifyAllSetPageElements"/>
                     <include name="testVerifyAllTestPageCheckboxes"/>
                     <include name="testCreateNewAccount_submit"/>
-                    <include name="testLogOut"/>
-                    <include name="testVerifyLoginWithNewUser"/>
-                    <include name="testVerifyDefaultClientPage()"/>
+                    <!--<include name="testLogOut"/>-->
+                    <!--<include name="testVerifyLoginWithNewUser"/>-->
+                    <!--<include name="testVerifyDefaultClientPage()"/>-->
                 </methods>
             </class>
             <class name="im.atzma.lista.tests.ClientCreationTest">
                 <methods>
                     <include name="initNewClientCreation"/>
-                    <include name="verifyClientForm"/>
+                    <!--<include name="verifyClientForm"/>-->
                     <include name="testCreateClientCount"/>
                 </methods>
             </class>
-            <class name="im.atzma.lista.tests.DeleteAccountTest">
-                <methods>
-                    <include name="testDeleteAccount"/>
-                    <include name="testDeleteAccountVerification"/>
-                </methods>
-            </class>
+            <!--<class name="im.atzma.lista.tests.DeleteAccountTest">-->
+                <!--<methods>-->
+                    <!--<include name="testDeleteAccount"/>-->
+                    <!--<include name="testDeleteAccountVerification"/>-->
+                <!--</methods>-->
+            <!--</class>-->
         </classes>
 
     </test>

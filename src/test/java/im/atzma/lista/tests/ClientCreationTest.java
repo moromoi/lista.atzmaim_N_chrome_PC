@@ -4,6 +4,8 @@ import im.atzma.lista.model.ClientData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class ClientCreationTest extends TestBase {
 
     @Test(priority = 1)

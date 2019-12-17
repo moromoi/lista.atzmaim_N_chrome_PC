@@ -11,7 +11,7 @@ import java.util.List;
 public class ClientHelper extends HelperBase{
 
     @FindBy(xpath = "//input[@placeholder=\"הזן שם של לקוח\"]")
-    WebElement text_clientName;
+    WebElement input_clientName;
 
     @FindBy(xpath = "//input[@class=\"input-active\"]")
     WebElement text_telephon;
@@ -70,8 +70,8 @@ public class ClientHelper extends HelperBase{
     @FindBy(xpath = "//h1[text()='לקוח חדש']")
     WebElement title_newclient;
 
-    @FindBy(xpath = "//span[text()='שמור']")
-    WebElement btn_save;
+    @FindBy(xpath = "//*[@class='top-button']")
+    WebElement btn_top_save;
 
     @FindBy(xpath = "//span[text()='יום הולדת:']")
     WebElement title_birthday;
@@ -105,8 +105,16 @@ public class ClientHelper extends HelperBase{
     @FindBy(xpath = "(//img[@src=\"/public/adding-client/c_add_stroke.svg\"])[2]")
     WebElement btn_plus_2;
 
-    @FindBy(xpath = "//div[@class='bot-button']")
-    WebElement btn_save_down;
+    @FindBy(xpath = "//*[@id='name']//*[@class='block-content']")
+    WebElement text_clientName;
+    @FindBy(xpath = "//*[@class='text']")
+    WebElement text_clientAddress;
+    @FindBy(xpath = "//*[@class='phone-labels']")
+    WebElement text_clientPhone;
+    @FindBy(xpath = "//*[@class='gmailcom']")
+    WebElement text_clientMail;
+    @FindBy(xpath = "//*[@class='ymd']")
+    WebElement text_clientBirthday;
 
 
     public ClientHelper(WebDriver driver) { super(driver); }
@@ -114,7 +122,7 @@ public class ClientHelper extends HelperBase{
     int count = 0;
 
     public void fillClientForm(ClientData clientData) throws InterruptedException {
-        fillText(text_clientName, clientData.getTempClientName());
+        fillText(input_clientName, clientData.getTempClientName());
         fillText(text_telephon, clientData.getTelNumber());
         fillText(text_email, clientData.getEmail());
         fillText(text_address, clientData.getAddress());
@@ -143,7 +151,7 @@ public class ClientHelper extends HelperBase{
     public Integer verifyNewClientForm() {
         List<WebElement> itemList = new ArrayList<>();
         itemList.add(btn_back);
-        itemList.add(btn_save);
+        itemList.add(btn_top_save);
         itemList.add(title_newclient);
         itemList.add(title_birthday);
         itemList.add(title_sex);
@@ -161,7 +169,7 @@ public class ClientHelper extends HelperBase{
         itemList.add(btn_addDebt);
         itemList.add(btn_plus_1);
         itemList.add(btn_plus_2);
-        itemList.add(btn_save_down);
+        itemList.add(btn_saveClientForm);
 
         for (int i = 0; i < itemList.size(); i++) {
             highlight(itemList.get(i));
@@ -170,5 +178,22 @@ public class ClientHelper extends HelperBase{
             }
         }
         return count;
+    }
+
+    public List<ClientData> getClientList() {
+        List<ClientData> data = new ArrayList<ClientData>();
+
+        String name = text_clientName.getText();
+        String phone = text_clientPhone.getText();
+        String mail = text_clientMail.getText();
+        String address = text_clientAddress.getText();
+        String birthday = text_clientBirthday.getText();
+
+        ClientData clientData = new ClientData(name, phone, mail, address);
+
+        data.add(clientData);
+
+
+        return data;
     }
 }
