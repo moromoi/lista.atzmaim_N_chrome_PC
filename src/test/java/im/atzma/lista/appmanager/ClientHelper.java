@@ -70,8 +70,8 @@ public class ClientHelper extends HelperBase{
     @FindBy(xpath = "//h1[text()='לקוח חדש']")
     WebElement title_newclient;
 
-    @FindBy(xpath = "//span[text()='שמור']")
-    WebElement btn_save;
+    @FindBy(xpath = "//*[@class='top-button']")
+    WebElement btn_top_save;
 
     @FindBy(xpath = "//span[text()='יום הולדת:']")
     WebElement title_birthday;
@@ -143,7 +143,7 @@ public class ClientHelper extends HelperBase{
     public Integer verifyNewClientForm() {
         List<WebElement> itemList = new ArrayList<>();
         itemList.add(btn_back);
-        itemList.add(btn_save);
+        itemList.add(btn_top_save);
         itemList.add(title_newclient);
         itemList.add(title_birthday);
         itemList.add(title_sex);
@@ -161,7 +161,7 @@ public class ClientHelper extends HelperBase{
         itemList.add(btn_addDebt);
         itemList.add(btn_plus_1);
         itemList.add(btn_plus_2);
-        itemList.add(btn_save_down);
+        itemList.add(btn_saveClientForm);
 
         for (int i = 0; i < itemList.size(); i++) {
             highlight(itemList.get(i));
