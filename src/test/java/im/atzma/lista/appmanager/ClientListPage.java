@@ -1,9 +1,11 @@
 package im.atzma.lista.appmanager;
 
+import im.atzma.lista.model.ClientData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientListPage extends HelperBase {
@@ -21,13 +23,16 @@ public class ClientListPage extends HelperBase {
     List<WebElement> clients_in_List;
 
     @FindBy(xpath = "//a[@class='item__tel']")
-    WebElement clients_link_in_List;
+    List<WebElement> clients_link_in_List;
 
     @FindBy(xpath = "//*[@class='del-btn']//button")
     WebElement btn_deleteClient;
 
     @FindBy(xpath = "//button[@class='yes-btn']")
     WebElement btn_deleteClient_confirm;
+
+    @FindBy(xpath = "//*[@class='item__info-name']")
+    WebElement clientName_inList;
 
     public boolean verifyTitleText() throws InterruptedException {
         waitForElement(title_on_clienPage);
@@ -54,8 +59,14 @@ public class ClientListPage extends HelperBase {
     }
 
     public void deleteSelectedClient() {
-        click(clients_link_in_List);
         click(btn_deleteClient);
         click(btn_deleteClient_confirm);
     }
+
+
+    public void selectClient(int index) {
+        highlight(clients_link_in_List.get(index));
+        click(clients_link_in_List.get(index));
+    }
+
 }

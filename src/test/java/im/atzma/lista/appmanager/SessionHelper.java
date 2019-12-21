@@ -32,10 +32,10 @@ public class SessionHelper extends HelperBase {
 
     Random random = new Random();
     long randomLong = random.nextLong();
-    public final String mail_2 = "katalon@gmail.com";
+    public final String mail_2 = "katalon2@gmail.com";
     public final String mail = "katalon_" + randomLong + "@gmail.com";
     public final String pass = "Pa$$w@rd";
-    String baseURL = "https://lista.atzma.im/he/home";
+    String baseURL = "https://lista.atzma.im/he/home?utm_source-autotest-selenium";
     String singupURL = "https://lista.atzma.im/he/signup";
     String businessURL = "https://lista.atzma.im/he/signup/business-type";
     String allsetURL = "https://lista.atzma.im/he/signup/all-set";
@@ -80,7 +80,7 @@ public class SessionHelper extends HelperBase {
     }
 
     public void typeNewPassAndUser() throws InterruptedException {
-        fillText(input_email, mail);
+        fillText(input_email, mail_2);
         fillText(input_password, pass);
 
         System.out.println("email: " + mail);
@@ -111,6 +111,7 @@ public class SessionHelper extends HelperBase {
 
     public void login() throws InterruptedException {
         goToHomePage();
+        highlight(btn_login);
         click(btn_login);
         waitForLocation(loginURL);
         typeNewPassAndUser();
