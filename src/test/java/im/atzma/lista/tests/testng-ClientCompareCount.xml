@@ -12,6 +12,7 @@
                 <methods>
                     <include name="testCreateClientCount_1"/>
                     <include name="testCreateClientCount_2"/>
+                    
                     <include name="testCompareClient"/>
                 </methods>
             </class>
