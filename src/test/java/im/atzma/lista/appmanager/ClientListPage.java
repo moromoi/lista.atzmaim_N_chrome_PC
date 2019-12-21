@@ -31,6 +31,9 @@ public class ClientListPage extends HelperBase {
     @FindBy(xpath = "//button[@class='yes-btn']")
     WebElement btn_deleteClient_confirm;
 
+    @FindBy(xpath = "//*[@class='item__info-name']")
+    WebElement clientName_inList;
+
     public boolean verifyTitleText() throws InterruptedException {
         waitForElement(title_on_clienPage);
         highlight(title_on_clienPage);
@@ -56,15 +59,14 @@ public class ClientListPage extends HelperBase {
     }
 
     public void deleteSelectedClient() {
-        for (int i = 0; i < clients_link_in_List.size() ; i++) {
-            click(clients_link_in_List.get(i));
-        }
         click(btn_deleteClient);
         click(btn_deleteClient_confirm);
     }
 
 
     public void selectClient(int index) {
+        highlight(clients_link_in_List.get(index));
         click(clients_link_in_List.get(index));
     }
+
 }

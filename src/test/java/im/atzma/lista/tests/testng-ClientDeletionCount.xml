@@ -3,28 +3,34 @@
 <suite name="suite_Menu">
     <test verbose="1" preserve-order="true" name="test count after client deletion">
         <classes>
-            <class name="im.atzma.lista.tests.SingupTest">
+            <class name="im.atzma.lista.tests.Login">
                 <methods>
-                    <include name="testVerifySignupPageElements"/>
-                    <include name="testPasswordVisibleIcons"/>
-                    <include name="testVerifyBusinessTypePageElements"/>
-                    <include name="testMarkBussnessType_atzmaimButtonChecked"/>
-                    <include name="testVerifyAllSetPageElements"/>
-                    <include name="testVerifyAllTestPageCheckboxes"/>
-                    <include name="testCreateNewAccount_submit"/>
+                    <include name="login"/>
                 </methods>
             </class>
+            <!--<class name="im.atzma.lista.tests.SingupTest">-->
+                <!--<methods>-->
+                    <!--<include name="testVerifySignupPageElements"/>-->
+                    <!--<include name="testPasswordVisibleIcons"/>-->
+                    <!--<include name="testVerifyBusinessTypePageElements"/>-->
+                    <!--<include name="testMarkBussnessType_atzmaimButtonChecked"/>-->
+                    <!--<include name="testVerifyAllSetPageElements"/>-->
+                    <!--<include name="testVerifyAllTestPageCheckboxes"/>-->
+                    <!--<include name="testCreateNewAccount_submit"/>-->
+                <!--</methods>-->
+            <!--</class>-->
             <class name="im.atzma.lista.tests.ClientDeletionTest">
                 <methods>
+                    <!--<include name="testCreateClientCount"/>-->
                     <include name="testDeleteClientCount"/>
                 </methods>
             </class>
-            <class name="im.atzma.lista.tests.DeleteAccountTest">
-                <methods>
-                    <include name="testDeleteAccount"/>
-                    <include name="testDeleteAccountVerification"/>
-                </methods>
-            </class>
+            <!--<class name="im.atzma.lista.tests.DeleteAccountTest">-->
+                <!--<methods>-->
+                    <!--<include name="testDeleteAccount"/>-->
+                    <!--<include name="testDeleteAccountVerification"/>-->
+                <!--</methods>-->
+            <!--</class>-->
         </classes>
 
     </test>

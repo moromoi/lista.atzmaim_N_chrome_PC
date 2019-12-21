@@ -1,6 +1,7 @@
 package im.atzma.lista.appmanager;
 
 import im.atzma.lista.model.ClientData;
+import im.atzma.lista.model.ModifyClientData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,12 +9,12 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientHelper extends HelperBase{
+public class ClientHelper extends HelperBase {
 
     @FindBy(xpath = "//input[@placeholder=\"הזן שם של לקוח\"]")
     WebElement input_clientName;
 
-    @FindBy(xpath = "//input[@class=\"input-active\"]")
+    @FindBy(xpath = "//input[@class='input-active']")
     WebElement text_telephon;
 
     @FindBy(xpath = "//input[@placeholder=\"הזן אימייל של לקוח\"]")
@@ -37,28 +38,28 @@ public class ClientHelper extends HelperBase{
     @FindBy(xpath = "//input[@value='female']")
     WebElement radio_sex_female;
 
-    @FindBy(xpath = "//label[text()='להסיף הערה חדשה']")
+    @FindBy(css = "#notes label")
     WebElement btn_addNote;
 
-    @FindBy(xpath = "//textarea[@placeholder=\"תיאור\"]")
+    @FindBy(css = "#notes textarea")
     WebElement area_note;
 
-    @FindBy(xpath = "//button[@class=\"save\"]")
+    @FindBy(css = "#notes button.save")
     WebElement btn_saveNote;
 
-    @FindBy(xpath = "//span[text()=\"להוסיף חוב חדש\"]")
+    @FindBy(xpath = "//span[text()='להוסיף חוב חדש']")
     WebElement btn_addDebt;
 
     @FindBy(xpath = "//img[@src='/public/adding-client/plus.svg']")
     WebElement btn_plus_debt;
 
-    @FindBy(xpath = "//input[@placeholder=\"תיאור חוב\"]")
+    @FindBy(css = "#debts input.description-input")
     WebElement area_debt;
 
-    @FindBy(xpath = "//div[@id='debts']//p[text()='שמור']")
+    @FindBy(css = "#debts .button-apply p")
     WebElement btn_saveDebtNote;
 
-    @FindBy(css=".bot-button")
+    @FindBy(css = "#save .bot-button")
     WebElement btn_saveClientForm;
 
     @FindBy(xpath = "//*[@class='client-name']/h1")
@@ -113,11 +114,54 @@ public class ClientHelper extends HelperBase{
     WebElement text_clientPhone;
     @FindBy(xpath = "//*[@class='gmailcom']")
     WebElement text_clientMail;
+    @FindBy(xpath = "//*[@class='sex-label']")
+    WebElement text_sex;
     @FindBy(xpath = "//*[@class='ymd']")
     WebElement text_clientBirthday;
+    @FindBy(xpath = "//*[@class='debt-list-name']")
+    WebElement text_clientDebts;
+    @FindBy(xpath = "//*[@class='notes-list-desc rem_false']")
+    WebElement text_clientNote;
+    @FindBy(xpath = "//*[@class='status-config']")
+    WebElement text_clientStatus;
+
+    @FindBy(xpath = "//*[@class='edit-profile']")
+    WebElement btn_edit_profile;
+    @FindBy(css = "#name-input")
+    WebElement input_new_ClientName;
+    @FindBy(xpath = "//*[@class='phone-edit']//input")
+    WebElement input_new_ClientTel;
+    @FindBy(css = "#email-input")
+    WebElement input_new_ClientMail;
+    @FindBy(css = "#pac-input")
+    WebElement input_new_ClientAddress;
+    @FindBy(css = "#sex")
+    WebElement input_new_ClientSex;
+    @FindBy(css = "#radioFemale")
+    WebElement btn_new_ClientSexFemale;
+    @FindBy(xpath = "//*[@class='save-btn']")
+    WebElement btn_new_ClientSave;
+    @FindBy(xpath = "//*[@class='del-wrap']")
+    List<WebElement> btn_new_ClientCleanInputs;
+
+    @FindBy(css = "#debts > div .right-side")
+    WebElement btn_new_ClientEditDebts;
+    @FindBy(xpath = "//*[@class='del-debts']")
+    WebElement btn_new_ClientDeleteDebt;
+    @FindBy(xpath = "//img[@src= '/public/clients-details/plus.svg']")
+    WebElement btn_new_ClientAddDebtPlus;
+    @FindBy(xpath = "//*[@class='main-button']")
+    WebElement btn_new_ClientOpenAllInputs;
+
+    @FindBy(css = "#notes > div .right-side")
+    WebElement btn_new_ClientEditNote;
+    @FindBy(css = "#notes .delete")
+    WebElement btn_new_ClientDeleteNote;
 
 
-    public ClientHelper(WebDriver driver) { super(driver); }
+    public ClientHelper(WebDriver driver) {
+        super(driver);
+    }
 
     int count = 0;
 
@@ -173,7 +217,7 @@ public class ClientHelper extends HelperBase{
 
         for (int i = 0; i < itemList.size(); i++) {
             highlight(itemList.get(i));
-            if(itemList.get(i).isDisplayed()) {
+            if (itemList.get(i).isDisplayed()) {
                 count++;
             }
         }
@@ -187,13 +231,61 @@ public class ClientHelper extends HelperBase{
         String phone = text_clientPhone.getText();
         String mail = text_clientMail.getText();
         String address = text_clientAddress.getText();
+        String sex = text_sex.getText();
         String birthday = text_clientBirthday.getText();
+        String debts = text_clientDebts.getText();
+        String note = text_clientNote.getText();
+        String status = text_clientStatus.getText();
 
-        ClientData clientData = new ClientData(name, phone, mail, address);
+        ClientData clientData = new ClientData(name, phone, mail, address, sex, birthday, debts, note, status);
 
         data.add(clientData);
 
-
         return data;
+    }
+
+    public void initClientModification() {
+        click(btn_edit_profile);
+        for (int i = 0; i < btn_new_ClientCleanInputs.size(); i++) {
+            click(btn_new_ClientCleanInputs.get(i));
+        }
+    }
+
+    public void modifyClient(ModifyClientData modifyClientData) throws InterruptedException {
+        fillText(input_new_ClientName, modifyClientData.getClientName());
+        fillText(input_new_ClientTel, modifyClientData.getClientTel());
+        fillText(input_new_ClientMail, modifyClientData.getClientMail());
+        fillText(input_new_ClientAddress, modifyClientData.getClientAddress());
+        click(btn_new_ClientSexFemale);
+        select(select_year, modifyClientData.getBirthdayYear());
+        select(select_month, modifyClientData.getBirthdayMonth());
+        select(select_day, modifyClientData.getBirthdayDay());
+
+        modifyClientDebt(modifyClientData.getDebtAmount());
+        modifyClientNote(modifyClientData.getNoteText());
+
+        click(btn_new_ClientSave);
+
+    }
+
+    public void modifyClientDebt(int addDebtPlus) throws InterruptedException {
+        click(btn_new_ClientEditDebts);
+        click(btn_new_ClientDeleteDebt);
+        click(btn_new_ClientOpenAllInputs);
+        click(btn_addDebt);
+        fillText(area_debt, "New debt");
+
+        for (int i = 0; i < addDebtPlus; i++) {
+            click(btn_new_ClientAddDebtPlus);
+        }
+        click(btn_saveDebtNote);
+    }
+
+    public void modifyClientNote(String newNote) throws InterruptedException {
+        click(btn_new_ClientEditNote);
+        click(btn_new_ClientDeleteNote);
+        click(btn_addNote);
+        fillText(area_note, newNote);
+        click(btn_saveNote);
     }
 }

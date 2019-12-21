@@ -8,13 +8,16 @@
                     <include name="login"/>
                 </methods>
             </class>
-            <class name="im.atzma.lista.tests.ClientCompareTest">
+            <class name="im.atzma.lista.tests.ClientModificationTest">
                 <methods>
                     <include name="testCreateClientCount_1"/>
                     <include name="testCreateClientCount_2"/>
+                    <include name="testModificateClient_1"/>
+                    <include name="testModificateClient_2"/>
                     <include name="testCompareClient"/>
                 </methods>
             </class>
+
             <!--<class name="im.atzma.lista.tests.DeleteAccountTest">-->
                 <!--<methods>-->
                     <!--<include name="testDeleteAccount"/>-->
