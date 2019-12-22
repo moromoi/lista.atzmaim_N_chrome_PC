@@ -10,6 +10,7 @@
             </class>
             <class name="im.atzma.lista.tests.ClientModificationTest">
                 <methods>
+                    <include name="testVerifyClientForm"/>
                     <include name="testCreateClientCount_1"/>
                     <include name="testCreateClientCount_2"/>
                     <include name="testModificateClient_1"/>
