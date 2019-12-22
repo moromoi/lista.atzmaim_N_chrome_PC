@@ -3,9 +3,23 @@
 <suite name="suite_Menu">
     <test verbose="1" preserve-order="true" name="test count after client creation">
         <classes>
-            <class name="im.atzma.lista.tests.Login">
+            <!--<class name="im.atzma.lista.tests.Login">-->
+                <!--<methods>-->
+                    <!--<include name="login"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+            <class name="im.atzma.lista.tests.SingupTest">
                 <methods>
-                    <include name="login"/>
+                    <include name="testVerifySignupPageElements"/>
+                    <include name="testPasswordVisibleIcons"/>
+                    <include name="testVerifyBusinessTypePageElements"/>
+                    <include name="testMarkBussnessType_atzmaimButtonChecked"/>
+                    <include name="testVerifyAllSetPageElements"/>
+                    <include name="testVerifyAllTestPageCheckboxes"/>
+                    <include name="testCreateNewAccount_submit"/>
+                    <include name="testLogOut"/>
+                    <include name="testVerifyLoginWithNewUser"/>
+                    <include name="testVerifyDefaultClientPage()"/>
                 </methods>
             </class>
             <class name="im.atzma.lista.tests.ClientModificationTest">
@@ -18,13 +32,12 @@
                     <include name="testCompareClient"/>
                 </methods>
             </class>
-
-            <!--<class name="im.atzma.lista.tests.DeleteAccountTest">-->
-                <!--<methods>-->
-                    <!--<include name="testDeleteAccount"/>-->
-                    <!--<include name="testDeleteAccountVerification"/>-->
-                <!--</methods>-->
-            <!--</class>-->
+            <class name="im.atzma.lista.tests.DeleteAccountTest">
+                <methods>
+                    <include name="testDeleteAccount"/>
+                    <include name="testDeleteAccountVerification"/>
+                </methods>
+            </class>
         </classes>
 
     </test>
