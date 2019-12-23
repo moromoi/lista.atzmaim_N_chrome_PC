@@ -80,11 +80,11 @@ public class SessionHelper extends HelperBase {
     }
 
     public void typeNewPassAndUser() throws InterruptedException {
-        fillText(input_email, mail_2);
+        fillText(input_email, mail);
         fillText(input_password, pass);
 
         System.out.println("email: " + mail);
-        System.out.println("passwordd: " + pass);
+        System.out.println("password: " + pass);
     }
 
     public boolean submit() throws InterruptedException {
