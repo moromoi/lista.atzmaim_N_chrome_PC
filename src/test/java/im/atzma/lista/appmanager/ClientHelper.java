@@ -157,6 +157,8 @@ public class ClientHelper extends HelperBase {
     WebElement btn_new_ClientEditNote;
     @FindBy(css = "#notes .delete")
     WebElement btn_new_ClientDeleteNote;
+    @FindBy(xpath = "//*[@data-id]")
+    List<WebElement> clients_in_List;
 
 
     public ClientHelper(WebDriver driver) {

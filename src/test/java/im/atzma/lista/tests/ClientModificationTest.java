@@ -76,7 +76,6 @@ public class ClientModificationTest extends TestBase {
         app.getSessionHelper().goToClientPage();
         app.getClientPage().selectClient(0);
         List<ClientData> after =  app.getClientHelper().getClientList();
-
         Assert.assertNotEquals(after, before);
     }
 
@@ -96,7 +95,6 @@ public class ClientModificationTest extends TestBase {
         app.getSessionHelper().goToClientPage();
         app.getClientPage().selectClient(1);
         List<ClientData> after =  app.getClientHelper().getClientList();
-
         Assert.assertNotEquals(after, before);
     }
 

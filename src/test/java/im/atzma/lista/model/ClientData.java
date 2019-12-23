@@ -99,4 +99,5 @@ public class ClientData {
     public String getNote() { return note; }
 
     public String getStatus() { return status; }
+
 }

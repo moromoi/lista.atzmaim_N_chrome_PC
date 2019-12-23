@@ -21,11 +21,14 @@ public class HelperBase {
     }
 
     public void highlight(WebElement el) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", el);
         ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='2px solid red'", el);
     }
 
 
     public void click(WebElement el) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", el);
+
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -48,6 +51,7 @@ public class HelperBase {
     }
 
     public void fillText(WebElement el, String text) throws InterruptedException {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", el);
         highlight(el);
         if (text != null) {
             String existingText = el.getAttribute("value");

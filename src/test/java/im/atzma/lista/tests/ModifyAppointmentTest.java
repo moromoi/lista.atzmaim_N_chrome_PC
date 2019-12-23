@@ -28,7 +28,7 @@ public class ModifyAppointmentTest extends TestBase {
         app.getSessionHelper().goToClientPage();
         app.getSessionHelper().initAddNewClient();
         app.getClientHelper().fillClientForm(new ClientData("Temp Client katalon_2", "0547613154",
-                "temp2@gmail.com", "רוקח 19, תל אביב, ישראל", null, null, null, null, null));
+                "temp2@gmail.com", "רוקח 19, תל אביב, ישראל"));
 
         String actual = app.getClientHelper().verifyNewClientCreation();
         String expected = "Temp Client katalon_2";
