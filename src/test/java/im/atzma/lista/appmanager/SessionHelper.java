@@ -35,7 +35,7 @@ public class SessionHelper extends HelperBase {
     public final String mail_2 = "katalon3@gmail.com";
     public final String mail = "katalon_" + randomLong + "@gmail.com";
     public final String pass = "Pa$$w@rd";
-    String baseURL = "https://lista.atzma.im/he/home?utm_source-autotest-selenium";
+    String baseURL = "https://lista.atzma.im/he/home?utm_source=autotest-selenium";
     String singupURL = "https://lista.atzma.im/he/signup";
     String businessURL = "https://lista.atzma.im/he/signup/business-type";
     String allsetURL = "https://lista.atzma.im/he/signup/all-set";
