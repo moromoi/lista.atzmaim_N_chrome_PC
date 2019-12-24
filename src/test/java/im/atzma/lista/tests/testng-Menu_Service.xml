@@ -17,17 +17,17 @@
                     <include name="testVerifyDefaultClientPage()"/>
                 </methods>
             </class>
-            <class name="im.atzma.lista.tests.ServiceCreationTest">
-                <methods>
-                    <include name="testVerifyDefaultElements"/>
-                    <include name="testVerifyDefaultServices30min"/>
-                    <include name="testVerifyDefaultServices45min"/>
-                    <include name="testVerifyDefaultServices60min"/>
-                    <include name="testVerifyDefaultServiceFormElements"/>
-                    <include name="testFillServiceForm"/>
-                    <include name="testSaveServiceForm"/>
-                </methods>
-            </class>
+            <!--<class name="im.atzma.lista.tests.ServiceCreationTest">-->
+                <!--<methods>-->
+                    <!--<include name="testVerifyDefaultElements"/>-->
+                    <!--<include name="testVerifyDefaultServices30min"/>-->
+                    <!--<include name="testVerifyDefaultServices45min"/>-->
+                    <!--<include name="testVerifyDefaultServices60min"/>-->
+                    <!--<include name="testVerifyDefaultServiceFormElements"/>-->
+                    <!--<include name="testFillServiceForm"/>-->
+                    <!--<include name="testSaveServiceForm"/>-->
+                <!--</methods>-->
+            <!--</class>-->
             <class name="im.atzma.lista.tests.MenuTest">
                 <methods>
                     <include name="verifyLinkText"/>

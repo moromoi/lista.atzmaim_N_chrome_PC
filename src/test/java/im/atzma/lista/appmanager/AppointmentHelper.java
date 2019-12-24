@@ -142,6 +142,9 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//*[@style='max-height: 0px; overflow: hidden;']")
     WebElement service_area;
 
+    @FindBy(css = ".button-delete")
+    WebElement btn_deleteAccount;
+
     public void test() {
         click(next_arrow);
     }
@@ -395,7 +398,8 @@ public class AppointmentHelper extends HelperBase {
     public void deleteAccount() throws InterruptedException {
         driver.get("https://lista.atzma.im/he/settings");
         driver.findElement(By.xpath("//p[text()='הגדרות עסק']/..")).click();
-        driver.findElement(By.cssSelector(".button-delete")).click();
+        highlight(btn_deleteAccount);
+        click(btn_deleteAccount);
         driver.findElement(By.xpath("//button[@class='yes-btn']")).click();
 
     }
