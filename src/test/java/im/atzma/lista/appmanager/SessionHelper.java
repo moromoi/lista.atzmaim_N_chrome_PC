@@ -60,7 +60,7 @@ public class SessionHelper extends HelperBase {
     }
 
     public void goToSingupPage() throws InterruptedException {
-        driver.findElement(By.xpath("//a[@href='/he/signup']")).click();
+        driver.findElement(By.xpath("//a[@href='/he/signup?utm_source=autotest-selenium']")).click();
         waitForLocation(singupURL);
     }
 
