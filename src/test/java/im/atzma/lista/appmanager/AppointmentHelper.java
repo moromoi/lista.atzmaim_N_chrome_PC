@@ -14,7 +14,7 @@ public class AppointmentHelper extends HelperBase {
         super(driver);
     }
 
-    @FindBy(xpath = "//tr[@data-time='20:00:00']//td")
+    @FindBy(xpath = "(//tr[@data-time='09:00:00'])//td[1]")
     WebElement time_09;
 
     @FindBy(xpath = "//a[@data-appointment_id]")
@@ -169,11 +169,9 @@ public class AppointmentHelper extends HelperBase {
         click(input_findService);
         waitForElement(service_area);
         fillText(input_findService, service);
-        Thread.sleep(2000);
         click(btn_add_Service);
 
         fillText(inputBox_placeholder, notExistCategory);
-        Thread.sleep(2000);
         click(btn_add_newCategory);
 
         waitForElement(btn_add_Service);

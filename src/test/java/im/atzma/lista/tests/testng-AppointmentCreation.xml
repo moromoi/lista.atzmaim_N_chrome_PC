@@ -3,25 +3,25 @@
 <suite name="suite_appointment_creation">
      <test verbose="1" preserve-order="true" name="testsClient">
         <classes>
-            <class name="im.atzma.lista.tests.Login">
-                <methods>
-                    <include name="login"/>
-                </methods>
-            </class>
-            <!--<class name="im.atzma.lista.tests.SingupTest">-->
+            <!--<class name="im.atzma.lista.tests.Login">-->
                 <!--<methods>-->
-                    <!--<include name="testVerifySignupPageElements"/>-->
-                    <!--<include name="testPasswordVisibleIcons"/>-->
-                    <!--<include name="testVerifyBusinessTypePageElements"/>-->
-                    <!--<include name="testMarkBussnessType_atzmaimButtonChecked"/>-->
-                    <!--<include name="testVerifyAllSetPageElements"/>-->
-                    <!--<include name="testVerifyAllTestPageCheckboxes"/>-->
-                    <!--<include name="testCreateNewAccount_submit"/>-->
-                    <!--<include name="testLogOut"/>-->
-                    <!--<include name="testVerifyLoginWithNewUser"/>-->
-                    <!--<include name="testVerifyDefaultClientPage()"/>-->
+                    <!--<include name="login"/>-->
                 <!--</methods>-->
             <!--</class>-->
+            <class name="im.atzma.lista.tests.SingupTest">
+                <methods>
+                    <include name="testVerifySignupPageElements"/>
+                    <include name="testPasswordVisibleIcons"/>
+                    <include name="testVerifyBusinessTypePageElements"/>
+                    <include name="testMarkBussnessType_atzmaimButtonChecked"/>
+                    <include name="testVerifyAllSetPageElements"/>
+                    <include name="testVerifyAllTestPageCheckboxes"/>
+                    <include name="testCreateNewAccount_submit"/>
+                    <include name="testLogOut"/>
+                    <include name="testVerifyLoginWithNewUser"/>
+                    <include name="testVerifyDefaultClientPage()"/>
+                </methods>
+            </class>
             <!--<class name="im.atzma.lista.tests.ServiceCreationTest">-->
                 <!--<methods>-->
                     <!--<include name="testVerifyDefaultElements"/>-->
@@ -33,13 +33,13 @@
                     <!--<include name="testSaveServiceForm"/>-->
                 <!--</methods>-->
             <!--</class>-->
-            <!--<class name="im.atzma.lista.tests.ClientCreationTest">-->
-                <!--<methods>-->
-                    <!--<include name="initNewClientCreation"/>-->
-                    <!--<include name="verifyClientForm"/>-->
-                    <!--<include name="fillClientForm"/>-->
-                <!--</methods>-->
-            <!--</class>-->
+            <class name="im.atzma.lista.tests.ClientCreationTest">
+                <methods>
+                    <include name="initNewClientCreation"/>
+                    <include name="verifyClientForm"/>
+                    <include name="fillClientForm"/>
+                </methods>
+            </class>
             <class name="im.atzma.lista.tests.CreateAppointmentTest">
             <methods>
                 <include name="testAppointmentCreation"/>
@@ -51,12 +51,12 @@
                     <include name="testServiceDeletion"/>
                 </methods>
             </class>
-            <!--<class name="im.atzma.lista.tests.DeleteAccountTest">-->
-                <!--<methods>-->
-                    <!--<include name="testDeleteAccount"/>-->
-                    <!--<include name="testDeleteAccountVerification"/>-->
-                <!--</methods>-->
-            <!--</class>-->
+            <class name="im.atzma.lista.tests.DeleteAccountTest">
+                <methods>
+                    <include name="testDeleteAccount"/>
+                    <include name="testDeleteAccountVerification"/>
+                </methods>
+            </class>
         </classes>
 
     </test>
