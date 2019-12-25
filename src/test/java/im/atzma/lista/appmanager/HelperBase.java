@@ -21,7 +21,6 @@ public class HelperBase {
     }
 
     public void highlight(WebElement el) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", el);
         ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='2px solid red'", el);
     }
 

@@ -48,7 +48,7 @@
             <class name="im.atzma.lista.tests.DeleteAppointmentTest">
                 <methods>
                     <include name="testAppointmentDeletion"/>
-                    <include name="testServiceDeletion"/>
+                    <!--<include name="testServiceDeletion"/>-->
                 </methods>
             </class>
             <class name="im.atzma.lista.tests.DeleteAccountTest">

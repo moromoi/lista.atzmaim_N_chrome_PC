@@ -11,16 +11,14 @@ public class DeleteAppointmentTest extends TestBase {
     @Test(priority = 1)
     public void testAppointmentDeletion() throws InterruptedException {
         app.getSessionHelper().goToCalendarPage();
-        app.getCalendarPage().logout();
-        app.getSessionHelper().login();
+        int before = app.getAppointmentHelper().verifyAppointmentDeletion();
         app.getAppointmentHelper().deleteAppointment();
         app.getCalendarPage().logout();
         app.getSessionHelper().login();
 
-        String expected = "[]";
-        List<String> actual = app.getAppointmentHelper().verifyAppointmentDeletion();
+        int after = app.getAppointmentHelper().verifyAppointmentDeletion();
         try {
-            Assert.assertEquals(actual.toString(), expected, "verify appointment deletion");
+            Assert.assertEquals(after, before - 1);
         } catch (Exception e) {
             e.printStackTrace();
         }

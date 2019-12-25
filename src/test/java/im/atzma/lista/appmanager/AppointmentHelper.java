@@ -14,8 +14,11 @@ public class AppointmentHelper extends HelperBase {
         super(driver);
     }
 
-    @FindBy(xpath = "(//tr[@data-time='09:00:00'])//td[1]")
-    WebElement time_09;
+    @FindBy(xpath = "(//tr[@data-time='15:00:00'])//td[1]")
+    WebElement time_15;
+
+    @FindBy(css = "tr[data-time] > :first-child")
+    List<WebElement> all_time_slots;
 
     @FindBy(xpath = "//a[@data-appointment_id]")
     List<WebElement> btn_existing_appointment;
@@ -228,18 +231,14 @@ public class AppointmentHelper extends HelperBase {
     }
 
 
-    public List<String> verifyAppointmentDeletion() throws InterruptedException {
-        //verifyNonbusinessDay();
-        List<String> itemList = new ArrayList<>();
-        if (btn_existing_appointment.size() > 0) {
-            itemList.add(appointmentTime.getText());
-        }
-        return itemList;
+    public Integer verifyAppointmentDeletion() throws InterruptedException {
+
+        return btn_existing_appointment.size();
     }
 
     public void chooseAppointmentHour() {
         driver.navigate().refresh();
-        click(time_09);
+        click(time_15);
     }
 
     public void clickOnExistsAppointment() throws InterruptedException {

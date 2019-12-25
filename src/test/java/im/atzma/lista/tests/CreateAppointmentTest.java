@@ -12,10 +12,8 @@ public class CreateAppointmentTest extends TestBase {
         app.getAppointmentHelper().createAppointment("Temp Client katalon");
         app.getAppointmentHelper().addServiceCategory("Temp services_katalon", "Temp category_katalon");
         app.getAppointmentHelper().saveForm();
-        app.getCalendarPage().logout();
-        app.getSessionHelper().login();
 
-        String expected = "[09:00 - 09:30, Temp Client katalon, Temp services_katalon, 30 דקות]";
+        String expected = "[15:00 - 15:30, Temp Client katalon, Temp services_katalon, 30 דקות]";
         List<String> actual = app.getAppointmentHelper().verifyAppointmentCreation();
         try {
             Assert.assertEquals(actual.toString(), expected, "verify appointment creation");
