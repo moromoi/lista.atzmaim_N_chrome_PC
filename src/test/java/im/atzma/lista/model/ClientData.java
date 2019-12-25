@@ -12,9 +12,11 @@ public class ClientData {
     private final String debts;
     private final String note;
     private final String status;
+    private Integer id;
 
 
-    public ClientData(String tempClientName, String telNumber, String email, String address, String sex, String birthday, String debts, String note, String status) {
+
+    public ClientData(String tempClientName, String telNumber, String email, String address, String sex, String birthday, String debts, String note, String status, Integer id) {
         this.tempClientName = tempClientName;
         this.telNumber = telNumber;
         this.email = email;
@@ -24,6 +26,7 @@ public class ClientData {
         this.debts = debts;
         this.note = note;
         this.status = status;
+        this.id = id;
     }
 
     public ClientData(String tempClientName, String telNumber, String email, String address) {
@@ -36,6 +39,7 @@ public class ClientData {
         this.debts = null;
         this.note = null;
         this.status = null;
+        this.id = 0;
     }
 
     @Override
@@ -50,6 +54,7 @@ public class ClientData {
                 ", debts='" + debts + '\'' +
                 ", note='" + note + '\'' +
                 ", status='" + status + '\'' +
+                ", id=" + id +
                 '}';
     }
 
@@ -66,12 +71,13 @@ public class ClientData {
                 Objects.equals(birthday, that.birthday) &&
                 Objects.equals(debts, that.debts) &&
                 Objects.equals(note, that.note) &&
-                Objects.equals(status, that.status);
+                Objects.equals(status, that.status) &&
+                Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tempClientName, telNumber, email, address, sex, birthday, debts, note, status);
+        return Objects.hash(tempClientName, telNumber, email, address, sex, birthday, debts, note, status, id);
     }
 
     public String getTempClientName() {
@@ -100,4 +106,11 @@ public class ClientData {
 
     public String getStatus() { return status; }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

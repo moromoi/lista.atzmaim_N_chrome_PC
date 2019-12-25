@@ -21,7 +21,9 @@
             <!--</class>-->
             <class name="im.atzma.lista.tests.ClientDeletionTest">
                 <methods>
-                    <!--<include name="testCreateClientCount"/>-->
+                    <!--<include name="testCreateClientCount_1"/>-->
+                    <!--<include name="testCreateClientCount_2"/>-->
+                    <include name="testDeleteClientId"/>
                     <include name="testDeleteClientCount"/>
                 </methods>
             </class>

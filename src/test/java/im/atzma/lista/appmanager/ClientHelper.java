@@ -2,6 +2,7 @@ package im.atzma.lista.appmanager;
 
 import im.atzma.lista.model.ClientData;
 import im.atzma.lista.model.ModifyClientData;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -160,6 +161,9 @@ public class ClientHelper extends HelperBase {
     @FindBy(xpath = "//*[@data-id]")
     List<WebElement> clients_in_List;
 
+    @FindBy(xpath = "//button[@class='back']")
+    WebElement message_same_number;
+
 
     public ClientHelper(WebDriver driver) {
         super(driver);
@@ -170,8 +174,15 @@ public class ClientHelper extends HelperBase {
     public void fillClientForm(ClientData clientData) throws InterruptedException {
         fillText(input_clientName, clientData.getTempClientName());
         fillText(text_telephon, clientData.getTelNumber());
+
+        click(text_email);
+waitForElement(message_same_number);
+        if (!isElementPresent(message_same_number)) {
+            click(message_same_number);
+        }
         fillText(text_email, clientData.getEmail());
         fillText(text_address, clientData.getAddress());
+
         select(select_year, "1950");
         select(select_month, "10");
         select(select_day, "10");
@@ -239,7 +250,7 @@ public class ClientHelper extends HelperBase {
         String note = text_clientNote.getText();
         String status = text_clientStatus.getText();
 
-        ClientData clientData = new ClientData(name, phone, mail, address, sex, birthday, debts, note, status);
+        ClientData clientData = new ClientData(name, phone, mail, address, sex, birthday, debts, note, status, 0);
 
         data.add(clientData);
 

@@ -93,16 +93,13 @@ public class HelperBase {
 
 
     public boolean isElementPresent(WebElement el) {
-        try {
-            List<WebElement> itemlist = new ArrayList<>();
-            itemlist.add(el);
-            if(itemlist.size() > 0) {
-                return true;
-            }
-            return false;
-        } catch (NoSuchElementException e) {
-            return false;
+
+        List<WebElement> itemlist = new ArrayList<>();
+        itemlist.add(el);
+        if (itemlist.size() > 0) {
+            return true;
         }
+        return false;
     }
 
 }
