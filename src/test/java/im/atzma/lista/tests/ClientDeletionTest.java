@@ -48,22 +48,32 @@ public class ClientDeletionTest extends TestBase {
     public void testDeleteClientId() throws InterruptedException {
         System.out.println("=== Verify client deletion ===");
 
+        //Create client exemplar
         app.getSessionHelper().goToClientPage();
         ClientData clientData = new ClientData("testDeleteClientId_1", "0547333334", "katalon@gmail.com",
                 "רוקח 18, רמת גן, ישראל");
+
+        //Create client 1
         app.getSessionHelper().initAddNewClient();
         app.getClientHelper().fillClientForm(clientData);
+
+        //Create client 2
+        app.getSessionHelper().initAddNewClient();
+        app.getClientHelper().fillClientForm(clientData);
+        app.getSessionHelper().goToClientPage();
+
+        //Get client id
         app.getSessionHelper().goToClientPage();
         List<ClientData> before = app.getClientPage().getClientId();
 
-        app.getSessionHelper().initAddNewClient();
-        app.getClientHelper().fillClientForm(clientData);
-        app.getSessionHelper().goToClientPage();
+        for (int i = 0; i < before.size(); i++) {
+            System.out.println("before: " + before.get(i).getId());
+        }
 
         List<ClientData> after = app.getClientPage().getClientId();
-        int max=0;
-        for(ClientData data: after) {
-            if(data.getId() > max) {
+        int max = 0;
+        for (ClientData data : after) {
+            if (data.getId() > max) {
                 max = data.getId();
             }
 
@@ -71,10 +81,13 @@ public class ClientDeletionTest extends TestBase {
 
         clientData.setId(max);
 
-        System.out.println("Max id= " + clientData.getId());
         app.getClientPage().selectClient(1);
         app.getClientPage().deleteSelectedClient();
         List<ClientData> after2 = app.getClientPage().getClientId();
+
+        for (int i = 0; i < after2.size(); i++) {
+            System.out.println("after delete max:" + after2.get(i).getId());
+        }
 
         Assert.assertEquals(after2, before);
 //        List<ClientData> after = app.getClientPage().getClientId();
@@ -82,7 +95,7 @@ public class ClientDeletionTest extends TestBase {
 
     }
 
-//    @Test(priority = 2)
+    //    @Test(priority = 2)
     public void testDeleteClientCount() throws InterruptedException {
         System.out.println("=== Verify client deletion ===");
 
