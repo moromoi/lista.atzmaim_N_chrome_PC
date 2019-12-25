@@ -176,9 +176,12 @@ public class ClientHelper extends HelperBase {
         fillText(text_telephon, clientData.getTelNumber());
 
         click(text_email);
-waitForElement(message_same_number);
-        if (!isElementPresent(message_same_number)) {
-            click(message_same_number);
+        try {
+            if (message_same_number.isDisplayed()) {
+                click(message_same_number);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         fillText(text_email, clientData.getEmail());
         fillText(text_address, clientData.getAddress());

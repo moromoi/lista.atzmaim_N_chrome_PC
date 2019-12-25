@@ -69,13 +69,15 @@ public class ClientListPage extends HelperBase {
         click(clients_link_in_List.get(index));
     }
 
+
     public   List<ClientData> getClientId() {
         List<ClientData> client_group = new ArrayList<>();
         for (WebElement el : clients_in_List) {
 
             int id = Integer.parseInt(el.getAttribute("data-id"));
             System.out.println("client id= " + id);
-            ClientData clientData = new ClientData(null, null, null, null, null, null, null, null, null, id);
+            ClientData clientData = new ClientData(null, null, null, null,
+                    null, null, null, null, null, id);
             client_group.add(clientData);
         }
         return  client_group;

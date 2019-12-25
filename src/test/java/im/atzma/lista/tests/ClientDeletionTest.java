@@ -49,7 +49,7 @@ public class ClientDeletionTest extends TestBase {
         System.out.println("=== Verify client deletion ===");
 
         app.getSessionHelper().goToClientPage();
-        ClientData clientData = new ClientData("testDeleteClientId_1", "0547333333", "katalon@gmail.com",
+        ClientData clientData = new ClientData("testDeleteClientId_1", "0547333334", "katalon@gmail.com",
                 "רוקח 18, רמת גן, ישראל");
         app.getSessionHelper().initAddNewClient();
         app.getClientHelper().fillClientForm(clientData);
@@ -59,10 +59,8 @@ public class ClientDeletionTest extends TestBase {
         app.getSessionHelper().initAddNewClient();
         app.getClientHelper().fillClientForm(clientData);
         app.getSessionHelper().goToClientPage();
+
         List<ClientData> after = app.getClientPage().getClientId();
-
-
-
         int max=0;
         for(ClientData data: after) {
             if(data.getId() > max) {
@@ -70,14 +68,16 @@ public class ClientDeletionTest extends TestBase {
             }
 
         }
+
         clientData.setId(max);
 
         System.out.println("Max id= " + clientData.getId());
-        Assert.assertEquals(after, before);
+        app.getClientPage().selectClient(1);
+        app.getClientPage().deleteSelectedClient();
+        List<ClientData> after2 = app.getClientPage().getClientId();
 
+        Assert.assertEquals(after2, before);
 //        List<ClientData> after = app.getClientPage().getClientId();
-//        app.getClientPage().selectClient(0);
-//        app.getClientPage().deleteSelectedClient();
 //        app.getSessionHelper().goToClientPage();
 
     }
