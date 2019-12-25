@@ -163,6 +163,7 @@ public class AppointmentHelper extends HelperBase {
         waitForElement(input_findClient);
         click(input_findClient);
         fillText(input_findClient, name);
+        waitForElement(tempClient);
         click(tempClient);
 
 
