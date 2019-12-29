@@ -29,7 +29,7 @@ public class HelperBase {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", el);
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class HelperBase {
         if (text != null) {
             String existingText = el.getAttribute("value");
             if (!text.equals(existingText)) {
-                Thread.sleep(1000);
+                Thread.sleep(100);
                 el.click();
                 el.clear();
                 el.sendKeys(text);

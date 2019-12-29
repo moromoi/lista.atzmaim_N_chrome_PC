@@ -1,12 +1,15 @@
 package im.atzma.lista.appmanager;
 
 import im.atzma.lista.model.ClientData;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ClientListPage extends HelperBase {
     public ClientListPage(WebDriver driver) {
@@ -70,8 +73,8 @@ public class ClientListPage extends HelperBase {
     }
 
 
-    public   List<ClientData> getClientId() {
-        List<ClientData> client_group = new ArrayList<>();
+    public   Set<ClientData> getClientId() {
+        Set<ClientData> client_group = new HashSet();
         for (WebElement el : clients_in_List) {
 
             int id = Integer.parseInt(el.getAttribute("data-id"));
@@ -82,5 +85,19 @@ public class ClientListPage extends HelperBase {
         return  client_group;
 
 
+    }
+
+    public void deleteClientWithMaxId(int max) {
+
+        for (int i = 0; i < clients_in_List.size(); i++) {
+            int id = Integer.parseInt(clients_in_List.get(i).getAttribute("data-id"));
+            if(id == max) {
+                System.out.println("max id= " + max);
+                int index = i;
+                System.out.println("index= " + i);
+                selectClient(index);
+                deleteSelectedClient();
+            }
+        }
     }
 }

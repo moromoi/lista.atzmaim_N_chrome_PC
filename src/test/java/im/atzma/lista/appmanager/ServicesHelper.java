@@ -78,13 +78,13 @@ public class ServicesHelper extends HelperBase {
     @FindBy(xpath = "(//span[text()='0'])[3]")
     WebElement default_service_cost3;
 
-    @FindBy(xpath = "//label[@for='styled-checkbox-2']")
+    @FindBy(xpath = "//label[@for='styled-checkbox-1']")
     WebElement checkbox_trash1;
 
-    @FindBy(xpath = "//label[@for='styled-checkbox-3']")
+    @FindBy(xpath = "//label[@for='styled-checkbox-2']")
     WebElement checkbox_trash2;
 
-    @FindBy(xpath = "//label[@for='styled-checkbox-4']")
+    @FindBy(xpath = "//label[@for='styled-checkbox-3']")
     WebElement checkbox_trash3;
 
     @FindBy(xpath = "//img[@class='trash']")
