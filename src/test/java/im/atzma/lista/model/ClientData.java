@@ -1,5 +1,6 @@
 package im.atzma.lista.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ClientData {
@@ -13,7 +14,7 @@ public class ClientData {
     private final String note;
     private final String status;
     private Integer id;
-
+    private File photo;
 
 
     public ClientData(String tempClientName, String telNumber, String email, String address, String sex, String birthday, String debts, String note, String status, Integer id) {
@@ -41,6 +42,10 @@ public class ClientData {
         this.status = null;
         this.id = 0;
     }
+
+    public File getPhoto() {return photo;}
+
+    public void setPhoto(File photo) { this.photo = photo; }
 
     @Override
     public String toString() {
