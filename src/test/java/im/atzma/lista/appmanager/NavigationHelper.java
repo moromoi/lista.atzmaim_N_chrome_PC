@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.Random;
 
-public class SessionHelper extends HelperBase {
+public class NavigationHelper extends HelperBase {
     @FindBy(xpath = "//input[@type='email']")
     WebElement input_email;
 
@@ -26,13 +26,11 @@ public class SessionHelper extends HelperBase {
     @FindBy(xpath = "//a[@href='/he/login']")
     WebElement btn_login;
 
-    @FindBy(xpath = "//div[@class='floating-button standartLeft']")
-    WebElement btn_addClient;
 
 
     Random random = new Random();
     long randomLong = random.nextLong();
-    public final String mail_2 = "katalon_1648504433627276218@gmail.com";
+    public final String mail_2 = "katalon3@gmail.com";
     public final String mail = "katalon_" + randomLong + "@gmail.com";
     public final String pass = "Pa$$w@rd";
     String baseURL = "https://lista.atzma.im/he/home?utm_source=autotest-selenium";
@@ -45,42 +43,41 @@ public class SessionHelper extends HelperBase {
     String calendarURL = "https://lista.atzma.im/he/calendar/";
     String newClientFormURL = "https://lista.atzma.im/he/adding-client";
 
-    public SessionHelper(WebDriver driver) {
+    public NavigationHelper(WebDriver driver) {
         super(driver);
     }
 
-    public void goToHomePage() throws InterruptedException {
+    public void homePage() throws InterruptedException {
         driver.get(baseURL);
         waitForLocation(baseURL);
     }
 
     public void goToLoginPage() throws InterruptedException {
         driver.get(loginURL);
-        waitForLocation(loginURL);
     }
 
-    public void goToSingupPage() throws InterruptedException {
+    public void singupPage() throws InterruptedException {
         driver.findElement(By.xpath("//a[@href='/he/signup?utm_source=autotest-selenium']")).click();
         waitForLocation(singupURL);
     }
 
-    public void goToClientPage() throws InterruptedException {
+    public void clientPage() throws InterruptedException {
         driver.get(clientURL);
         waitForLocation(clientURL);
     }
 
-    public void goToServicesPage() throws InterruptedException {
+    public void servicesPage() throws InterruptedException {
         driver.get(servicesURL);
         waitForLocation(servicesURL);
     }
 
-    public void goToCalendarPage() throws InterruptedException {
+    public void calendarPage() throws InterruptedException {
         driver.get(calendarURL);
 //        waitForLocation(calendarURL);
     }
 
     public void typeNewPassAndUser() throws InterruptedException {
-        fillText(input_email, mail_2);
+        fillText(input_email, mail);
         fillText(input_password, pass);
 
         System.out.println("email: " + mail);
@@ -110,7 +107,7 @@ public class SessionHelper extends HelperBase {
     }
 
     public void login() throws InterruptedException {
-        goToHomePage();
+        homePage();
         highlight(btn_login);
         click(btn_login);
         waitForLocation(loginURL);
@@ -118,11 +115,6 @@ public class SessionHelper extends HelperBase {
         click(btn_submit);
     }
 
-
-    public void initAddNewClient() throws InterruptedException {
-        click(btn_addClient);
-        waitForLocation(newClientFormURL);
-    }
 
 
     public boolean verifyEmailInput() {

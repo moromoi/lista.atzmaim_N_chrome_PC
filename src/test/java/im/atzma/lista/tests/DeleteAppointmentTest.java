@@ -1,6 +1,5 @@
 package im.atzma.lista.tests;
 
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,13 +9,13 @@ public class DeleteAppointmentTest extends TestBase {
 
     @Test(priority = 1)
     public void testAppointmentDeletion() throws InterruptedException {
-        app.getSessionHelper().goToCalendarPage();
-        int before = app.getAppointmentHelper().verifyAppointmentDeletion();
-        app.getAppointmentHelper().deleteAppointment();
-        app.getCalendarPage().logout();
-        app.getSessionHelper().login();
+        app.goTo().calendarPage();
+        int before = app.appointment().appointmentList();
+        app.appointment().deleteAppointment();
+        app.calendar().logout();
+        app.goTo().login();
 
-        int after = app.getAppointmentHelper().verifyAppointmentDeletion();
+        int after = app.appointment().appointmentList();
         try {
             Assert.assertEquals(after, before - 1);
         } catch (Exception e) {
@@ -28,12 +27,12 @@ public class DeleteAppointmentTest extends TestBase {
 
     @Test(priority = 2)
     public void testServiceDeletion() throws InterruptedException {
-        app.getSessionHelper().goToServicesPage();
-        app.getServicesHelper().deleteTempService();
-        app.getSessionHelper().goToServicesPage();
+        app.goTo().servicesPage();
+        app.service().deleteTempService();
+        app.goTo().servicesPage();
 
         String expected = "[פגישה 30 דקות, פגישה 45 דקות, פגישה 60 דקות]";
-        List<String> actual = app.getServicesHelper().verifyServiceDeletion();
+        List<String> actual = app.service().verifyServiceDeletion();
 
         try {
             Assert.assertEquals(actual.toString(), expected, "verify service deletion");

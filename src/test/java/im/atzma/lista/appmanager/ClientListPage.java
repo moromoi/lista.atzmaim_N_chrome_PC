@@ -24,6 +24,8 @@ public class ClientListPage extends HelperBase {
 
     @FindBy(xpath = "//*[@class='item']")
     List<WebElement> clients_in_List;
+    @FindBy(xpath = "//*[@class='item']")
+    WebElement client_in_List;
 
     @FindBy(xpath = "//a[@class='item__tel']")
     List<WebElement> clients_link_in_List;
@@ -36,6 +38,9 @@ public class ClientListPage extends HelperBase {
 
     @FindBy(xpath = "//*[@class='item__info-name']")
     WebElement clientName_inList;
+
+    @FindBy(xpath = "//div[@class='floating-button standartLeft']")
+    WebElement btn_addClient;
 
     public boolean verifyTitleText() throws InterruptedException {
         waitForElement(title_on_clienPage);
@@ -66,6 +71,11 @@ public class ClientListPage extends HelperBase {
         click(btn_deleteClient_confirm);
     }
 
+    public void initAddNewClient() throws InterruptedException {
+        click(btn_addClient);
+    }
+
+
 
     public void selectClient(int index) {
         highlight(clients_link_in_List.get(index));
@@ -89,15 +99,19 @@ public class ClientListPage extends HelperBase {
 
     public void deleteClientWithMaxId(int max) {
 
-        for (int i = 0; i < clients_in_List.size(); i++) {
-            int id = Integer.parseInt(clients_in_List.get(i).getAttribute("data-id"));
-            if(id == max) {
-                System.out.println("max id= " + max);
-                int index = i;
-                System.out.println("index= " + i);
-                selectClient(index);
-                deleteSelectedClient();
-            }
-        }
+//        for (int i = 0; i < clients_in_List.size(); i++) {
+//            int id = Integer.parseInt(clients_in_List.get(i).getAttribute("data-id"));
+//            if(id == max) {
+//                System.out.println("max id= " + max);
+//                int index = i;
+//                System.out.println("index= " + i);
+//                selectClient(index);
+//                deleteSelectedClient();
+//            }
+//        }
+
+        WebElement client_in_List = driver.findElement(By.cssSelector(String.format("*[data-id='%s'] a[href]", max)));
+        click(client_in_List);
+        deleteSelectedClient();
     }
 }

@@ -3,7 +3,6 @@ package im.atzma.lista.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +13,7 @@ import static org.testng.Assert.fail;
 public class ApplicationManager {
     public WebDriver driver;
 
-    SessionHelper sessionHelper;
+    NavigationHelper sessionHelper;
     SingupPage singupPage;
     BusinessPage businessPage;
     AllSetPage allSetPage;
@@ -47,7 +46,7 @@ public class ApplicationManager {
         driver.manage().window().maximize();
 
 
-        sessionHelper = new SessionHelper(driver);
+        sessionHelper = new NavigationHelper(driver);
         singupPage = new SingupPage(driver);
         businessPage = new BusinessPage(driver);
         allSetPage = new AllSetPage(driver);
@@ -71,15 +70,15 @@ public class ApplicationManager {
     }
 
 
-    public SessionHelper getSessionHelper() {
+    public NavigationHelper goTo() {
         return sessionHelper;
     }
-    public SingupPage getSingupPage() { return singupPage; }
-    public BusinessPage getBusinessPage() { return businessPage; }
-    public AllSetPage getAllSetPage() { return allSetPage; }
-    public CalendarPage getCalendarPage() { return calendarPage; }
-    public ClientListPage getClientPage() { return clientPage; }
-    public ServicesHelper getServicesHelper() { return servicesHelper; }
-    public ClientHelper getClientHelper() {return  clientHelper; }
-    public AppointmentHelper getAppointmentHelper() {return  appointmentHelper;}
+    public SingupPage singupPage() { return singupPage; }
+    public BusinessPage businessPage() { return businessPage; }
+    public AllSetPage allSetPage() { return allSetPage; }
+    public CalendarPage calendar() { return calendarPage; }
+    public ClientListPage clientList() { return clientPage; }
+    public ServicesHelper service() { return servicesHelper; }
+    public ClientHelper client() {return  clientHelper; }
+    public AppointmentHelper appointment() {return  appointmentHelper;}
 }

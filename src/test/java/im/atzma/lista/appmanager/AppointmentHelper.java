@@ -153,7 +153,7 @@ public class AppointmentHelper extends HelperBase {
     }
 
 
-    public void createAppointment(String clientName) throws InterruptedException {
+    public void create(String clientName) throws InterruptedException {
         // verifyNonbusinessDay();
         chooseAppointmentHour();
         fillNewAppointment(clientName);
@@ -232,7 +232,7 @@ public class AppointmentHelper extends HelperBase {
     }
 
 
-    public Integer verifyAppointmentDeletion() throws InterruptedException {
+    public Integer appointmentList() throws InterruptedException {
 
         return btn_existing_appointment.size();
     }

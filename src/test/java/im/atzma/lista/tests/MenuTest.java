@@ -1,6 +1,5 @@
 package im.atzma.lista.tests;
 
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,12 +9,12 @@ public class MenuTest extends TestBase {
 
     @Test(priority = 1)
     public void verifyLinkText() throws InterruptedException {
-        app.getSessionHelper().login();
-        app.getSessionHelper().goToCalendarPage();
+        app.goTo().login();
+        app.goTo().calendarPage();
 
 
         String expected = "[יומן, מאגר לקוחות, תזכורות, קבוצות, טיפולים, הגדרות, תמיכה, Rate us, לצאת]";
-        List<String> actual = app.getCalendarPage().verifyMenuLinks();
+        List<String> actual = app.calendar().verifyMenuLinks();
         //--------------------------------------------------------------------------verify menu elements
         Assert.assertEquals(actual.toString(), expected);
     }

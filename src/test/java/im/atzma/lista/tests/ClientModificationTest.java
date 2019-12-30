@@ -15,9 +15,9 @@ public class ClientModificationTest extends TestBase {
         System.out.println("=== Test 0: number of elements on new client form equals to 20? ===");
 
         int expected = 20;
-        app.getSessionHelper().goToClientPage();
-        app.getSessionHelper().initAddNewClient();
-        int actual = app.getClientHelper().verifyNewClientForm();
+        app.goTo().clientPage();
+        app.clientList().initAddNewClient();
+        int actual = app.client().verifyNewClientForm();
 
         try {
             Assert.assertEquals(actual, expected, "number of elements on client form equals to 20?");
@@ -30,15 +30,15 @@ public class ClientModificationTest extends TestBase {
     public void testCreateClientCount_1() throws InterruptedException {
         System.out.println("=== Test 1: Create first client and verify creation in client list ===");
 
-        app.getSessionHelper().goToClientPage();
-        System.out.println("Number of client before client creation = " + app.getClientPage().getClientCount());
-        int before = app.getClientPage().getClientCount();
-        app.getSessionHelper().initAddNewClient();
-        app.getClientHelper().fillClientForm(new ClientData("Temp Client katalon", "0547111111",
+        app.goTo().clientPage();
+        System.out.println("Number of client before client creation = " + app.clientList().getClientCount());
+        int before = app.clientList().getClientCount();
+        app.clientList().initAddNewClient();
+        app.client().fillClientForm(new ClientData("Temp Client katalon", "0547111111",
                 "temp@gmail.com", "רוקח 18, רמת גן, ישראל"));
-        app.getSessionHelper().goToClientPage();
-        System.out.println("Number of client after client creation = " + app.getClientPage().getClientCount());
-        int  after = app.getClientPage().getClientCount();
+        app.goTo().clientPage();
+        System.out.println("Number of client after client creation = " + app.clientList().getClientCount());
+        int  after = app.clientList().getClientCount();
 
         Assert.assertEquals(after, before + 1);
     }
@@ -47,15 +47,15 @@ public class ClientModificationTest extends TestBase {
     public void testCreateClientCount_2() throws InterruptedException {
         System.out.println("=== Test 2: Create second client and verify creation in client list ===");
 
-        app.getSessionHelper().goToClientPage();
-        System.out.println("Number of client before client creation = " + app.getClientPage().getClientCount());
-        int before = app.getClientPage().getClientCount();
-        app.getSessionHelper().initAddNewClient();
-        app.getClientHelper().fillClientForm(new ClientData("Temp Client katalon", "0547222222",
+        app.goTo().clientPage();
+        System.out.println("Number of client before client creation = " + app.clientList().getClientCount());
+        int before = app.clientList().getClientCount();
+        app.clientList().initAddNewClient();
+        app.client().fillClientForm(new ClientData("Temp Client katalon", "0547222222",
                 "temp@gmail.com", "רוקח 18, רמת גן, ישראל"));
-        app.getSessionHelper().goToClientPage();
-        System.out.println("Number of client after client creation = " + app.getClientPage().getClientCount());
-        int  after = app.getClientPage().getClientCount();
+        app.goTo().clientPage();
+        System.out.println("Number of client after client creation = " + app.clientList().getClientCount());
+        int  after = app.clientList().getClientCount();
 
         Assert.assertEquals(after, before + 1);
     }
@@ -64,18 +64,18 @@ public class ClientModificationTest extends TestBase {
     public void testModificateClient_1() throws InterruptedException {
         System.out.println("=== Test 3: Verify that first client changed after modification (not equal to past) ===");
 
-        app.getSessionHelper().goToClientPage();
-        app.getClientPage().selectClient(0);
-        List<ClientData> before =  app.getClientHelper().getClientList();
+        app.goTo().clientPage();
+        app.clientList().selectClient(0);
+        List<ClientData> before =  app.client().getClientList();
 
-        app.getClientHelper().initClientModification();
-        app.getClientHelper().modifyClient(new ModifyClientData("New temp client catalon", "054837465",
+        app.client().initClientModification();
+        app.client().modify(new ModifyClientData("New temp client catalon", "054837465",
                 "new_katalon@gmail.com", "Balfour St 33, Petah Tikva, Israel", "1960",
                 "11", "11", 2, "new note"));
 
-        app.getSessionHelper().goToClientPage();
-        app.getClientPage().selectClient(0);
-        List<ClientData> after =  app.getClientHelper().getClientList();
+        app.goTo().clientPage();
+        app.clientList().selectClient(0);
+        List<ClientData> after =  app.client().getClientList();
         Assert.assertNotEquals(after, before);
     }
 
@@ -83,18 +83,18 @@ public class ClientModificationTest extends TestBase {
     public void testModificateClient_2() throws InterruptedException {
         System.out.println("=== Test 4: Verify that second client changed after modification (not equal to past) ===");
 
-        app.getSessionHelper().goToClientPage();
-        app.getClientPage().selectClient(1);
-        List<ClientData> before =  app.getClientHelper().getClientList();
+        app.goTo().clientPage();
+        app.clientList().selectClient(1);
+        List<ClientData> before =  app.client().getClientList();
 
-        app.getClientHelper().initClientModification();
-        app.getClientHelper().modifyClient(new ModifyClientData("New temp client catalon", "054837465",
+        app.client().initClientModification();
+        app.client().modify(new ModifyClientData("New temp client catalon", "054837465",
                 "new_katalon@gmail.com", "Balfour St 33, Petah Tikva, Israel", "1960",
                 "11", "11", 2, "new note"));
 
-        app.getSessionHelper().goToClientPage();
-        app.getClientPage().selectClient(1);
-        List<ClientData> after =  app.getClientHelper().getClientList();
+        app.goTo().clientPage();
+        app.clientList().selectClient(1);
+        List<ClientData> after =  app.client().getClientList();
         Assert.assertNotEquals(after, before);
     }
 
@@ -102,13 +102,13 @@ public class ClientModificationTest extends TestBase {
     public void testCompareClient() throws InterruptedException {
         System.out.println("=== Test 5: Compare first client elements with same second after modification ===");
 
-        app.getSessionHelper().goToClientPage();
-        app.getClientPage().selectClient(0);
-        List<ClientData> before =  app.getClientHelper().getClientList();
+        app.goTo().clientPage();
+        app.clientList().selectClient(0);
+        List<ClientData> before =  app.client().getClientList();
 
-        app.getSessionHelper().goToClientPage();
-        app.getClientPage().selectClient(1);
-        List<ClientData> after =  app.getClientHelper().getClientList();
+        app.goTo().clientPage();
+        app.clientList().selectClient(1);
+        List<ClientData> after =  app.client().getClientList();
 
         Assert.assertEquals(after, before);
 

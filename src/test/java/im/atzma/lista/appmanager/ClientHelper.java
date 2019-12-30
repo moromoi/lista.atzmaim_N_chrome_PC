@@ -267,7 +267,7 @@ public class ClientHelper extends HelperBase {
         }
     }
 
-    public void modifyClient(ModifyClientData modifyClientData) throws InterruptedException {
+    public void modify(ModifyClientData modifyClientData) throws InterruptedException {
         fillText(input_new_ClientName, modifyClientData.getClientName());
         fillText(input_new_ClientTel, modifyClientData.getClientTel());
         fillText(input_new_ClientMail, modifyClientData.getClientMail());

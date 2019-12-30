@@ -1,15 +1,8 @@
 package im.atzma.lista.tests;
 
 import im.atzma.lista.model.ClientData;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -21,26 +14,30 @@ public class ClientDeletionTest extends TestBase {
     public void testDeleteClientId() throws InterruptedException {
         System.out.println("=== Create two same client / delete client with max ID / verify first client not deleted ===");
 
-        app.getSessionHelper().goToClientPage();
+        app.goTo().clientPage();
         ClientData clientData = new ClientData("testDeleteClientId_1", "0547333334", "katalon@gmail.com",
                 "רוקח 18, רמת גן, ישראל");
 
-        app.getSessionHelper().initAddNewClient();
-        app.getClientHelper().fillClientForm(clientData);
-        app.getSessionHelper().goToClientPage();
-        Set<ClientData> before = app.getClientPage().getClientId();
+        app.clientList().initAddNewClient();
+        app.client().fillClientForm(clientData);
+        app.goTo().clientPage();
+        Set<ClientData> before = app.clientList().getClientId();
 
-        app.getSessionHelper().initAddNewClient();
-        app.getClientHelper().fillClientForm(clientData);
-        app.getSessionHelper().goToClientPage();
+        app.clientList().initAddNewClient();
+        app.client().fillClientForm(clientData);
+        app.goTo().clientPage();
 
-        Set<ClientData> after_add_client = app.getClientPage().getClientId();
+        Set<ClientData> after_add_client = app.clientList().getClientId();
+        for(ClientData c: after_add_client) {
+            System.out.println(c);
+        }
 
 //        int max = after_add_client.stream().max(Comparator.comparingInt(ClientData::getId)).get().getId();
         int max = after_add_client.stream().mapToInt((g) -> g.getId()).max().getAsInt();
+        System.out.println("max id- " + max);
 
-        app.getClientPage().deleteClientWithMaxId(max);
-        Set<ClientData> after = app.getClientPage().getClientId();
+        app.clientList().deleteClientWithMaxId(max);
+        Set<ClientData> after = app.clientList().getClientId();
 
         assertThat(after, equalTo(before));
 

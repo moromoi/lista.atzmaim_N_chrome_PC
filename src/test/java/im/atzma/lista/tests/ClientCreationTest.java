@@ -8,8 +8,8 @@ public class ClientCreationTest extends TestBase {
 
     @Test(priority = 1)
     public void initNewClientCreation() throws InterruptedException {
-        app.getSessionHelper().goToClientPage();
-        app.getSessionHelper().initAddNewClient();
+        app.goTo().clientPage();
+        app.clientList().initAddNewClient();
         try {
             Assert.assertTrue(app.driver.getCurrentUrl().matches("https://lista.atzma.im/he/adding-client"));
         } catch (Exception e) {
@@ -20,7 +20,7 @@ public class ClientCreationTest extends TestBase {
     @Test(priority = 2)
     public void verifyClientForm() {
         int expected = 20;
-        int actual = app.getClientHelper().verifyNewClientForm();
+        int actual = app.client().verifyNewClientForm();
 
         try {
             Assert.assertEquals(actual, expected, "number of elements on client form");
@@ -31,10 +31,10 @@ public class ClientCreationTest extends TestBase {
 
     @Test(priority = 3)
     public void fillClientForm() throws InterruptedException {
-        app.getClientHelper().fillClientForm(new ClientData("Temp Client katalon", "0547019283",
+        app.client().fillClientForm(new ClientData("Temp Client katalon", "0547019283",
                 "temp@gmail.com", "רוקח 18, רמת גן, ישראל"));
 
-        String actual = app.getClientHelper().verifyNewClientCreation();
+        String actual = app.client().verifyNewClientCreation();
         String expected = "Temp Client katalon";
         try {
             Assert.assertEquals(actual, expected);
@@ -45,15 +45,15 @@ public class ClientCreationTest extends TestBase {
 
     @Test(priority = 4)
     public void testCreateClientCount() throws InterruptedException {
-        app.getSessionHelper().goToClientPage();
-        System.out.println("Number of client before client creation = " + app.getClientPage().getClientCount());
-        int before = app.getClientPage().getClientCount();
-        app.getSessionHelper().initAddNewClient();
-        app.getClientHelper().fillClientForm(new ClientData("Temp Client katalon", "0547019283",
+        app.goTo().clientPage();
+        System.out.println("Number of client before client creation = " + app.clientList().getClientCount());
+        int before = app.clientList().getClientCount();
+        app.clientList().initAddNewClient();
+        app.client().fillClientForm(new ClientData("Temp Client katalon", "0547019283",
                 "temp@gmail.com", "רוקח 18, רמת גן, ישראל"));
-        app.getSessionHelper().goToClientPage();
-        System.out.println("Number of client after client creation = " + app.getClientPage().getClientCount());
-        int after = app.getClientPage().getClientCount();
+        app.goTo().clientPage();
+        System.out.println("Number of client after client creation = " + app.clientList().getClientCount());
+        int after = app.clientList().getClientCount();
 
         Assert.assertEquals(after, before + 1);
     }

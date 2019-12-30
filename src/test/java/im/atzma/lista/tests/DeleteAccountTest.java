@@ -8,14 +8,14 @@ public class DeleteAccountTest extends TestBase {
     @Test(priority = 1)
     public void testDeleteAccount() throws Exception {
 
-        app.getAppointmentHelper().deleteAccount();
+        app.appointment().deleteAccount();
         try {
-            Assert.assertTrue(app.getSessionHelper().verifyEmailInput());
+            Assert.assertTrue(app.goTo().verifyEmailInput());
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            Assert.assertTrue(app.getSessionHelper().verifyPasswordInput());
+            Assert.assertTrue(app.goTo().verifyPasswordInput());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -27,10 +27,10 @@ public class DeleteAccountTest extends TestBase {
     @Test(priority = 2)
     public void testDeleteAccountVerification() throws Exception {
 
-        app.getSessionHelper().login();
+        app.goTo().login();
 
         String expected = "אנחנו לא מכירים את האימייל הזה והססמה";
-        String actual = app.getAppointmentHelper().verifyAccountDeletion();
+        String actual = app.appointment().verifyAccountDeletion();
 
         try {
             Assert.assertEquals(actual, expected);

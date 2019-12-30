@@ -14,11 +14,11 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
     @Test(priority = 1)
     public void testVerifySignupPageElements() throws Exception {
-        app.getSessionHelper().goToHomePage();
-        app.getSessionHelper().goToSingupPage();
+        app.goTo().homePage();
+        app.goTo().singupPage();
 
         try {
-            List<WebElement> elementList = app.getSingupPage().getSignupPageElements();
+            List<WebElement> elementList = app.singupPage().getSignupPageElements();
             for (int i = 0; i < elementList.size(); i++) {
                 Assert.assertTrue(elementList.get(i).isDisplayed());
             }
@@ -29,25 +29,25 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
     @Test(priority = 2)
     public void testPasswordVisibleIcons() throws Exception {
-        app.getSessionHelper().typeNewPassAndUser();
+        app.goTo().typeNewPassAndUser();
 
         try {
-            Assert.assertTrue(app.getSingupPage().passwordVisible());
+            Assert.assertTrue(app.singupPage().passwordVisible());
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            Assert.assertTrue(app.getSingupPage().eye_icon_off());
+            Assert.assertTrue(app.singupPage().eye_icon_off());
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            Assert.assertTrue(app.getSingupPage().eye_icon());
+            Assert.assertTrue(app.singupPage().eye_icon());
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            Assert.assertTrue(app.getSessionHelper().submit());
+            Assert.assertTrue(app.goTo().submit());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
     @Test(priority = 3)
     public void testVerifyBusinessTypePageElements() throws Exception {
         try {
-            List<WebElement> elementList = app.getBusinessPage().getBusnessPageElemenents();
+            List<WebElement> elementList = app.businessPage().getBusnessPageElemenents();
             for (int i = 0; i < elementList.size(); i++) {
                 Assert.assertTrue(elementList.get(i).isDisplayed());
             }
@@ -76,7 +76,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
         String submitButton_expected = "rgba(0, 0, 0, 0) linear-gradient(0deg, rgb(247, 112, 98), rgb(254, 81, 150))" +
                 " repeat scroll 0% 0% / auto padding-box border-box";
 
-        List<String> elementList_actual = app.getBusinessPage().markBussnessType_button();
+        List<String> elementList_actual = app.businessPage().markBussnessType_button();
 
         try {
             Assert.assertEquals(elementList_actual, elementList_expected);
@@ -84,20 +84,20 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
             e.printStackTrace();
         }
 
-        List<WebElement> elementList = app.getBusinessPage().markBussnessType_titles();
+        List<WebElement> elementList = app.businessPage().markBussnessType_titles();
         for (int i = 0; i < elementList.size(); i++) {
             Assert.assertTrue(elementList.get(i).isDisplayed());
         }
 
         try {
-            String submitButton_actual = app.getBusinessPage().submitButtonColor();
+            String submitButton_actual = app.businessPage().submitButtonColor();
             Assert.assertEquals(submitButton_actual, submitButton_expected);
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             //--------------------------------------------------------------------------Verify all-set page URL
-            app.getSessionHelper().submit2();
+            app.goTo().submit2();
             Assert.assertTrue(app.driver.getCurrentUrl().matches("https://lista.atzma.im/he/signup/all-set"));
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -107,7 +107,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
     @Test(priority = 5)
     public void testVerifyAllSetPageElements() throws Exception {
-        List<WebElement> elementList = app.getAllSetPage().getAllSetPageElements();
+        List<WebElement> elementList = app.allSetPage().getAllSetPageElements();
         for (int i = 0; i < elementList.size(); i++) {
             //--------------------------------------------------------------------------verify all-set page elements
             Assert.assertTrue(elementList.get(i).isDisplayed());
@@ -126,7 +126,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
         try {
             //--------------------------------------------------------------------------verify css default submit button
-            List<String> submitButtonDefault_actual = app.getAllSetPage().verifySubmitButton_default();
+            List<String> submitButtonDefault_actual = app.allSetPage().verifySubmitButton_default();
             Assert.assertEquals(submitButtonDefault_actual.toString(), submitButtonDefault_expected.toString());
         } catch (Exception e) {
             e.printStackTrace();
@@ -134,7 +134,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
         try {
             //--------------------------------------------------------------------------verify css default submit button after mark first checkbox
-            List<String> submitButtonDefault_actual = app.getAllSetPage().clickFirstCheckbox();
+            List<String> submitButtonDefault_actual = app.allSetPage().clickFirstCheckbox();
             Assert.assertEquals(submitButtonDefault_actual.toString(), submitButtonDefault_expected.toString());
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,8 +142,8 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
         try {
             //--------------------------------------------------------------------------verify css active submit button after mark second checkbox
-            app.getAllSetPage().clickSecondCheckbox();
-            List<String> submitButtonDefault_actual = app.getAllSetPage().verifySubmitButton_default();
+            app.allSetPage().clickSecondCheckbox();
+            List<String> submitButtonDefault_actual = app.allSetPage().verifySubmitButton_default();
             Assert.assertEquals(submitButtonDefault_actual.toString(), submitButtonActive_expected.toString());
         } catch (Exception e) {
             e.printStackTrace();
@@ -155,7 +155,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
     public void testCreateNewAccount_submit() throws InterruptedException {
         try {
             //--------------------------------------------------------------------------verify account creation by element in calendar
-            Assert.assertTrue(app.getSessionHelper().submit3());
+            Assert.assertTrue(app.goTo().submit3());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -167,7 +167,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
         }
         try {
             //--------------------------------------------------------------------------verify username in MenuTest
-            Assert.assertTrue(app.getCalendarPage().verifyUserinMenu());
+            Assert.assertTrue(app.calendar().verifyUserinMenu());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -177,22 +177,22 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
     @Test(priority = 8)
     public void testLogOut() throws Exception {
-        app.getSessionHelper().goToCalendarPage();
+        app.goTo().calendarPage();
 
         try {
             //--------------------------------------------------------------------------verify logout button in menu
-            Assert.assertTrue(app.getCalendarPage().logout());
+            Assert.assertTrue(app.calendar().logout());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            Assert.assertTrue(app.getSessionHelper().verifyEmailInput());
+            Assert.assertTrue(app.goTo().verifyEmailInput());
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            Assert.assertTrue(app.getSessionHelper().verifyPasswordInput());
+            Assert.assertTrue(app.goTo().verifyPasswordInput());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -202,10 +202,10 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
     @Test(priority = 9)
     public void testVerifyLoginWithNewUser() throws Exception {
-        app.getSessionHelper().login();
+        app.goTo().login();
         try {
             //--------------------------------------------------------------------------verify Login with new user (name in menu)
-            Assert.assertTrue(app.getCalendarPage().verifyUserinMenu());
+            Assert.assertTrue(app.calendar().verifyUserinMenu());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -213,7 +213,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
     @Test(priority = 10)
     public void testVerifyDefaultClientPage() throws Exception {
-        app.getSessionHelper().goToClientPage();
+        app.goTo().clientPage();
         try {
             //--------------------------------------------------------------------------verify client page URL
             Assert.assertTrue(app.driver.getCurrentUrl().matches("https://lista.atzma.im/he/clients"));
@@ -223,11 +223,11 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
 
         try {
             //--------------------------------------------------------------------------verify title text ('מאגר לקוחות')
-            Assert.assertTrue(app.getClientPage().verifyTitleText());
+            Assert.assertTrue(app.clientList().verifyTitleText());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        String numberOfClient =app.getClientPage().verifyNumberOfClient();
+        String numberOfClient =app.clientList().verifyNumberOfClient();
 
         //--------------------------------------------------------------------------verify number of client (0)
         try {
