@@ -3,6 +3,7 @@ package im.atzma.lista.tests;
 import im.atzma.lista.model.ClientData;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;

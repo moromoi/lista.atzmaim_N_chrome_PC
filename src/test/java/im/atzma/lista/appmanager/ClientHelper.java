@@ -163,6 +163,10 @@ public class ClientHelper extends HelperBase {
 
     @FindBy(xpath = "//button[@class='back']")
     WebElement message_same_number;
+    @FindBy(css = ".main-button button")
+    WebElement btn_openAllsettings
+    @FindBy(css = ".gallery-footer img")
+    WebElement btn_addPhoto;
 
 
     public ClientHelper(WebDriver driver) {
@@ -198,6 +202,10 @@ public class ClientHelper extends HelperBase {
         click(btn_plus_debt);
         fillText(area_debt, "חוב  של לקוח זמני");
         click(btn_saveDebtNote);
+
+        click(btn_openAllsettings);
+        fillText(btn_addPhoto, clientData.getPhoto());
+
         click(btn_saveClientForm);
         Thread.sleep(2000);
     }
@@ -304,4 +312,5 @@ public class ClientHelper extends HelperBase {
         fillText(area_note, newNote);
         click(btn_saveNote);
     }
+
 }

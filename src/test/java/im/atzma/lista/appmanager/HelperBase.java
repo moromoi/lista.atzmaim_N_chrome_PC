@@ -6,6 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +61,14 @@ public class HelperBase {
                 el.clear();
                 el.sendKeys(text);
             }
+        }
+    }
+
+    public void attach (WebElement el, File file) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", el);
+        highlight(el);
+        if (file != null) {
+                el.sendKeys(file.getAbsolutePath());
         }
     }
 

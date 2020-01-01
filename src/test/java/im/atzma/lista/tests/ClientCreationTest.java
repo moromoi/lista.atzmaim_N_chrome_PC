@@ -4,10 +4,26 @@ import im.atzma.lista.model.ClientData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.File;
+
 public class ClientCreationTest extends TestBase {
+    @Test
+    public void photos() throws InterruptedException {
+        File photo = new File("src/test/resources/putin.jpg");
+        System.out.println(photo.getAbsolutePath());
+        System.out.println(photo.exists());
+
+        app.goTo().clientPage();
+        app.clientList().initAddNewClient();
+        app.client().fillClientForm(new ClientData("Temp Client katalon", "0547019283",
+                "temp@gmail.com", "רוקח 18, רמת גן, ישראל"));
+
+
+    }
 
     @Test(priority = 1)
     public void initNewClientCreation() throws InterruptedException {
+
         app.goTo().clientPage();
         app.clientList().initAddNewClient();
         try {

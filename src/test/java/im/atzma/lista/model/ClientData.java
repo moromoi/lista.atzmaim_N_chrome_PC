@@ -43,10 +43,6 @@ public class ClientData {
         this.id = 0;
     }
 
-    public File getPhoto() {return photo;}
-
-    public void setPhoto(File photo) { this.photo = photo; }
-
     @Override
     public String toString() {
         return "ClientData{" +
@@ -97,9 +93,7 @@ public class ClientData {
         return email;
     }
 
-    public String getAddress() {
-        return address;
-    }
+    public String getAddress() { return address; }
 
     public String getSex() { return sex;}
 
@@ -117,5 +111,13 @@ public class ClientData {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public File getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(File photo) {
+        this.photo = photo;
     }
 }
