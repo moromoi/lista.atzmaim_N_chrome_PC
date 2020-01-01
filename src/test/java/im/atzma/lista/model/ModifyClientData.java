@@ -1,5 +1,7 @@
 package im.atzma.lista.model;
 
+import java.io.File;
+
 public class ModifyClientData {
     private final String clientName;
     private final String clientTel;
@@ -10,6 +12,7 @@ public class ModifyClientData {
     private final String birthdayDay;
     private final int debtAmount;
     private final String noteText;
+    private File photo;
 
     public ModifyClientData(String clientName, String clientTel, String clientMail, String clientAddress, String birthdayYear, String birthdayMonth, String birthdayDay, int debtAmount, String noteText) {
         this.clientName = clientName;
@@ -57,5 +60,13 @@ public class ModifyClientData {
 
     public String getNoteText() {
         return noteText;
+    }
+
+    public File getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(File photo) {
+        this.photo = photo;
     }
 }

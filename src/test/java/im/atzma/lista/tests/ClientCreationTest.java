@@ -9,10 +9,6 @@ import java.io.File;
 public class ClientCreationTest extends TestBase {
     @Test
     public void photos() throws InterruptedException {
-        File photo = new File("src/test/resources/putin.jpg");
-        System.out.println(photo.getAbsolutePath());
-        System.out.println(photo.exists());
-
         app.goTo().clientPage();
         app.clientList().initAddNewClient();
         app.client().fillClientForm(new ClientData("Temp Client katalon", "0547019283",

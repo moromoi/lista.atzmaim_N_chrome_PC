@@ -48,7 +48,7 @@ public class ClientHelper extends HelperBase {
     @FindBy(css = "#notes button.save")
     WebElement btn_saveNote;
 
-    @FindBy(xpath = "//span[text()='להוסיף חוב חדש']")
+    @FindBy(css = "#debts .debt-footer img")
     WebElement btn_addDebt;
 
     @FindBy(xpath = "//img[@src='/public/adding-client/plus.svg']")
@@ -164,9 +164,11 @@ public class ClientHelper extends HelperBase {
     @FindBy(xpath = "//button[@class='back']")
     WebElement message_same_number;
     @FindBy(css = ".main-button button")
-    WebElement btn_openAllsettings
+    WebElement btn_openAllsettings;
     @FindBy(css = ".gallery-footer img")
     WebElement btn_addPhoto;
+    @FindBy(css = ".gallery-modal-footer button")
+    WebElement btn_addPhoto2;
 
 
     public ClientHelper(WebDriver driver) {
@@ -202,9 +204,6 @@ public class ClientHelper extends HelperBase {
         click(btn_plus_debt);
         fillText(area_debt, "חוב  של לקוח זמני");
         click(btn_saveDebtNote);
-
-        click(btn_openAllsettings);
-        fillText(btn_addPhoto, clientData.getPhoto());
 
         click(btn_saveClientForm);
         Thread.sleep(2000);
@@ -288,6 +287,9 @@ public class ClientHelper extends HelperBase {
         modifyClientDebt(modifyClientData.getDebtAmount());
         modifyClientNote(modifyClientData.getNoteText());
 
+//        click(btn_openAllsettings);
+//        attach(btn_addPhoto, modifyClientData.getPhoto());
+
         click(btn_new_ClientSave);
 
     }
@@ -309,6 +311,7 @@ public class ClientHelper extends HelperBase {
         click(btn_new_ClientEditNote);
         click(btn_new_ClientDeleteNote);
         click(btn_addNote);
+        waitForElement(area_note);
         fillText(area_note, newNote);
         click(btn_saveNote);
     }

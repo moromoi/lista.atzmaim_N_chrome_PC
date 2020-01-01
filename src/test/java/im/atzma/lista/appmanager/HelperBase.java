@@ -30,7 +30,7 @@ public class HelperBase {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", el);
 
         try {
-            Thread.sleep(100);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -56,7 +56,7 @@ public class HelperBase {
         if (text != null) {
             String existingText = el.getAttribute("value");
             if (!text.equals(existingText)) {
-                Thread.sleep(100);
+                Thread.sleep(500);
                 el.click();
                 el.clear();
                 el.sendKeys(text);
@@ -64,12 +64,13 @@ public class HelperBase {
         }
     }
 
-    public void attach (WebElement el, File file) {
+    public void attach(WebElement el, File file) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", el);
         highlight(el);
-        if (file != null) {
-                el.sendKeys(file.getAbsolutePath());
-        }
+
+        el.sendKeys(file.getAbsolutePath());
+//        if (file != null) {
+//        }
     }
 
 //    public void fillText(WebElement el, String text) throws InterruptedException {
@@ -98,7 +99,6 @@ public class HelperBase {
         }
 
     }
-
 
 
     public boolean isElementPresent(WebElement el) {

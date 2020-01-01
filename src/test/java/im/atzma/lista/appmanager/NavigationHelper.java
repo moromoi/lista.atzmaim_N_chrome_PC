@@ -14,7 +14,7 @@ public class NavigationHelper extends HelperBase {
     @FindBy(xpath = "//input[@type='password']")
     WebElement input_password;
 
-    @FindBy(xpath = "//button[text()='להיכנס']")
+    @FindBy(xpath = "//button[@type='submit']")
     WebElement btn_submit;
 
     @FindBy(xpath = "//div[@class='more_wrap']")
@@ -77,7 +77,8 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void typeNewPassAndUser() throws InterruptedException {
-        fillText(input_email, mail_2);
+        waitForElement(input_email);
+        fillText(input_email, mail);
         fillText(input_password, pass);
 
         System.out.println("email: " + mail);
