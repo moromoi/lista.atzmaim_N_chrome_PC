@@ -32,12 +32,12 @@
                     <include name="testCompareClient"/>
                 </methods>
             </class>
-            <!--<class name="im.atzma.lista.tests.DeleteAccountTest">-->
-                <!--<methods>-->
-                    <!--<include name="testDeleteAccount"/>-->
-                    <!--<include name="testDeleteAccountVerification"/>-->
-                <!--</methods>-->
-            <!--</class>-->
+            <class name="im.atzma.lista.tests.DeleteAccountTest">
+                <methods>
+                    <include name="testDeleteAccount"/>
+                    <include name="testDeleteAccountVerification"/>
+                </methods>
+            </class>
         </classes>
 
     </test>
