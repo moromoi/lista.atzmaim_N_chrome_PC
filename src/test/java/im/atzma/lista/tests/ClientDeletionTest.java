@@ -4,6 +4,7 @@ import im.atzma.lista.model.ClientData;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -12,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ClientDeletionTest extends TestBase {
 
     @Test(priority = 1)
-    public void testDeleteClientId() throws InterruptedException {
+    public void testDeleteClientId() throws InterruptedException, IOException {
         System.out.println("=== Create two same client / delete client with max ID / verify first client not deleted ===");
 
         app.goTo().clientPage();

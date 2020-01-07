@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.IOException;
 import java.util.Random;
+import java.util.Set;
 
 public class NavigationHelper extends HelperBase {
     @FindBy(xpath = "//input[@type='email']")
@@ -27,65 +29,68 @@ public class NavigationHelper extends HelperBase {
     WebElement btn_login;
 
 
-
     Random random = new Random();
     long randomLong = random.nextLong();
-    public final String mail_2 = "katalon13@gmail.com";
+
     public final String mail = "katalon_" + randomLong + "@gmail.com";
-    public final String pass = "Pa$$w@rd";
-    String baseURL = "https://lista.atzma.im/he/home?utm_source=autotest-selenium";
-    String singupURL = "https://lista.atzma.im/he/signup?utm_source=autotest-selenium";
-    String businessURL = "https://lista.atzma.im/he/signup/business-type";
-    String allsetURL = "https://lista.atzma.im/he/signup/all-set";
-    String loginURL = "https://lista.atzma.im/he/login";
-    String clientURL = "https://lista.atzma.im/he/clients";
-    String servicesURL = "https://lista.atzma.im/he/catalog/services";
-    String calendarURL = "https://lista.atzma.im/he/calendar/";
-    String newClientFormURL = "https://lista.atzma.im/he/adding-client";
 
     public NavigationHelper(WebDriver driver) {
         super(driver);
     }
 
-    public void homePage() throws InterruptedException {
-        driver.get(baseURL);
-        waitForLocation(baseURL);
+
+    public void homePage() throws InterruptedException, IOException {
+        driver.get(propertiesList("web.BaseUrl"));
+        waitForLocation(propertiesList("web.BaseUrl"));
     }
 
-    public void goToLoginPage() throws InterruptedException {
-        driver.get(loginURL);
+    public void goToLoginPage() throws InterruptedException, IOException {
+        driver.get(propertiesList("web.loginURL"));
     }
 
-    public void singupPage() throws InterruptedException {
+    public void singupPage() throws InterruptedException, IOException {
         driver.findElement(By.xpath("//a[@href='/he/signup?utm_source=autotest-selenium']")).click();
-        waitForLocation(singupURL);
+        waitForLocation(propertiesList("web.singupURL"));
     }
 
-    public void clientPage() throws InterruptedException {
-        driver.get(clientURL);
-        waitForLocation(clientURL);
+    public void clientPage() throws InterruptedException, IOException {
+        driver.get(propertiesList("web.clientURL"));
+        waitForLocation(propertiesList("web.clientURL"));
     }
 
-    public void servicesPage() throws InterruptedException {
-        driver.get(servicesURL);
-        waitForLocation(servicesURL);
+    public void servicesPage() throws InterruptedException, IOException {
+        driver.get(propertiesList("web.servicesURL"));
+        waitForLocation(propertiesList("web.servicesURL"));
     }
 
-    public void calendarPage() throws InterruptedException {
-        driver.get(calendarURL);
+    public void calendarPage() throws InterruptedException, IOException {
+        driver.get(propertiesList("web.calendarURL"));
 //        waitForLocation(calendarURL);
     }
 
-    public void typeNewPassAndUser() throws InterruptedException {
+    public void typeNewPassAndUser() throws InterruptedException, IOException {
+        String userName = propertiesList("web.adminLogin");
+        String pass = propertiesList("web.adminPassword");
+
         waitForElement(input_email);
-        fillText(input_email, mail);
+        switch (userName) {
+            case "random_":
+                fillText(input_email,   userName + randomLong + "@gmail.com");
+                break;
+            case "katalon":
+                fillText(input_email,  "katalon15@gmail.com");
+                break;
+        }
+
         fillText(input_password, pass);
 
-        System.out.println("email: " + mail);
+        System.out.println("email: " + userName);
         System.out.println("password: " + pass);
     }
 
-    public boolean submit() throws InterruptedException {
+    public boolean submit() throws InterruptedException, IOException {
+        String businessURL = propertiesList("web.businessURL");
+
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         waitForLocation(businessURL);
         if (businessURL.equals(driver.getCurrentUrl())) {
@@ -93,9 +98,9 @@ public class NavigationHelper extends HelperBase {
         } else return false;
     }
 
-    public void submit2() throws InterruptedException {
+    public void submit2() throws InterruptedException, IOException {
         driver.findElement(By.xpath("//span[text()='בואו נתחיל!']/..")).click();
-        waitForLocation(allsetURL);
+        waitForLocation(propertiesList("web.allsetURL"));
     }
 
     public boolean submit3() throws InterruptedException {
@@ -107,15 +112,14 @@ public class NavigationHelper extends HelperBase {
         } else return false;
     }
 
-    public void login() throws InterruptedException {
+    public void login() throws InterruptedException, IOException {
         homePage();
         highlight(btn_login);
         click(btn_login);
-        waitForLocation(loginURL);
+        waitForElement(input_email);
         typeNewPassAndUser();
         click(btn_submit);
     }
-
 
 
     public boolean verifyEmailInput() {
@@ -136,4 +140,5 @@ public class NavigationHelper extends HelperBase {
             return false;
         }
     }
+
 }

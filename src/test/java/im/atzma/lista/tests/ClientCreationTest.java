@@ -5,10 +5,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.IOException;
 
 public class ClientCreationTest extends TestBase {
     @Test
-    public void photos() throws InterruptedException {
+    public void photos() throws InterruptedException, IOException {
         app.goTo().clientPage();
         app.clientList().initAddNewClient();
         app.client().fillClientForm(new ClientData("Temp Client katalon", "0547019283",
@@ -18,7 +19,7 @@ public class ClientCreationTest extends TestBase {
     }
 
     @Test(priority = 1)
-    public void initNewClientCreation() throws InterruptedException {
+    public void initNewClientCreation() throws InterruptedException, IOException {
 
         app.goTo().clientPage();
         app.clientList().initAddNewClient();
@@ -56,7 +57,7 @@ public class ClientCreationTest extends TestBase {
     }
 
     @Test(priority = 4)
-    public void testCreateClientCount() throws InterruptedException {
+    public void testCreateClientCount() throws InterruptedException, IOException {
         app.goTo().clientPage();
         System.out.println("Number of client before client creation = " + app.clientList().getClientCount());
         int before = app.clientList().getClientCount();

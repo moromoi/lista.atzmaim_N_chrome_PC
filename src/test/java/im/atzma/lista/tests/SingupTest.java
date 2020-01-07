@@ -31,6 +31,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
     public void testPasswordVisibleIcons() throws Exception {
         app.goTo().typeNewPassAndUser();
 
+
         try {
             Assert.assertTrue(app.singupPage().passwordVisible());
         } catch (Exception e) {
@@ -165,12 +166,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try {
-            //--------------------------------------------------------------------------verify username in MenuTest
-            Assert.assertTrue(app.calendar().verifyUserinMenu());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //--------------------------------------------------------------------------verify username in MenuTest
 
     }
 
@@ -205,7 +201,7 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
         app.goTo().login();
         try {
             //--------------------------------------------------------------------------verify Login with new user (name in menu)
-            Assert.assertTrue(app.calendar().verifyUserinMenu());
+            Assert.assertTrue(app.calendar().verifyUserinMenu().contains("random_"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -214,12 +210,8 @@ public class SingupTest extends im.atzma.lista.tests.TestBase {
     @Test(priority = 10)
     public void testVerifyDefaultClientPage() throws Exception {
         app.goTo().clientPage();
-        try {
-            //--------------------------------------------------------------------------verify client page URL
-            Assert.assertTrue(app.driver.getCurrentUrl().matches("https://lista.atzma.im/he/clients"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //--------------------------------------------------------------------------verify client page URL
+        Assert.assertTrue(app.driver.getCurrentUrl().matches("https://lista.atzma.im/he/clients"));
 
         try {
             //--------------------------------------------------------------------------verify title text ('מאגר לקוחות')

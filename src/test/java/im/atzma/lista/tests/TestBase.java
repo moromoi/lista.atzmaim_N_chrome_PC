@@ -1,14 +1,18 @@
 package im.atzma.lista.tests;
 
 import im.atzma.lista.appmanager.ApplicationManager;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
+
+
 public class TestBase {
 
-    protected static final ApplicationManager app = new ApplicationManager();
+    protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser", "Chrome"));
 
     @BeforeSuite(alwaysRun = true)
     public void setUp() throws Exception {
@@ -16,7 +20,7 @@ public class TestBase {
 
     }
 
-    @AfterSuite(alwaysRun = true)
+//    @AfterSuite(alwaysRun = true)
     public void tearDown() throws Exception {
         app.stop();
     }

@@ -4,6 +4,7 @@ import im.atzma.lista.model.ClientData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ModifyAppointmentTest extends TestBase {
@@ -24,7 +25,7 @@ public class ModifyAppointmentTest extends TestBase {
 //        }
 //    }
     @Test(priority = 3)
-    public void createSecondTempClient() throws InterruptedException {
+    public void createSecondTempClient() throws InterruptedException, IOException {
         app.goTo().clientPage();
         app.clientList().initAddNewClient();
         app.client().fillClientForm(new ClientData("Temp Client katalon_2", "0547613154",
@@ -40,7 +41,7 @@ public class ModifyAppointmentTest extends TestBase {
     }
 
     @Test(priority = 4)
-    public void modifyAppointment() throws InterruptedException {
+    public void modifyAppointment() throws InterruptedException, IOException {
         app.goTo().calendarPage();
         app.appointment().clickOnExistsAppointment();
         app.appointment().initAppModification();

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,6 +146,8 @@ public class AppointmentHelper extends HelperBase {
     @FindBy(xpath = "//*[@style='max-height: 0px; overflow: hidden;']")
     WebElement service_area;
 
+    @FindBy(xpath = "//a[@href='/he/settings/business_settings_group']")
+    WebElement btn_buisness_settings;
     @FindBy(css = ".button-delete")
     WebElement btn_deleteAccount;
 
@@ -393,9 +396,10 @@ public class AppointmentHelper extends HelperBase {
         click(btn_save);
     }
 
-    public void deleteAccount() throws InterruptedException {
-        driver.get("https://lista.atzma.im/he/settings");
-        driver.findElement(By.xpath("//p[text()='הגדרות עסק']/..")).click();
+    public void deleteAccount() throws InterruptedException, IOException {
+        driver.get(propertiesList("web.settings"));
+        waitForElement(btn_buisness_settings);
+        click(btn_buisness_settings);
         highlight(btn_deleteAccount);
         click(btn_deleteAccount);
         driver.findElement(By.xpath("//button[@class='yes-btn']")).click();

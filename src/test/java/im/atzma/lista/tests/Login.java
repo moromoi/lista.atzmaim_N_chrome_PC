@@ -7,6 +7,6 @@ public class Login extends TestBase{
     @Test
     public void login() throws InterruptedException {
 //        app.goTo().calendarPage();
-        app.goTo().login();
+//        app.goTo().login();
     }
 }

@@ -15,7 +15,7 @@ public class CalendarPage extends HelperBase {
     @FindBy(xpath = "//div[@class='more_wrap']")
     WebElement menu_gamburger;
 
-    @FindBy(xpath = "//p[contains(text(), 'katalon')]")
+    @FindBy(css = "p.business_name")
     WebElement username_in_menu;
 
     @FindBy(xpath = "//a[@href='/he/logout']")
@@ -37,7 +37,6 @@ public class CalendarPage extends HelperBase {
     List<WebElement> links_in_menu;
 
 
-
     public boolean logout() {
         highlight(menu_gamburger);
         click(menu_gamburger);
@@ -48,12 +47,12 @@ public class CalendarPage extends HelperBase {
         } else return false;
     }
 
-    public boolean verifyUserinMenu()  {
+    public String verifyUserinMenu() {
         highlight(menu_gamburger);
         click(menu_gamburger);
-        if (username_in_menu.isDisplayed()) {
-            return true;
-        } else return false;
+        System.out.println("user name in menu: " + username_in_menu.getText());
+        highlight(username_in_menu);
+        return username_in_menu.getText();
     }
 
     public List<String> verifyMenuLinks() {
@@ -61,7 +60,7 @@ public class CalendarPage extends HelperBase {
         List<String> itemList = new ArrayList<>();
 
         for (int i = 0; i < links_in_menu.size(); i++) {
-            itemList.add(links_in_menu.get(i).getText()) ;
+            itemList.add(links_in_menu.get(i).getText());
             System.out.println("MenuTest item " + i + "-" + links_in_menu.get(i).getText());
             highlight(links_in_menu.get(i));
         }

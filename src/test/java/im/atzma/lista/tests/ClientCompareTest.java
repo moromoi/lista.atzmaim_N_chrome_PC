@@ -5,12 +5,13 @@ import im.atzma.lista.model.ClientData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ClientCompareTest extends TestBase {
 
     @Test(priority = 1)
-    public void testCreateClientCount_1() throws InterruptedException {
+    public void testCreateClientCount_1() throws InterruptedException, IOException {
         System.out.println("=== Create first client and verify creation in client list ===");
 
         app.goTo().clientPage();
@@ -27,7 +28,7 @@ public class ClientCompareTest extends TestBase {
     }
 
     @Test(priority = 2)
-    public void testCreateClientCount_2() throws InterruptedException {
+    public void testCreateClientCount_2() throws InterruptedException, IOException {
         System.out.println("=== Create second client and verify creation in client list ===");
 
         app.goTo().clientPage();
@@ -45,7 +46,7 @@ public class ClientCompareTest extends TestBase {
 
 
     @Test(priority = 3)
-    public void testCompareClient() throws InterruptedException {
+    public void testCompareClient() throws InterruptedException, IOException {
         System.out.println("=== Compare  first client elements with same second ===");
 
         app.goTo().clientPage();

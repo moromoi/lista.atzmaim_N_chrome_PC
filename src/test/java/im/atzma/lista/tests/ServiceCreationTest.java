@@ -4,12 +4,13 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ServiceCreationTest extends TestBase{
 
     @Test(priority = 1)
-    public void testVerifyDefaultElements() throws InterruptedException {
+    public void testVerifyDefaultElements() throws InterruptedException, IOException {
         app.goTo().servicesPage();
         Assert.assertTrue(app.driver.getCurrentUrl().matches("https://lista.atzma.im/he/catalog/services"));
 
