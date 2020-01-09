@@ -176,6 +176,7 @@ public class AppointmentHelper extends HelperBase {
         click(input_findService);
         waitForElement(service_area);
         fillText(input_findService, service);
+        waitForElement(btn_add_Service);
         click(btn_add_Service);
 
         fillText(inputBox_placeholder, notExistCategory);

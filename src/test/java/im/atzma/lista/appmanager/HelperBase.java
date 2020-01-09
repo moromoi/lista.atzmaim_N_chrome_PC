@@ -4,21 +4,24 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.Random;
+
 
 import static org.testng.Assert.fail;
 
 public class HelperBase {
-    protected WebDriver driver;
+    WebDriver driver;
+    public  WebDriverWait wait;
 
     public HelperBase(WebDriver driver) {
         this.driver = driver;
@@ -31,7 +34,9 @@ public class HelperBase {
 
 
     public void click(WebElement el) {
+//        wait.until(ExpectedConditions.visibilityOf(el));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", el);
+
 
         try {
             Thread.sleep(500);

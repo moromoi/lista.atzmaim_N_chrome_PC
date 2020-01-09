@@ -40,25 +40,7 @@ public class ApplicationManager {
     public void init() throws InterruptedException, IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-//        String driverType = properties.getProperty("browser");
-//        switch (driverType){
-//            case "Firefox": //	GeckoDriver = 0.19.0 | FireFox = 58.0.1 | selenium = 3.8.0
-//                //here you should define the driver for firefox(Mozilla GeckoDriver) browser
-//                System.setProperty("webdriver.gecko.driver", "C:\\automation\\browser drivers\\firefox\\geckodriver.exe");
-//                driver =  new FirefoxDriver();
-//                break;
-//            case "Chrome":
-//                System.setProperty("webdriver.chrome.driver", "C:\\automation\\browser drivers\\chrome\\chromedriver.exe");
-//                driver = new ChromeDriver();
-//                break;
-//            case "IE":
-//                System.setProperty("webdriver.ie.driver", "C:\\automation\\drivers\\MicrosoftWebDriver.exe");
-//                driver = new InternetExplorerDriver();
-//                break;
-//            default:
-//                //here you should define the driver for default browser
-//                break;
-//        }
+
 
         if (browser.equals("Chrome")) {
             System.setProperty("webdriver.chrome.driver", "C:\\automation\\browser drivers\\chrome\\chromedriver.exe");
