@@ -34,7 +34,7 @@ public class HelperBase {
 
 
     public void click(WebElement el) {
-//        wait.until(ExpectedConditions.visibilityOf(el));
+//        wait.until(ExpectedConditions.elementToBeClickable(el));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", el);
 
 
