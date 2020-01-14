@@ -1,13 +1,9 @@
 package im.atzma.lista.tests;
 
 import im.atzma.lista.appmanager.ApplicationManager;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
-
-import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
