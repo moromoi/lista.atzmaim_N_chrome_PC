@@ -118,5 +118,6 @@ public class ClientModificationTest extends TestBase {
 
         Assert.assertEquals(after, before);
 
+
     }
 }

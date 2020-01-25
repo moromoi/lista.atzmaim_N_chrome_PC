@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.rest-assured:json-schema-validator:4.1.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.rest-assured/json-schema-validator/4.1.2/b19c00207a15591ed1c4b751bc8cc9172d9d890d/json-schema-validator-4.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.rest-assured/json-schema-validator/4.1.2/dec2670e76157f50f518279b0d16686ede2dae43/json-schema-validator-4.1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

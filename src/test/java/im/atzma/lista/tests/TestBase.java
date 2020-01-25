@@ -4,6 +4,8 @@ import im.atzma.lista.appmanager.ApplicationManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
+
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
@@ -24,11 +26,12 @@ public class TestBase {
     }
 
     @BeforeMethod()
-    public void logTestStart(Method method, Object[] p) {
+    public void logTestStart(Method method, Object[] p) throws IOException {
         logger.info("Start test " + method.getName() + " with parrametrs " + Arrays.asList(p));
     }
 
     @AfterMethod(alwaysRun = true)
+
     public void logTestStop(Method method) {
         logger.info("Stop test " + method.getName());
     }

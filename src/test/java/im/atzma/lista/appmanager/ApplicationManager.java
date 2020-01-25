@@ -81,6 +81,7 @@ public class ApplicationManager {
         }
         Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
     }
+    public HttpSession newSession() { return new HttpSession(this);}
 
 
     public NavigationHelper goTo() {

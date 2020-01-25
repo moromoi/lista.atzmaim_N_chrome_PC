@@ -18,102 +18,114 @@ dependencies {
     testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'org.apache.httpcomponents:httpclient:4.5.6'
     implementation 'org.apache.httpcomponents:fluent-hc:4.5.6'
+    // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
+    testCompile group: 'io.rest-assured', name: 'rest-assured', version: '4.1.2'
+    // https://mvnrepository.com/artifact/io.rest-assured/json-path
+    compile group: 'io.rest-assured', name: 'json-path', version: '4.1.2'
+    // https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator
+    compile group: 'io.rest-assured', name: 'json-schema-validator', version: '4.1.2'
+
+// https://mvnrepository.com/artifact/com.mashape.unirest/unirest-java
+    compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
 
 
 }
 
-
-task testMenu(type: Test) {
+task testRest(type: Test) {
     useTestNG() {
-        suites './src/test/java/im/atzma/lista/tests/testng-Menu_Service.xml'
-    }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
+        suites './src/test/java/im/atzma/lista/tests/testng-RestAPI.xml'
     }
 
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
+    task testMenu(type: Test) {
+        useTestNG() {
+            suites './src/test/java/im/atzma/lista/tests/testng-Menu_Service.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+
     }
 
+    task testNewAppointment(type: Test) {
+        useTestNG() {
+            suites './src/test/java/im/atzma/lista/tests/testng-AppointmentCreation.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+    }
+
+    task testNewAppointmentModification(type: Test) {
+        useTestNG() {
+            suites './src/test/java/im/atzma/lista/tests/testng-AppointmentModification.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+    }
+
+    task testClientCreationCount(type: Test) {
+        useTestNG() {
+            suites './src/test/java/im/atzma/lista/tests/testng-ClientCreationCount.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+    }
+
+    task testClientDeletionCount(type: Test) {
+        useTestNG() {
+            suites './src/test/java/im/atzma/lista/tests/testng-ClientDeletionCount.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+    }
+
+    task testClientCompareCount(type: Test) {
+        useTestNG() {
+            suites './src/test/java/im/atzma/lista/tests/testng-ClientCompareCount.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+    }
+
+    task testClientModificationCount(type: Test) {
+        useTestNG() {
+            suites './src/test/java/im/atzma/lista/tests/testng-ClientModificationCount.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+    }
 }
-
-task testNewAppointment(type: Test) {
-    useTestNG() {
-        suites './src/test/java/im/atzma/lista/tests/testng-AppointmentCreation.xml'
-    }
-    if(project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-
-    if(project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-}
-
-task testNewAppointmentModification(type: Test) {
-    useTestNG() {
-        suites './src/test/java/im/atzma/lista/tests/testng-AppointmentModification.xml'
-    }
-    if(project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-
-    if(project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-}
-
-task testClientCreationCount(type: Test) {
-    useTestNG() {
-        suites './src/test/java/im/atzma/lista/tests/testng-ClientCreationCount.xml'
-    }
-    if(project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-
-    if(project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-}
-
-task testClientDeletionCount(type: Test) {
-    useTestNG() {
-        suites './src/test/java/im/atzma/lista/tests/testng-ClientDeletionCount.xml'
-    }
-    if(project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-
-    if(project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-}
-
-task testClientCompareCount(type: Test) {
-    useTestNG() {
-        suites './src/test/java/im/atzma/lista/tests/testng-ClientCompareCount.xml'
-    }
-    if(project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-
-    if(project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-}
-
-task testClientModificationCount(type: Test) {
-    useTestNG() {
-        suites './src/test/java/im/atzma/lista/tests/testng-ClientModificationCount.xml'
-    }
-    if(project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-
-    if(project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-}
-
