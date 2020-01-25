@@ -8,6 +8,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import org.apache.http.HttpHost;
@@ -50,18 +51,18 @@ public class RestTests {
                 and().config().encoderConfig(encoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false));
         RestAssured.useRelaxedHTTPSValidation();
 
-        given().
+       Response response = given().
 //                redirects().max(12).and().redirects().follow(true).
                 header("Content-Type", "application/x-www-form-urlencoded").
                 header("user-agent","alpalch-qpEzhaOvY0Ecb4e0").
                 formParam("time_zone","Asia/Jerusalem").
                 formParam(  "email","katalon@gmail.com").
                 formParam( "pass","Pa$$w@rd").
-
                 when().
-                get("/check-login").
+                post("/check-login").
                 then().
-                assertThat().statusCode(201);
+                assertThat().statusCode(201).extract().response();
+
 
 //        Map<String, Object> jsonAsMap = new HashMap<>();
 //        jsonAsMap.put("map", "TestCategory");
