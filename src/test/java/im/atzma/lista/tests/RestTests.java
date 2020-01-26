@@ -1,44 +1,19 @@
 package im.atzma.lista.tests;
 
-import com.google.gson.JsonObject;
-
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-
-import org.apache.http.HttpHost;
-import org.apache.http.client.CookieStore;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.CookieSpecs;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.client.LaxRedirectStrategy;
-import org.apache.http.ssl.SSLContextBuilder;
 import org.testng.annotations.Test;
 
-import static io.restassured.config.EncoderConfig.encoderConfig;
-import static io.restassured.config.RedirectConfig.redirectConfig;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import javax.net.ssl.SSLContext;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
-import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
+import static io.restassured.config.EncoderConfig.encoderConfig;
+import static io.restassured.config.RedirectConfig.redirectConfig;
 
 
 public class RestTests {
@@ -52,32 +27,38 @@ public class RestTests {
         RestAssured.useRelaxedHTTPSValidation();
 
        Response response = given().
-//                redirects().max(12).and().redirects().follow(true).
                 header("Content-Type", "application/x-www-form-urlencoded").
                 header("user-agent","alpalch-qpEzhaOvY0Ecb4e0").
                 formParam("time_zone","Asia/Jerusalem").
-                formParam(  "email","katalon@gmail.com").
+                formParam(  "email","katalon13@gmail.com").
                 formParam( "pass","Pa$$w@rd").
                 when().
-                post("/check-login").
+                post("/check-login");
+
+        Map<String, String> allCookies = response.getCookies();
+        allCookies.forEach((k,v)->System.out.println("Key : " + k + " Value : " + v));
+
+
+        given().cookies(response.getCookies()).
+                header("content-type", "application/x-www-form-urlencoded").
+                header("user-agent","alpalch-qpEzhaOvY0Ecb4e0").
+                formParam("name", "TestCategory2").
+                formParam("duration", 300).
+                formParam("price", 50).
+                formParam("color","#50e3c1").
+                formParam("category_id", 2).
+                formParam("added", "2020-01-26 21:39:41").
+                when().
+                post("/catalog/services").
                 then().
-                assertThat().statusCode(201).extract().response();
+                assertThat().
+                statusCode(201);
 
-
-//        Map<String, Object> jsonAsMap = new HashMap<>();
-//        jsonAsMap.put("map", "TestCategory");
-
-//        given().
-//                header("content-type", "application/x-www-form-urlencoded").
-//                header("Cookie", "7b7a53e239400a13bd6be6c91c4f6c4e=FDCEB8319563CE43893D28C0432F7F3E038B83F5DB84FB208FEF401AF540A6C4; Path=/; Expires=Sat, 01 Feb 2020 14:39:56 GMT; HttpOnly").
-//                header("user-agent","alpalch-qpEzhaOvY0Ecb4e0").
-//                formParam("name", "TestCategory").
-//                when().
-//                post("/catalog/services/categories").
-//                then().
-//                assertThat().
-//                statusCode(201);
-
+        Response response2 = given().cookies(response.getCookies()).
+                header("user-agent","alpalch-qpEzhaOvY0Ecb4e0").
+                when().
+                get("/calendar?start=2020-01-25T00:00:00&end=2020-01-27T23:59:59&worker_id=1");
+        System.out.println(response2.body().asString());
 
 
     }
