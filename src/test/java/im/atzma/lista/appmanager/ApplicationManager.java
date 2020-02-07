@@ -46,7 +46,8 @@ public class ApplicationManager {
             System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
             ChromeOptions chromeOptions = new ChromeOptions();
 //        chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
-            chromeOptions.addArguments(("--auto-open-devtools-for-tabs"));
+            chromeOptions.setBinary("/usr/bin/google-chrome-stable");
+            chromeOptions.addArguments("--auto-open-devtools-for-tabs");
             chromeOptions.addArguments("--ignore-certificate-errors");
             chromeOptions.addArguments("--no-sandbox");
             chromeOptions.addArguments("--disable-dev-shm-usage");
@@ -81,7 +82,11 @@ public class ApplicationManager {
         if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);
         }
-        Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+//        Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+        Runtime.getRuntime().exec("killall chromedriver");
+        Runtime.getRuntime().exec("killall chrome");
+
+
     }
     public HttpSession newSession() { return new HttpSession(this);}
 
