@@ -47,10 +47,12 @@ public class ApplicationManager {
             ChromeOptions chromeOptions = new ChromeOptions();
 //        chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
             chromeOptions.setBinary("/usr/bin/google-chrome-stable");
+            chromeOptions.addArguments("--headless");
             chromeOptions.addArguments("--auto-open-devtools-for-tabs");
             chromeOptions.addArguments("--ignore-certificate-errors");
             chromeOptions.addArguments("--no-sandbox");
             chromeOptions.addArguments("--disable-dev-shm-usage");
+            chromeOptions.addArguments("--disable-gpu");
             driver = new ChromeDriver(chromeOptions);
         } else if (browser.equals("Firefox")) {
             System.setProperty("webdriver.gecko.driver", "C:\\automation\\browser drivers\\firefox\\geckodriver.exe");
